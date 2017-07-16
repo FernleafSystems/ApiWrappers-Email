@@ -11,7 +11,6 @@ abstract class BaseApi {
 
 	use ConnectionConsumer,
 		StdClassAdapter;
-
 	const REQUEST_METHOD = 'post';
 
 	/**
@@ -54,7 +53,7 @@ abstract class BaseApi {
 
 		$sResponse = '';
 		if ( !$bError ) {
-			$sResponse = json_decode( $this->getLastApiResponse()->getBody() );
+			$sResponse = json_decode( $this->getLastApiResponse()->getBody()->getContents() );
 		}
 		return $sResponse;
 	}
@@ -93,7 +92,6 @@ abstract class BaseApi {
 				'Content-Type'  => Constants::Content_Type,
 				'Authorization' => 'apikey ' . $this->getConnection()->getApiKey()
 			),
-			'base_url' => sprintf( Constants::Url_Base, explode( '-', $this->getConnection()->getApiKey()[ 1 ] ) ),
 		);
 
 		$sDataBodyKey = ( $this->getHttpRequestMethod() == 'get' ) ? 'query' : 'json';
@@ -116,9 +114,17 @@ abstract class BaseApi {
 	 */
 	public function getHttpRequest() {
 		if ( empty( $this->oHttp ) ) {
-			$this->oHttp = new Client();
+			$this->oHttp = new Client( array( 'base_url' => $this->getBaseUrl() ) );
 		}
 		return $this->oHttp;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getBaseUrl() {
+		$sBase = sprintf( Constants::Url_Base, explode( '-', $this->getConnection()->getApiKey() )[ 1 ] );
+		return rtrim( $sBase, '/' ) . '/';
 	}
 
 	/**
