@@ -8,18 +8,13 @@ namespace FernleafSystems\Apis\Email\Mailchimp\Lists\Members;
  */
 class Update extends Retrieve {
 
+	const REQUEST_METHOD = 'patch';
+
 	/**
 	 * @param array $aMergeFields
 	 * @return $this
 	 */
 	public function setMergeFields( $aMergeFields ) {
 		return $this->setRequestDataItem( 'merge_fields', $aMergeFields );
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getVerb() {
-		return 'patch';
 	}
 }

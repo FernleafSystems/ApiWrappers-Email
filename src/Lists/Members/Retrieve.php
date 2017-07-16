@@ -10,6 +10,8 @@ use FernleafSystems\Apis\Email\Mailchimp\BaseApi;
  */
 class Retrieve extends BaseApi {
 
+	const REQUEST_METHOD = 'get';
+
 	/**
 	 * @param string $sEmail
 	 * @return MemberVO|null
@@ -66,6 +68,6 @@ class Retrieve extends BaseApi {
 	 * @return string
 	 */
 	protected function getMethod() {
-		return sprintf( '/lists/%s/members/%s', $this->getListId(), $this->getMemberId() );
+		return sprintf( 'lists/%s/members/%s', $this->getListId(), $this->getMemberId() );
 	}
 }
