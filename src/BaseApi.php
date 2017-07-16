@@ -29,6 +29,11 @@ abstract class BaseApi {
 	protected $oHttp;
 
 	/**
+	 * @var bool
+	 */
+	protected $bDecodeAsObject;
+
+	/**
 	 * @param Connection $oConnection
 	 */
 	public function __construct( $oConnection = null ) {
@@ -53,7 +58,7 @@ abstract class BaseApi {
 
 		$sResponse = '';
 		if ( !$bError ) {
-			$sResponse = json_decode( $this->getLastApiResponse()->getBody()->getContents() );
+			$sResponse = json_decode( $this->getLastApiResponse()->getBody()->getContents(), $this->isDecodeAsObject() );
 		}
 		return $sResponse;
 	}
@@ -173,6 +178,22 @@ abstract class BaseApi {
 	 */
 	public function hasError() {
 		return !is_null( $this->getLastError() );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isDecodeAsObject() {
+		return (bool)$this->bDecodeAsObject;
+	}
+
+	/**
+	 * @param bool $bDecodeAsObject
+	 * @return $this
+	 */
+	public function setDecodeAsObject( $bDecodeAsObject ) {
+		$this->bDecodeAsObject = $bDecodeAsObject;
+		return $this;
 	}
 
 	/**
