@@ -1,0 +1,27 @@
+{
+  "name":         "fernleafsystems/apis/email/mailchimp",
+  "authors":      [
+	{
+	  "name":     "Paul Goodchild",
+	  "email":    "paul@paulgoodchild.me",
+	  "homepage": "https://paulgoodchild.me"
+	}
+  ],
+  "repositories": [
+	{
+	  "type": "vcs",
+	  "url":  "https://github.com/FernleafSystems/Utilities.git"
+	}
+  ],
+  "require":      {
+	"fernleafsystems/utilities": "^1.0",
+	"drewm/mailchimp-api":       "^2.0"
+  },
+  "require-dev":  {
+  },
+  "autoload":     {
+	"psr-4": {
+	  "FernleafSystems\\Apis\\Email\\Mailchimp\\": "src"
+	}
+  }
+}
