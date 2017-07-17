@@ -1,5 +1,5 @@
 {
-  "name":         "fernleafsystems/apis/email/mailchimp",
+  "name":         "fernleafsystems/apis/email",
   "authors":      [
 	{
 	  "name":     "Paul Goodchild",
@@ -25,7 +25,7 @@
   },
   "autoload":     {
 	"psr-4": {
-	  "FernleafSystems\\Apis\\Email\\Mailchimp\\": "src"
+	  "FernleafSystems\\Apis\\Email\\": "src"
 	}
   }
 }
