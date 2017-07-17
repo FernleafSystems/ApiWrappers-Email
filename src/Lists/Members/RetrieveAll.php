@@ -2,13 +2,13 @@
 
 namespace FernleafSystems\Apis\Email\Mailchimp\Lists\Members;
 
-use FernleafSystems\Apis\Email\Mailchimp\BaseApi;
+use FernleafSystems\Apis\Email\Mailchimp\Api;
 
 /**
  * Class RetrieveAll
  * @package FernleafSystems\Apis\Email\Mailchimp\Lists\Members
  */
-class RetrieveAll extends BaseApi {
+class RetrieveAll extends Api {
 
 	const REQUEST_METHOD = 'get';
 
@@ -24,7 +24,8 @@ class RetrieveAll extends BaseApi {
 			$aMembers = null;
 			$aResults = $this->setRequestDataItem( 'offset', $nOffset )
 							 ->setRequestDataItem( 'count', 100 )
-							 ->send();
+							 ->send()
+							 ->getDecodedResponseBody();
 
 			if ( is_array( $aResults ) && isset( $aResults[ 'members' ] ) ) {
 				$aMembers = array_map(
@@ -61,7 +62,7 @@ class RetrieveAll extends BaseApi {
 	/**
 	 * @return string
 	 */
-	protected function getMethod() {
+	protected function getUrlEndpoint() {
 		return sprintf( 'lists/%s/members', $this->getListId() );
 	}
 }
