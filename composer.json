@@ -14,7 +14,7 @@
 	},
 	{
 	  "type": "vcs",
-	  "url":  "https://github.com/FernleafSystems/Apis-Base"
+	  "url":  "https://github.com/FernleafSystems/Apis-Base.git"
 	}
   ],
   "require":      {
