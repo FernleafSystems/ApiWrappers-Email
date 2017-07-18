@@ -2,14 +2,13 @@
 
 namespace FernleafSystems\Apis\Email\SendInBlue\Webhooks;
 
-use FernleafSystems\Apis\Email\SendInBlue\Api;
 use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
 
 /**
  * Class Capture
  * @package FernleafSystems\Apis\Email\SendInBlue\Webhooks
  */
-class Capture extends Api {
+class Capture {
 
 	use StdClassAdapter;
 

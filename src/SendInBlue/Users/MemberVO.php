@@ -13,6 +13,14 @@ class MemberVO {
 	use StdClassAdapter;
 
 	/**
+	 * @return mixed
+	 */
+	public function getAttribute( $sKey ) {
+		$aAttrs = $this->getAttributes();
+		return isset( $aAttrs[ $sKey ] ) ? $aAttrs[ $sKey ] : null;
+	}
+
+	/**
 	 * TODO: test
 	 * @return array
 	 */
