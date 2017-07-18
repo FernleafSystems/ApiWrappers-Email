@@ -21,7 +21,6 @@ class MemberVO {
 	}
 
 	/**
-	 * TODO: test
 	 * @return array
 	 */
 	public function getAttributes() {
@@ -36,10 +35,24 @@ class MemberVO {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getId() {
+		return $this->getNumericParam( 'id' );
+	}
+
+	/**
 	 * @return array
 	 */
 	public function getListIds() {
 		return $this->getArrayParam( 'listid' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isBlacklisted() {
+		return ( $this->getParam( 'blacklisted', 0 ) == 1 );
 	}
 
 	/**

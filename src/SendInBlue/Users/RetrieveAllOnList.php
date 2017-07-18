@@ -6,11 +6,15 @@ use FernleafSystems\Apis\Email\SendInBlue\Api;
 
 class RetrieveAllOnList extends Api {
 
+	/**
+	 * Note the MemberVO data here is limited to 'email', 'listid', 'id', 'blacklisted'
+	 * @return MemberVO[]
+	 */
 	public function retrieve() {
 
 		$aAllMembers = array();
 
-		$nOffset = 0;
+		$nOffset = 1;
 		do {
 			$aMembers = null;
 			$aResults = $this->setRequestDataItem( 'page', $nOffset )
