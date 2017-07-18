@@ -35,6 +35,14 @@ class RetrieveAllOnList extends Api {
 	}
 
 	/**
+	 * @param int $nListId
+	 * @return $this
+	 */
+	public function setListId( $nListId ) {
+		return $this->setLists( [ $nListId ] );
+	}
+
+	/**
 	 * @param array $aLists
 	 * @return $this
 	 */
