@@ -14,9 +14,11 @@ class Api extends BaseApi {
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
-		$this->setRequestHeader( 'Accept', Constants::Content_Type )
-			 ->setRequestHeader( 'Content-Type', Constants::Content_Type )
-			 ->setRequestHeader( 'Authorization', 'apikey ' . $this->getConnection()->getApiKey() );
+		/** @var Connection $oCon */
+		$oCon = $this->getConnection();
+		$this->setRequestHeader( 'Accept', $oCon->getContentType() )
+			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() )
+			 ->setRequestHeader( 'Authorization', 'apikey ' . $oCon->getApiKey() );
 
 		return parent::prepFinalRequestData();
 	}
@@ -25,7 +27,9 @@ class Api extends BaseApi {
 	 * @return string
 	 */
 	protected function getBaseUrl() {
-		$sBase = sprintf( Constants::Url_Base, explode( '-', $this->getConnection()->getApiKey() )[ 1 ] );
+		/** @var Connection $oCon */
+		$oCon = $this->getConnection();
+		$sBase = sprintf( $oCon->getBaseUrl(), explode( '-', $oCon->getApiKey() )[ 1 ] );
 		return rtrim( $sBase, '/' ) . '/';
 	}
 }
