@@ -17,10 +17,10 @@ class Api extends BaseApi {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
 		$this->setRequestHeader( 'Accept', $oCon->getContentType() )
-			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() )
-			 ->setRequestHeader( 'Authorization', sprintf( 'Basic %s', base64_encode( $oCon->getApiKey() . ':' ) ) );
-
-		return parent::prepFinalRequestData();
+			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() );
+		$aFinal = parent::prepFinalRequestData();
+		$aFinal[ 'auth' ] = array( $oCon->getApiKey(), '' );
+		return $aFinal;
 	}
 
 	/**
