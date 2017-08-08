@@ -4,9 +4,57 @@ namespace FernleafSystems\Apis\Email\Drip\Users;
 
 use FernleafSystems\Apis\Email\Drip;
 
+/**
+ * Class Create
+ * @package FernleafSystems\Apis\Email\Drip\Users
+ */
 class Create extends Drip\Api {
 
 	const REQUEST_METHOD = 'post';
+
+	/**
+	 * @param string $sTag
+	 * @return $this
+	 */
+	public function addTag( $sTag ) {
+		$aTags = $this->getRequestDataItem( 'tags' );
+		if ( is_null( $aTags ) || !is_array( $aTags ) ) {
+			$aTags = array();
+		}
+		if ( !in_array( $sTag, $aTags ) ) {
+			$aTags[] = $sTag;
+		}
+		return $this->setRequestDataItem( 'tags', $aTags );
+	}
+
+	/**
+	 * @param string $sTag
+	 * @return $this
+	 */
+	public function removeTag( $sTag ) {
+		$aTags = $this->getRequestDataItem( 'remove_tags' );
+		if ( is_null( $aTags ) || !is_array( $aTags ) ) {
+			$aTags = array();
+		}
+		if ( !in_array( $sTag, $aTags ) ) {
+			$aTags[] = $sTag;
+		}
+		return $this->setRequestDataItem( 'remove_tags', $aTags );
+	}
+
+	/**
+	 * @param string $sFieldKey
+	 * @param mixed $mFieldValue
+	 * @return Create
+	 */
+	public function setCustomField( $sFieldKey, $mFieldValue ) {
+		$aFields = $this->getRequestDataItem( 'custom_fields' );
+		if ( is_null( $aFields ) || !is_array( $aFields ) ) {
+			$aFields = array();
+		}
+		$aFields[ $sFieldKey ] = $mFieldValue;
+		return $this->setCustomFields( $aFields );
+	}
 
 	/**
 	 * @param array $aFields
@@ -22,6 +70,14 @@ class Create extends Drip\Api {
 	 */
 	public function setEmail( $sEmail ) {
 		return $this->setRequestDataItem( 'email', $sEmail );
+	}
+
+	/**
+	 * @param string $sId
+	 * @return $this
+	 */
+	public function setUserId( $sId ) {
+		return $this->setRequestDataItem( 'user_id', $sId );
 	}
 
 	/**
