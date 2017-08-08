@@ -2,11 +2,11 @@
 
 namespace FernleafSystems\Apis\Email\SendInBlue\Webhooks;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
-
-class WebhookVO {
-
-	use StdClassAdapter;
+/**
+ * Class WebhookVO
+ * @package FernleafSystems\Apis\Email\SendInBlue\Webhooks
+ */
+class WebhookVO extends \FernleafSystems\Apis\Email\Common\Webhooks\WebhookVO {
 
 	/**
 	 * @return int
