@@ -2,11 +2,11 @@
 
 namespace FernleafSystems\Apis\Email\Drip\Webhooks;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
-
+/**
+ * Class WebhookVO
+ * @package FernleafSystems\Apis\Email\Drip\Webhooks
+ */
 class WebhookVO extends \FernleafSystems\Apis\Email\Common\Webhooks\WebhookVO {
-
-	use StdClassAdapter;
 
 	/**
 	 * @return string
@@ -72,7 +72,7 @@ class WebhookVO extends \FernleafSystems\Apis\Email\Common\Webhooks\WebhookVO {
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
 	public function getEvent() {
 		return $this->getStringParam( 'event' );

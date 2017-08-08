@@ -16,21 +16,21 @@ class WebhookVO extends \FernleafSystems\Apis\Email\Common\Webhooks\WebhookVO {
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
 	public function getEmailAddress() {
 		return $this->getStringParam( 'email' );
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
 	public function getEvent() {
 		return $this->getParam( 'event' );
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
 	public function getKey() {
 		return $this->getStringParam( 'key' );
@@ -47,6 +47,6 @@ class WebhookVO extends \FernleafSystems\Apis\Email\Common\Webhooks\WebhookVO {
 	 * @return bool
 	 */
 	public function isListAddition() {
-		return $this->getEvent() == 'list_addition';
+		return ( $this->getEvent() == 'list_addition' );
 	}
 }

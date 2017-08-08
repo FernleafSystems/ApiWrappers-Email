@@ -9,23 +9,46 @@ namespace FernleafSystems\Apis\Email\Common\Webhooks;
 class Capture {
 
 	/**
-	 * Uses 'php://input' to capture the raw webhook data
-	 * @param string $sRawContent
+	 * @param array $aData
 	 * @return WebhookVO
 	 */
-	public function captureFromInput( $sRawContent = null ) {
+	public function fromArray( $aData ) {
 		$oWebhook = new WebhookVO();
-
-		if ( is_null( $sRawContent ) ) {
-			$sRawContent = file_get_contents( 'php://input' );
+		if ( !empty( $aData ) && is_array( $aData ) ) {
+			$oWebhook->applyFromArray( $aData );
 		}
-		if ( !empty( $sRawContent ) && is_string( $sRawContent ) ) {
-			$aDecoded = json_decode( $sRawContent, true );
-			if ( !empty( $aDecoded ) && is_array( $aDecoded ) ) {
-				$oWebhook->applyFromArray( $aDecoded );
+		return $oWebhook;
+	}
+
+	/**
+	 * Uses 'php://input' to capture the raw webhook data
+	 * @return WebhookVO
+	 */
+	public function fromInput() {
+		return $this->fromJson( file_get_contents( 'php://input' ) );
+	}
+
+	/**
+	 * @param string $sJson
+	 * @return WebhookVO
+	 */
+	public function fromJson( $sJson ) {
+		$aDecoded = array();
+
+		if ( !empty( $sJson ) && is_string( $sJson ) ) {
+			$aDecoded = json_decode( $sJson, true );
+			if ( !is_array( $aDecoded ) ) {
+				$aDecoded = array();
 			}
 		}
 
-		return $oWebhook;
+		return $this->fromArray( $aDecoded );
+	}
+
+	/**
+	 * @return WebhookVO
+	 */
+	public function fromPost() {
+		return $this->fromArray( $_POST );
 	}
 }
