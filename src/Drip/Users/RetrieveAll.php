@@ -41,6 +41,34 @@ class RetrieveAll extends Drip\Api {
 	}
 
 	/**
+	 * @param string $sNewTag
+	 * @return $this
+	 */
+	public function addTagToFilter( $sNewTag ) {
+		$sTags = $this->getRequestDataItem( 'tags' );
+		if ( is_null( $sTags ) || !is_string( $sTags ) ) {
+			$sTags = '';
+		}
+		$aTags = explode( ',', $sTags );
+		if ( !in_array( $sNewTag, $aTags ) ) {
+			$aTags[] = $sNewTag;
+		}
+		return $this->setRequestDataItem( 'tags', implode( ',', $aTags ) );
+	}
+
+	/**
+	 * @param string $sStatus
+	 * @return $this
+	 */
+	public function filterByStatus( $sStatus ) {
+		$sStatus = strtolower( $sStatus );
+		if ( in_array( $sStatus, array( 'active', 'unsubscribed', 'undeliverable', 'all' ) ) ) {
+			$this->setRequestDataItem( 'status', $sStatus );
+		}
+		return $this;
+	}
+
+	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
