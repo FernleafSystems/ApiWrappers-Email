@@ -1,6 +1,6 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\SendInBlue\Users;
+namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
 class Exists extends Retrieve {
 

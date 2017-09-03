@@ -1,10 +1,10 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
 /**
  * Class Retrieve
- * @package FernleafSystems\Apis\Email\Drip\Users
+ * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  */
 class Retrieve extends Delete {
 

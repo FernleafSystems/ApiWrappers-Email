@@ -1,5 +1,5 @@
 {
-  "name":         "fernleafsystems/apis/email",
+  "name":         "fernleafsystems/apiwrappers-email",
   "authors":      [
 	{
 	  "name":     "Paul Goodchild",
@@ -8,24 +8,15 @@
 	}
   ],
   "repositories": [
-	{
-	  "type": "vcs",
-	  "url":  "https://github.com/FernleafSystems/Utilities.git"
-	},
-	{
-	  "type": "vcs",
-	  "url":  "https://github.com/FernleafSystems/Apis-Base"
-	}
   ],
   "require":      {
-	"fernleafsystems/utilities": "^1.0",
-	"fernleafsystems/apis/base": "dev-develop"
+	"fernleafsystems/apiwrappers-base": "^1.0.0"
   },
   "require-dev":  {
   },
   "autoload":     {
 	"psr-4": {
-	  "FernleafSystems\\Apis\\Email\\": "src"
+	  "FernleafSystems\\ApiWrappers\\Email\\": "src"
 	}
   }
 }

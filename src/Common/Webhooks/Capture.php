@@ -1,10 +1,10 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Common\Webhooks;
+namespace FernleafSystems\ApiWrappers\Email\Common\Webhooks;
 
 /**
  * Class Capture
- * @package FernleafSystems\Apis\Email\Common\Webhooks
+ * @package FernleafSystems\ApiWrappers\Email\Common\Webhooks
  */
 class Capture {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
 class Update extends Create {
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Drip;
+namespace FernleafSystems\ApiWrappers\Email\Drip;
 
 /**
  * Class Connection
- * @package FernleafSystems\Apis\Email\Drip
+ * @package FernleafSystems\ApiWrappers\Email\Drip
  */
-class Connection extends \FernleafSystems\Apis\Base\Connection {
+class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 
 	const DRIP_API_VERSION = 2;
 

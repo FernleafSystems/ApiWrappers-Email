@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
-use FernleafSystems\Apis\Email\Drip;
+use FernleafSystems\ApiWrappers\Email\Drip;
 
 /**
  * Class RetrieveAll
- * @package FernleafSystems\Apis\Email\Drip\Users
+ * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  */
 class RetrieveAll extends Drip\Api {
 

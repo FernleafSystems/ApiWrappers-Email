@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\SendInBlue\Lists;
+namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Lists;
 
 use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
 
 /**
  * Class ListVO
- * @package FernleafSystems\Apis\Email\SendInBlue\Lists
+ * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Lists
  */
 class ListVO {
 

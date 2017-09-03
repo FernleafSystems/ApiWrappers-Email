@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Mailchimp;
+namespace FernleafSystems\ApiWrappers\Email\Mailchimp;
 
-use FernleafSystems\Apis\Base\BaseApi;
+use FernleafSystems\ApiWrappers\Base\BaseApi;
 
 /**
  * Class Api
- * @package FernleafSystems\Apis\Email\Mailchimp
+ * @package FernleafSystems\ApiWrappers\Email\Mailchimp
  */
 class Api extends BaseApi {
 

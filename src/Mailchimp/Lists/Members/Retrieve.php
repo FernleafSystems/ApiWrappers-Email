@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Mailchimp\Lists\Members;
+namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
 
-use FernleafSystems\Apis\Email\Mailchimp\Api;
+use FernleafSystems\ApiWrappers\Email\Mailchimp\Api;
 
 /**
  * Class Retrieve
- * @package FernleafSystems\Apis\Email\Mailchimp\Lists\Members
+ * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members
  */
 class Retrieve extends Api {
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Mailchimp\Webhooks;
+namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Webhooks;
 
 /**
  * Class WebhookVO
- * @package FernleafSystems\Apis\Email\Mailchimp\Webhooks
+ * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Webhooks
  */
-class WebhookVO extends \FernleafSystems\Apis\Email\Common\Webhooks\WebhookVO {
+class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\WebhookVO {
 
 	/**
 	 * @return string

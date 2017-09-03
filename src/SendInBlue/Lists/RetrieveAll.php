@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\SendInBlue\Lists;
+namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Lists;
 
-use FernleafSystems\Apis\Email\Mailchimp\Api;
+use FernleafSystems\ApiWrappers\Email\Mailchimp\Api;
 
 /**
  * Class RetrieveAll
- * @package FernleafSystems\Apis\Email\SendInBlue\Lists
+ * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Lists
  */
 class RetrieveAll extends Api {
 

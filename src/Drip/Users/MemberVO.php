@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
 use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
 
 /**
  * Class MemberVO
- * @package FernleafSystems\Apis\Email\Drip\Users
+ * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  */
 class MemberVO {
 

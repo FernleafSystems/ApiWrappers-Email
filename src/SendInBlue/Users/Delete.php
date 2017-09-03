@@ -1,8 +1,8 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\SendInBlue\Users;
+namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
-use FernleafSystems\Apis\Email\SendInBlue\Api;
+use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
 
 class Delete extends Api {
 

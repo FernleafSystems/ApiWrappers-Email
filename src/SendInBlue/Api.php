@@ -1,8 +1,8 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\SendInBlue;
+namespace FernleafSystems\ApiWrappers\Email\SendInBlue;
 
-use FernleafSystems\Apis\Base\BaseApi;
+use FernleafSystems\ApiWrappers\Base\BaseApi;
 
 /**
  * Class SendInBlue

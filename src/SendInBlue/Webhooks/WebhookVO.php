@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\SendInBlue\Webhooks;
+namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Webhooks;
 
 /**
  * Class WebhookVO
- * @package FernleafSystems\Apis\Email\SendInBlue\Webhooks
+ * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Webhooks
  */
-class WebhookVO extends \FernleafSystems\Apis\Email\Common\Webhooks\WebhookVO {
+class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\WebhookVO {
 
 	/**
 	 * @return int
