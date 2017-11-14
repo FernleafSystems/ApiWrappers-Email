@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Mailchimp\Lists\Members;
+namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
 
 use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
 
 /**
  * Class MemberVO
- * @package FernleafSystems\Apis\Email\Mailchimp\Lists\Members
+ * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members
  */
 class MemberVO {
 

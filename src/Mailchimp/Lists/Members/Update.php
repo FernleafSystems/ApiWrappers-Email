@@ -1,10 +1,10 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Mailchimp\Lists\Members;
+namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
 
 /**
  * Class Update
- * @package FernleafSystems\Apis\Email\Mailchimp\Lists\Members
+ * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members
  */
 class Update extends Retrieve {
 

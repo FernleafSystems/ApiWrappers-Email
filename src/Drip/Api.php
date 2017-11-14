@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\Mailchimp;
+namespace FernleafSystems\ApiWrappers\Email\Drip;
 
 use FernleafSystems\ApiWrappers\Base\BaseApi;
 
 /**
  * Class Api
- * @package FernleafSystems\ApiWrappers\Email\Mailchimp
+ * @package FernleafSystems\ApiWrappers\Email\Drip
  */
 class Api extends BaseApi {
 
@@ -17,10 +17,10 @@ class Api extends BaseApi {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
 		$this->setRequestHeader( 'Accept', $oCon->getContentType() )
-			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() )
-			 ->setRequestHeader( 'Authorization', 'apikey ' . $oCon->getApiKey() );
-
-		return parent::prepFinalRequestData();
+			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() );
+		$aFinal = parent::prepFinalRequestData();
+		$aFinal[ 'auth' ] = array( $oCon->getApiKey(), '' );
+		return $aFinal;
 	}
 
 	/**
@@ -29,7 +29,6 @@ class Api extends BaseApi {
 	protected function getBaseUrl() {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
-		$sBase = sprintf( $oCon->getBaseUrl(), explode( '-', $oCon->getApiKey() )[ 1 ] );
-		return rtrim( $sBase, '/' ) . '/';
+		return rtrim( $oCon->getBaseUrl(), '/' ) . '/';
 	}
 }

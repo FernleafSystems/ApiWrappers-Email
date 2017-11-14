@@ -1,8 +1,8 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\SendInBlue\Lists;
+namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Lists;
 
-use FernleafSystems\Apis\Email\SendInBlue\Api;
+use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
 
 class Retrieve extends Api {
 

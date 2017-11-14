@@ -1,8 +1,8 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\Mailchimp;
+namespace FernleafSystems\ApiWrappers\Email\Mailchimp;
 
-class Connection extends \FernleafSystems\Apis\Base\Connection {
+class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 
 	/**
 	 * @return string

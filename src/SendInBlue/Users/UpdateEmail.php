@@ -1,14 +1,14 @@
 <?php
 
-namespace FernleafSystems\Apis\Email\SendInBlue\Users;
+namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
-use FernleafSystems\Apis\Email\SendInBlue\Api;
+use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
 
 /**
  * SendInBlue doesn't permit changing of an email address so we must duplicate the old and then unsubscribe it.
  *
  * Class UpdateEmail
- * @package FernleafSystems\Apis\Email\SendInBlue\Users
+ * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Users
  */
 class UpdateEmail extends Api {
 

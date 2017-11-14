@@ -1,10 +1,10 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
 /**
  * Class Retrieve
- * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Users
+ * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  */
 class Retrieve extends Delete {
 
@@ -16,6 +16,7 @@ class Retrieve extends Delete {
 	 */
 	public function byEmail( $sEmail ) {
 		return $this->setEmail( $sEmail )
+					->removeRequestDataItem( 'id' )
 					->asVo();
 	}
 
@@ -26,8 +27,8 @@ class Retrieve extends Delete {
 		$aResult = $this->send()
 						->getDecodedResponseBody();
 		$oMember = null;
-		if ( is_array( $aResult ) && !empty( $aResult[ 'data' ] ) ) {
-			$oMember = ( new MemberVO() )->applyFromArray( $aResult[ 'data' ] );
+		if ( is_array( $aResult ) && !empty( $aResult[ 'subscribers' ][ 0 ] ) ) {
+			$oMember = ( new MemberVO() )->applyFromArray( $aResult[ 'subscribers' ][ 0 ] );
 		}
 		return $oMember;
 	}
