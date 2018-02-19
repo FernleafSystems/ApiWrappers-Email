@@ -17,13 +17,24 @@ class Create extends Drip\Api {
 	 * @return $this
 	 */
 	public function addTag( $sTag ) {
+		return $this->addTags( [ $sTag ] );
+	}
+
+	/**
+	 * @param array $aNewTags
+	 * @return $this
+	 */
+	public function addTags( $aNewTags ) {
 		$aTags = $this->getRequestDataItem( 'tags' );
-		if ( is_null( $aTags ) || !is_array( $aTags ) ) {
+		if ( !is_array( $aTags ) ) {
 			$aTags = array();
 		}
-		if ( !in_array( $sTag, $aTags ) ) {
-			$aTags[] = $sTag;
+
+		if ( !is_array( $aNewTags ) ) {
+			$aNewTags = array( $aNewTags );
 		}
+
+		$aTags = array_unique( array_merge( $aTags, $aNewTags ) );
 		return $this->setRequestDataItem( 'tags', $aTags );
 	}
 
@@ -70,6 +81,22 @@ class Create extends Drip\Api {
 	 */
 	public function setEmail( $sEmail ) {
 		return $this->setRequestDataItem( 'email', $sEmail );
+	}
+
+	/**
+	 * @param string $sName
+	 * @return $this
+	 */
+	public function setFirstName( $sName ) {
+		return $this->setRequestDataItem( 'first_name', $sName );
+	}
+
+	/**
+	 * @param string $sName
+	 * @return $this
+	 */
+	public function setLastName( $sName ) {
+		return $this->setRequestDataItem( 'last_name', $sName );
 	}
 
 	/**
