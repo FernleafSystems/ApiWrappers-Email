@@ -88,7 +88,7 @@ class Create extends Drip\Api {
 	 * @return $this
 	 */
 	public function setFirstName( $sName ) {
-		return $this->setRequestDataItem( 'first_name', $sName );
+		return $this->setCustomField( 'first_name', $sName );
 	}
 
 	/**
@@ -96,7 +96,15 @@ class Create extends Drip\Api {
 	 * @return $this
 	 */
 	public function setLastName( $sName ) {
-		return $this->setRequestDataItem( 'last_name', $sName );
+		return $this->setCustomField( 'last_name', $sName );
+	}
+
+	/**
+	 * @param int $nValue - in cents, not floats
+	 * @return $this
+	 */
+	public function setLifetimeValue( $nValue ) {
+		return $this->setRequestDataItem( 'lifetime_value', (int)round( $nValue ) );
 	}
 
 	/**
