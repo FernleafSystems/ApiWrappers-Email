@@ -8,7 +8,7 @@ use FernleafSystems\ApiWrappers\Email\Drip;
  * Class Create
  * @package FernleafSystems\ApiWrappers\Email\Drip\Purchases
  */
-class Create extends Drip\Api {
+class Create extends Base {
 
 	const REQUEST_METHOD = 'post';
 
@@ -51,14 +51,6 @@ class Create extends Drip\Api {
 	 */
 	public function setAmount( $nAmount ) {
 		return $this->setRequestDataItem( 'amount', (int)round( $nAmount ) );
-	}
-
-	/**
-	 * @param string $sEmail
-	 * @return $this
-	 */
-	public function setSubscriberEmail( $sEmail ) {
-		return $this->setParam( 'subscriber_email', $sEmail );
 	}
 
 	/**
@@ -122,12 +114,5 @@ class Create extends Drip\Api {
 	 */
 	public function getRequestDataFinal() {
 		return array( 'purchases' => array( $this->getRequestData() ) );
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( 'subscribers/%s/purchases', urlencode( $this->getParam( 'subscriber_email' ) ) );
 	}
 }
