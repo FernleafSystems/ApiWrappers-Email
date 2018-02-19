@@ -56,7 +56,7 @@ class Create extends Drip\Api {
 	/**
 	 * @param string $sFieldKey
 	 * @param mixed $mFieldValue
-	 * @return Create
+	 * @return $this
 	 */
 	public function setCustomField( $sFieldKey, $mFieldValue ) {
 		$aFields = $this->getRequestDataItem( 'custom_fields' );
