@@ -2,6 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
+use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
 use FernleafSystems\ApiWrappers\Email\Drip;
 
 /**
@@ -55,7 +56,7 @@ class Create extends Drip\Api {
 
 	/**
 	 * @param string $sFieldKey
-	 * @param mixed $mFieldValue
+	 * @param mixed  $mFieldValue
 	 * @return $this
 	 */
 	public function setCustomField( $sFieldKey, $mFieldValue ) {
@@ -97,6 +98,16 @@ class Create extends Drip\Api {
 	 */
 	public function setLastName( $sName ) {
 		return $this->setCustomField( 'last_name', $sName );
+	}
+
+	/**
+	 * @param string $sName
+	 * @return $this
+	 */
+	public function setName( $sName ) {
+		list( $sFirst, $sLast ) = ( new CleanNames() )->name( $sName );
+		return $this->setFirstName( $sFirst )
+					->setLastName( $sLast );
 	}
 
 	/**
