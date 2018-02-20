@@ -81,7 +81,7 @@ class Create extends Drip\Api {
 	 * @return $this
 	 */
 	public function setEmail( $sEmail ) {
-		return $this->setRequestDataItem( 'email', $sEmail );
+		return $this->setRequestDataItem( 'email', strtolower( $sEmail ) );
 	}
 
 	/**
