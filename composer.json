@@ -1,22 +1,22 @@
 {
   "name":         "fernleafsystems/apiwrappers-email",
   "authors":      [
-	{
-	  "name":     "Paul Goodchild",
-	  "email":    "paul@paulgoodchild.me",
-	  "homepage": "https://paulgoodchild.me"
-	}
+    {
+      "name":     "Paul Goodchild",
+      "email":    "paul@paulgoodchild.me",
+      "homepage": "https://paulgoodchild.me"
+    }
   ],
   "repositories": [
   ],
   "require":      {
-	"fernleafsystems/apiwrappers-base": "^1.0.0"
+    "fernleafsystems/apiwrappers-base": "^1.0.0"
   },
   "require-dev":  {
   },
   "autoload":     {
-	"psr-4": {
-	  "FernleafSystems\\ApiWrappers\\Email\\": "src"
-	}
+    "psr-4": {
+      "FernleafSystems\\ApiWrappers\\Email\\": "src"
+    }
   }
 }

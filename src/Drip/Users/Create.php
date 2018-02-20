@@ -2,6 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
+use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
 use FernleafSystems\ApiWrappers\Email\Drip;
 
 /**
@@ -17,13 +18,24 @@ class Create extends Drip\Api {
 	 * @return $this
 	 */
 	public function addTag( $sTag ) {
+		return $this->addTags( [ $sTag ] );
+	}
+
+	/**
+	 * @param array $aNewTags
+	 * @return $this
+	 */
+	public function addTags( $aNewTags ) {
 		$aTags = $this->getRequestDataItem( 'tags' );
-		if ( is_null( $aTags ) || !is_array( $aTags ) ) {
+		if ( !is_array( $aTags ) ) {
 			$aTags = array();
 		}
-		if ( !in_array( $sTag, $aTags ) ) {
-			$aTags[] = $sTag;
+
+		if ( !is_array( $aNewTags ) ) {
+			$aNewTags = array( $aNewTags );
 		}
+
+		$aTags = array_unique( array_merge( $aTags, $aNewTags ) );
 		return $this->setRequestDataItem( 'tags', $aTags );
 	}
 
@@ -44,8 +56,8 @@ class Create extends Drip\Api {
 
 	/**
 	 * @param string $sFieldKey
-	 * @param mixed $mFieldValue
-	 * @return Create
+	 * @param mixed  $mFieldValue
+	 * @return $this
 	 */
 	public function setCustomField( $sFieldKey, $mFieldValue ) {
 		$aFields = $this->getRequestDataItem( 'custom_fields' );
@@ -69,7 +81,41 @@ class Create extends Drip\Api {
 	 * @return $this
 	 */
 	public function setEmail( $sEmail ) {
-		return $this->setRequestDataItem( 'email', $sEmail );
+		return $this->setRequestDataItem( 'email', strtolower( $sEmail ) );
+	}
+
+	/**
+	 * @param string $sName
+	 * @return $this
+	 */
+	public function setFirstName( $sName ) {
+		return $this->setCustomField( 'first_name', $sName );
+	}
+
+	/**
+	 * @param string $sName
+	 * @return $this
+	 */
+	public function setLastName( $sName ) {
+		return $this->setCustomField( 'last_name', $sName );
+	}
+
+	/**
+	 * @param string $sName
+	 * @return $this
+	 */
+	public function setName( $sName ) {
+		list( $sFirst, $sLast ) = ( new CleanNames() )->name( $sName );
+		return $this->setFirstName( $sFirst )
+					->setLastName( $sLast );
+	}
+
+	/**
+	 * @param int $nValue - in cents, not floats
+	 * @return $this
+	 */
+	public function setLifetimeValue( $nValue ) {
+		return $this->setRequestDataItem( 'lifetime_value', (int)round( $nValue ) );
 	}
 
 	/**
