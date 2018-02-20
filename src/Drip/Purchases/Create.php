@@ -99,7 +99,7 @@ class Create extends Base {
 	 * @return $this
 	 */
 	public function setProperty( $sKey, $mValue ) {
-		$aProps = $this->getRequestDataItem( 'custom_fields' );
+		$aProps = $this->getRequestDataItem( 'properties' );
 		if ( !is_array( $aProps ) ) {
 			$aProps = array();
 		}
