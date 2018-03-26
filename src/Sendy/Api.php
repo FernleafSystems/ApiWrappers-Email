@@ -15,19 +15,9 @@ class Api extends BaseApi {
 	/**
 	 * @return array
 	 */
-	protected function getFinaRequest() {
-		$aData = parent::prepFinalRequestData();
-		$aData[ 'api_key' ] = $this->getConnection()->getApiKey();
-		return $aData;
-	}
-
-	/**
-	 * @return array
-	 */
 	public function getRequestDataFinal() {
 		$aData = parent::getRequestDataFinal();
 		$aData[ 'api_key' ] = $this->getConnection()->getApiKey();
-		var_dump( $aData );
 		return $aData;
 	}
 
@@ -35,10 +25,7 @@ class Api extends BaseApi {
 	 * @return array
 	 */
 	public function getRequestHeaders() {
-		return $this->getArrayParam(
-			'request_headers',
-			array()
-		);
+		return $this->getArrayParam( 'request_headers', array() );
 	}
 
 	/**
