@@ -8,6 +8,14 @@ use FernleafSystems\ApiWrappers\Email\ElasticEmail\Api;
 class Create extends Api {
 
 	/**
+	 * @param int $nTimestamp
+	 * @return $this
+	 */
+	public function setDateOfConsent( $nTimestamp ) {
+		return $this->setRequestDataItem( 'consentDate', gmdate( 'd/m/Y', $nTimestamp ).' 0:00:01 AM' );
+	}
+
+	/**
 	 * @param string $sName
 	 * @return $this
 	 */
