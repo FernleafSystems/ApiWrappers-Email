@@ -11,14 +11,6 @@ use FernleafSystems\ApiWrappers\Email\Sendy\Api;
 class Base extends Api {
 
 	/**
-	 * @param int $nId
-	 * @return $this
-	 */
-	public function setListId( $nId ) {
-		return $this->setRequestDataItem( 'list_id', $nId );
-	}
-
-	/**
 	 * @param string $sEmail
 	 * @return $this
 	 */

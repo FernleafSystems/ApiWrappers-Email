@@ -10,6 +10,8 @@ use FernleafSystems\ApiWrappers\Base\BaseApi;
  */
 class Api extends BaseApi {
 
+	const LIST_ID_KEY = 'list_id';
+
 	/**
 	 * @return array
 	 */
@@ -25,7 +27,18 @@ class Api extends BaseApi {
 	public function getRequestDataFinal() {
 		$aData = parent::getRequestDataFinal();
 		$aData[ 'api_key' ] = $this->getConnection()->getApiKey();
+		var_dump( $aData );
 		return $aData;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getRequestHeaders() {
+		return $this->getArrayParam(
+			'request_headers',
+			array()
+		);
 	}
 
 	/**
@@ -42,5 +55,13 @@ class Api extends BaseApi {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
 		return $oCon->getBaseUrl();
+	}
+
+	/**
+	 * @param int $nId
+	 * @return $this
+	 */
+	public function setListId( $nId ) {
+		return $this->setRequestDataItem( static::LIST_ID_KEY, $nId );
 	}
 }

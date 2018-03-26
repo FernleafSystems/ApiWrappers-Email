@@ -8,7 +8,7 @@ use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
  * Class Subscribe
  * @package FernleafSystems\ApiWrappers\Email\Sendy\Users
  */
-class Subscribe extends Base {
+class Subscribe extends Unsubscribe {
 
 	/**
 	 * @param string $sName
