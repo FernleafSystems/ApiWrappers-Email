@@ -11,22 +11,45 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	/**
 	 * @return string
 	 */
+	public function getEventAction() {
+		return $this->getSubscriberDataItem( 'action' ); //unsub/delete
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEventReason() {
+		return $this->getSubscriberDataItem( 'reason' ); //manual/abuse
+	}
+
+	/**
+	 * @return string
+	 */
 	public function getEventType() {
 		return $this->getStringParam( 'type' );
+	}
+
+	/**
+	 * @param bool $bAsTimestamp
+	 * @return int|string
+	 */
+	public function getFiredAt( $bAsTimestamp = true ) {
+		$sTimestamp = $this->getStringParam( 'fired_at' );
+		return $bAsTimestamp ? strtotime( $sTimestamp ) : $sTimestamp;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getListId() {
-		return $this->getSubscriberData()[ 'list_id' ];
+		return $this->getSubscriberDataItem( 'list_id' );
 	}
 
 	/**
 	 * @return array
 	 */
 	public function getSubscriberCustomFields() { // MERGE FIELD
-		return $this->getSubscriberData()[ 'merges' ];
+		return $this->getSubscriberDataItem( 'merges' );
 	}
 
 	/**
@@ -38,17 +61,61 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
+	 * @param string $sKey
+	 * @return mixed|null
+	 */
+	public function getSubscriberDataItem( $sKey ) {
+		$aData = $this->getSubscriberData();
+		return isset( $aData[ $sKey ] ) ? $aData[ $sKey ] : null;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getSubscriberEmail() {
-		return $this->getSubscriberData()[ 'email' ];
+		return $this->getSubscriberDataItem( 'email' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSubscriberEmailNew() {
+		return $this->getSubscriberDataItem( 'new_email' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSubscriberEmailOld() {
+		return $this->getSubscriberDataItem( 'old_email' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSubscriberEmailType() {
+		return $this->getSubscriberDataItem( 'email_type' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSubscriberIpOptin() {
+		return $this->getSubscriberDataItem( 'ip_opt' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSubscriberIpSignup() {
+		return $this->getSubscriberDataItem( 'ip_signup' );
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getSubscriberId() {
-		return $this->getSubscriberData()[ 'id' ];
+		return $this->getSubscriberDataItem( 'id' );
 	}
 
 	/**
@@ -63,5 +130,12 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 */
 	public function isEventUserSubscribe() {
 		return ( $this->getEventType() == 'subscribe' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isEventUserUnsubscribe() {
+		return ( $this->getEventType() == 'unsubscribe' );
 	}
 }
