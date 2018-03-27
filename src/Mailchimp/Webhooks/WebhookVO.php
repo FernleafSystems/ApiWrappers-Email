@@ -16,11 +16,12 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
+	 * @param bool $bAsTimestamp
 	 * @return int|string
 	 */
-	public function getFiredAt( $nTimestamp = true ) {
+	public function getFiredAt( $bAsTimestamp = true ) {
 		$sTimestamp = $this->getStringParam( 'fired_at' );
-		return $nTimestamp ? strtotime( $sTimestamp ) ? $sTimestamp : $sTimestamp;
+		return $bAsTimestamp ? strtotime( $sTimestamp ) ? $sTimestamp : $sTimestamp;
 	}
 
 	/**
