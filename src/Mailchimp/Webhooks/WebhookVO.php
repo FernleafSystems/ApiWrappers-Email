@@ -11,6 +11,20 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	/**
 	 * @return string
 	 */
+	public function getEventAction() {
+		return $this->getSubscriberDataItem( 'action' ); //unsub/delete
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEventReason() {
+		return $this->getSubscriberDataItem( 'reason' ); //manual/abuse
+	}
+
+	/**
+	 * @return string
+	 */
 	public function getEventType() {
 		return $this->getStringParam( 'type' );
 	}
