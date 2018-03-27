@@ -25,7 +25,7 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	/**
 	 * @return string
 	 */
-	public function getEventType() {
+	public function getEvent() {
 		return $this->getStringParam( 'type' );
 	}
 
