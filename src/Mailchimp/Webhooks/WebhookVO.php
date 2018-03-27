@@ -16,10 +16,10 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 */
-	public function getListId() {
-		return $this->getSubscriberData()[ 'list_id' ];
+	public function getFiredAt() {
+		return strtotime( $this->getStringParam( 'fired_at' ) );
 	}
 
 	/**
