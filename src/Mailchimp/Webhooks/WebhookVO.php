@@ -21,7 +21,7 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 */
 	public function getFiredAt( $bAsTimestamp = true ) {
 		$sTimestamp = $this->getStringParam( 'fired_at' );
-		return $bAsTimestamp ? strtotime( $sTimestamp ) ? $sTimestamp : $sTimestamp;
+		return $bAsTimestamp ? strtotime( $sTimestamp ) : $sTimestamp;
 	}
 
 	/**
