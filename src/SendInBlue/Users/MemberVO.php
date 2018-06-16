@@ -35,6 +35,7 @@ class MemberVO {
 	}
 
 	/**
+	 * @deprecated is this valid/used?
 	 * @return string
 	 */
 	public function getId() {
@@ -49,17 +50,42 @@ class MemberVO {
 	}
 
 	/**
+	 * @return array
+	 */
+	public function getUnsubscribedListId() {
+		return $this->getArrayParam( 'list_unsubscribed' );
+	}
+
+	/**
+	 * @deprecated
 	 * @return bool
 	 */
 	public function isBlacklisted() {
+		return $this->isGloballyBlacklisted();
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isGloballyBlacklisted() {
 		return ( $this->getParam( 'blacklisted', 0 ) == 1 );
+	}
+
+	/**
+	 * Must check unsubscribe list as the user subscribed list will retain the list ID even
+	 * after unsubscribe.
+	 * @param int $nListId
+	 * @return bool
+	 */
+	public function isSubscribedToList( $nListId ) {
+		return in_array( $nListId, $this->getListIds() ) && !$this->isUnsubscribedFromList( $nListId );
 	}
 
 	/**
 	 * @param int $nListId
 	 * @return bool
 	 */
-	public function isSubscribedToList( $nListId ) {
-		return in_array( $nListId, $this->getListIds() );
+	public function isUnsubscribedFromList( $nListId ) {
+		return in_array( $nListId, $this->getUnsubscribedListId() );
 	}
 }
