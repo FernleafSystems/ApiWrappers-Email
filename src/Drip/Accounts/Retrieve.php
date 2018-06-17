@@ -2,16 +2,11 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Accounts;
 
-use FernleafSystems\ApiWrappers\Email\Drip\Api;
-
 /**
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\Drip\Accounts
  */
-class Retrieve extends Api {
-
-	const REQUEST_METHOD = 'get';
-	const IS_ACCOUNT_REQUEST = false;
+class Retrieve extends RetrieveAll {
 
 	/**
 	 * @param string $sId
@@ -34,14 +29,8 @@ class Retrieve extends Api {
 	 * @return AccountVO|null
 	 */
 	public function asVo() {
-		$aRes = $this->send()
-					 ->getDecodedResponseBody();
-
-		$oAc = null;
-		if ( is_array( $aRes ) && !empty( $aRes[ 'accounts' ][ 0 ] ) ) {
-			$oAc = ( new AccountVO() )->applyFromArray( $aRes[ 'accounts' ][ 0 ] );
-		}
-		return $oAc;
+		$aAcs = parent::asVo();
+		return array_pop( $aAcs );
 	}
 
 	/**
