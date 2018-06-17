@@ -16,15 +16,27 @@ class RetrieveAll extends Api {
 	/**
 	 * @return AccountVO[]|null
 	 */
-	public function asVo() {
-		$aRes = $this->send()
-					 ->getDecodedResponseBody();
+	public function req() {
+		return $this->asVo();
+	}
 
+	/**
+	 * @return AccountVO[]|null
+	 */
+	protected function asVo() {
 		$aAcs = array();
-		if ( is_array( $aRes ) && !empty( $aRes[ 'accounts' ] ) ) {
-			foreach ( $aRes[ 'accounts' ] as $aAc ) {
-				$aAcs[] = ( new AccountVO() )->applyFromArray( $aAc );
+
+		try {
+			$aRes = $this->send()
+						 ->getDecodedResponseBody();
+
+			if ( is_array( $aRes ) && !empty( $aRes[ 'accounts' ] ) ) {
+				foreach ( $aRes[ 'accounts' ] as $aAc ) {
+					$aAcs[] = ( new AccountVO() )->applyFromArray( $aAc );
+				}
 			}
+		}
+		catch ( \Exception $oE ) {
 		}
 
 		return $aAcs;
