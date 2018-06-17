@@ -30,10 +30,15 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	}
 
 	/**
+	 * @param bool $bIncludeAccountId
 	 * @return string
 	 */
-	public function getBaseUrl() {
-		return sprintf( 'https://api.getdrip.com/v%s/%s', $this->getApiVersion(), $this->getAccountId() );
+	public function getBaseUrl( $bIncludeAccountId = true ) {
+		return sprintf(
+			'https://api.getdrip.com/v%s/%s',
+			$this->getApiVersion(),
+			$bIncludeAccountId ? $this->getAccountId() : ''
+		);
 	}
 
 	/**
