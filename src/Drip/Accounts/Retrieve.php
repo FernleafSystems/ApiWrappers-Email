@@ -34,13 +34,12 @@ class Retrieve extends Api {
 	 * @return AccountVO|null
 	 */
 	public function asVo() {
-		$aResult = $this->send()
-						->getDecodedResponseBody();
+		$aRes = $this->send()
+					 ->getDecodedResponseBody();
 
-		var_dump( $aResult );
 		$oAc = null;
-		if ( is_array( $aResult ) && !empty( $aResult[ 'subscribers' ][ 0 ] ) ) {
-			$oAc = ( new AccountVO() )->applyFromArray( $aResult[ 'subscribers' ][ 0 ] );
+		if ( is_array( $aRes ) && !empty( $aRes[ 'accounts' ][ 0 ] ) ) {
+			$oAc = ( new AccountVO() )->applyFromArray( $aRes[ 'accounts' ][ 0 ] );
 		}
 		return $oAc;
 	}
