@@ -13,6 +13,18 @@ class Api extends BaseApi {
 	const IS_ACCOUNT_REQUEST = true;
 
 	/**
+	 * @return $this
+	 */
+	public function req() {
+		try {
+			$this->send();
+		}
+		catch ( \Exception $oE ) {
+		}
+		return $this;
+	}
+
+	/**
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
