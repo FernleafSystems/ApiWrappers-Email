@@ -23,17 +23,17 @@ class RetrieveAll extends Api {
 		$nOffset = 0;
 		do {
 			$aLists = null;
-			$aResults = $this->setRequestDataItem( 'page', $nOffset )
-							 ->setRequestDataItem( 'page_limit', 100 )
+			$aResults = $this->setRequestDataItem( 'offset', $nOffset )
+							 ->setRequestDataItem( 'limit', 100 )
 							 ->send()
 							 ->getDecodedResponseBody();
 
-			if ( is_array( $aResults ) && isset( $aResults[ 'data' ] ) ) {
+			if ( is_array( $aResults ) && isset( $aResults[ 'lists' ] ) ) {
 				$aLists = array_map(
-					function( $aMember ) {
-						return ( new ListVO() )->applyFromArray( $aMember );
+					function( $aList ) {
+						return ( new ListVO() )->applyFromArray( $aList );
 					},
-					$aResults[ 'data' ]
+					$aResults[ 'lists' ]
 				);
 				$aAllLists = array_merge( $aAllLists, $aLists );
 				$nOffset++;
@@ -49,6 +49,6 @@ class RetrieveAll extends Api {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'list' );
+		return sprintf( 'contacts/lists' );
 	}
 }
