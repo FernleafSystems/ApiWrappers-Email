@@ -24,6 +24,6 @@ class Delete extends Drip\Api {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'subscribers/%', urlencode( $this->getStringParam( 'email' ) ) );
+		return sprintf( 'subscribers/%s', urlencode( $this->getStringParam( 'email' ) ) );
 	}
 }
