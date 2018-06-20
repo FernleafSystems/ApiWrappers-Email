@@ -20,6 +20,6 @@ class Delete extends Api {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'user/%s', rawurlencode( $this->getStringParam( 'email' ) ) );
+		return sprintf( 'contacts/%s', rawurlencode( $this->getStringParam( 'email' ) ) );
 	}
 }

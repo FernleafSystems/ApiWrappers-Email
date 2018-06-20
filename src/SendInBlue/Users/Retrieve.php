@@ -23,11 +23,12 @@ class Retrieve extends Delete {
 	 * @return MemberVO|null
 	 */
 	public function asVo() {
+		$oMember = null;
+
 		$aResult = $this->send()
 						->getDecodedResponseBody();
-		$oMember = null;
-		if ( is_array( $aResult ) && !empty( $aResult[ 'data' ] ) ) {
-			$oMember = ( new MemberVO() )->applyFromArray( $aResult[ 'data' ] );
+		if ( !empty( $aResult ) && is_array( $aResult ) ) {
+			$oMember = ( new MemberVO() )->applyFromArray( $aResult );
 		}
 		return $oMember;
 	}
