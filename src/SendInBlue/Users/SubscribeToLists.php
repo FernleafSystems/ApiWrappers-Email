@@ -17,6 +17,6 @@ class SubscribeToLists extends Update {
 	 * @return $this
 	 */
 	public function setLists( $aLists ) {
-		return $this->setRequestDataItem( 'listid', $aLists );
+		return $this->setRequestDataItem( 'listIds', $aLists );
 	}
 }
