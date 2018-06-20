@@ -13,7 +13,7 @@ class RetrieveAll extends Api {
 	const REQUEST_METHOD = 'get';
 
 	/**
-	 * TODO: Test
+	 * TODO: retest as there are bugs in the pagination
 	 * @return ListVO[]
 	 */
 	public function retrieve() {
@@ -24,7 +24,7 @@ class RetrieveAll extends Api {
 		do {
 			$aLists = null;
 			$aResults = $this->setRequestDataItem( 'offset', $nOffset )
-							 ->setRequestDataItem( 'limit', 100 )
+							 ->setRequestDataItem( 'limit', 50 )
 							 ->send()
 							 ->getDecodedResponseBody();
 

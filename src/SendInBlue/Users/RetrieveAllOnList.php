@@ -6,6 +6,8 @@ use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
 
 class RetrieveAllOnList extends Api {
 
+	const REQUEST_METHOD = 'get';
+
 	/**
 	 * Note the MemberVO data here is limited to 'email', 'listid', 'id', 'blacklisted'
 	 * @return MemberVO[]
@@ -14,20 +16,20 @@ class RetrieveAllOnList extends Api {
 
 		$aAllMembers = array();
 
-		$nOffset = 1;
+		$nOffset = 0;
 		do {
 			$aMembers = null;
-			$aResults = $this->setRequestDataItem( 'page', $nOffset )
-							 ->setRequestDataItem( 'page_limit', 500 )
+			$aResults = $this->setRequestDataItem( 'offset', $nOffset )
+							 ->setRequestDataItem( 'limit', 50 )
 							 ->send()
 							 ->getDecodedResponseBody();
 
-			if ( is_array( $aResults ) && isset( $aResults[ 'data' ][ 'data' ] ) ) {
+			if ( is_array( $aResults ) && isset( $aResults[ 'contacts' ] ) ) {
 				$aMembers = array_map(
 					function ( $aMember ) {
 						return ( new MemberVO() )->applyFromArray( $aMember );
 					},
-					$aResults[ 'data' ][ 'data' ]
+					$aResults[ 'contacts' ]
 				);
 				$aAllMembers = array_merge( $aAllMembers, $aMembers );
 				$nOffset++;
@@ -43,21 +45,13 @@ class RetrieveAllOnList extends Api {
 	 * @return $this
 	 */
 	public function setListId( $nListId ) {
-		return $this->setLists( [ $nListId ] );
-	}
-
-	/**
-	 * @param array $aLists
-	 * @return $this
-	 */
-	public function setLists( $aLists ) {
-		return $this->setRequestDataItem( 'listids', $aLists );
+		return $this->setParam( 'list_id', $nListId );
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return 'list/display';
+		return sprintf( 'contacts/lists/%s/contacts', $this->getParam( 'list_id' ) );
 	}
 }
