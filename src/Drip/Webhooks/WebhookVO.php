@@ -2,6 +2,8 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Webhooks;
 
+use FernleafSystems\ApiWrappers\Email\Drip\Users\MemberVO;
+
 /**
  * Class WebhookVO
  * @package FernleafSystems\ApiWrappers\Email\Drip\Webhooks
@@ -12,56 +14,28 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 * @return string
 	 */
 	public function getAccountId() {
-		return $this->getWebhookData()[ 'account_id' ];
+		return $this->getWebhookDataItem( 'account_id' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEvent() {
+		return $this->getStringParam( 'event' );
 	}
 
 	/**
 	 * @return array
 	 */
-	public function getSubscriberData() {
-		return $this->getWebhookData()[ 'subscriber' ];
+	public function getEventProperties() {
+		return $this->getWebhookDataItem( 'properties' );
 	}
 
 	/**
-	 * @return array
+	 * @return MemberVO
 	 */
-	public function getSubscriberCustomFields() {
-		return $this->getSubscriberData()[ 'custom_fields' ];
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getSubscriberEmail() {
-		return $this->getSubscriberData()[ 'email' ];
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getSubscriberId() {
-		return $this->getSubscriberData()[ 'id' ];
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getSubscriberStatus() {
-		return $this->getSubscriberData()[ 'status' ];
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getSubscriberTags() {
-		return $this->getSubscriberData()[ 'tags' ];
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getSubscriberUserId() {
-		return $this->getSubscriberData()[ 'user_id' ];
+	public function getSubscriber() {
+		return ( new MemberVO() )->applyFromArray( $this->getWebhookDataItem( 'subscriber' ) );
 	}
 
 	/**
@@ -72,10 +46,11 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
-	 * @return string
+	 * @return mixed|null`
 	 */
-	public function getEvent() {
-		return $this->getStringParam( 'event' );
+	public function getWebhookDataItem( $sKey ) {
+		$aD = $this->getArrayParam( 'data' );
+		return isset( $aD[ $sKey ] ) ? $aD[ $sKey ] : null;
 	}
 
 	/**
@@ -134,5 +109,61 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 */
 	public function isEvent_UnsubscribedCampaign() {
 		return $this->isEvent( 'subscriber.unsubscribed_from_campaign' );
+	}
+
+	/**
+	 * @deprecated just use the getSubscriber() to get the VO
+	 * @return array
+	 */
+	public function getSubscriberData() {
+		return $this->getWebhookDataItem( 'subscriber' );
+	}
+
+	/**
+	 * @deprecated just use the getSubscriber() to get the VO
+	 * @return array
+	 */
+	public function getSubscriberCustomFields() {
+		return $this->getSubscriber()->getCustomFields();
+	}
+
+	/**
+	 * @deprecated just use the getSubscriber() to get the VO
+	 * @return string
+	 */
+	public function getSubscriberEmail() {
+		return $this->getSubscriber()->getEmail();
+	}
+
+	/**
+	 * @deprecated just use the getSubscriber() to get the VO
+	 * @return string
+	 */
+	public function getSubscriberId() {
+		return $this->getSubscriber()->getId();
+	}
+
+	/**
+	 * @deprecated just use the getSubscriber() to get the VO
+	 * @return string
+	 */
+	public function getSubscriberStatus() {
+		return $this->getSubscriber()->getStatus();
+	}
+
+	/**
+	 * @deprecated just use the getSubscriber() to get the VO
+	 * @return array
+	 */
+	public function getSubscriberTags() {
+		return $this->getSubscriber()->getTags();
+	}
+
+	/**
+	 * @deprecated just use the getSubscriber() to get the VO
+	 * @return string
+	 */
+	public function getSubscriberUserId() {
+		return $this->getSubscriber()->getUserId();
 	}
 }
