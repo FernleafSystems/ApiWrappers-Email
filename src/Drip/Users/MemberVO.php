@@ -20,6 +20,13 @@ class MemberVO {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getCreatedAtTs() {
+		return strtotime( $this->getCreatedAt() );
+	}
+
+	/**
 	 * @param string $sFieldId
 	 * @return mixed|null
 	 */
@@ -43,6 +50,22 @@ class MemberVO {
 	}
 
 	/**
+	 * This uses the default custom file key: first_name
+	 * @return string
+	 */
+	public function getFirstName() {
+		return $this->getCustomField( 'first_name' );
+	}
+
+	/**
+	 * This uses the default custom file key: last_name
+	 * @return string
+	 */
+	public function getLastName() {
+		return $this->getCustomField( 'last_name' );
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getId() {
@@ -50,6 +73,21 @@ class MemberVO {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getLeadScore() {
+		return $this->getStringParam( 'lead_score' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLifetimeValue() {
+		return $this->getStringParam( 'lifetime_value' );
+	}
+
+	/**
+	 * all, active, unsubscribed, active_or_unsubscribed or undeliverable. Defaults to active
 	 * @return string
 	 */
 	public function getStatus() {
@@ -61,6 +99,13 @@ class MemberVO {
 	 */
 	public function getTags() {
 		return $this->getArrayParam( 'tags' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getUserId() {
+		return $this->getStringParam( 'user_id' );
 	}
 
 	/**
