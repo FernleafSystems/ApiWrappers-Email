@@ -21,7 +21,7 @@ class ReCreate {
 
 		$bExists = ( new Exists() )
 			->setConnection( $oConn )
-			->byEmail( $sEmail );
+			->exists( $sEmail );
 
 		$aAttrs = array();
 		$aActiveLists = array();
