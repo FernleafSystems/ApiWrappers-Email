@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Lists;
 
-use FernleafSystems\ApiWrappers\Email\Mailchimp\Api;
+use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
 
 /**
  * Class RetrieveAll
