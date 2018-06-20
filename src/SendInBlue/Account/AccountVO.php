@@ -13,17 +13,10 @@ class AccountVO {
 	use StdClassAdapter;
 
 	/**
-	 * @return string
+	 * @return array
 	 */
 	public function getAddress() {
-		return $this->getStringParam( 'address' );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getClientId() {
-		return $this->getParam( 'client_id' );
+		return $this->getArrayParam( 'address' );
 	}
 
 	/**
@@ -37,41 +30,41 @@ class AccountVO {
 	 * @return string
 	 */
 	public function getFirstName() {
-		return $this->getStringParam( 'first_name' );
+		return $this->getStringParam( 'firstName' );
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getLastName() {
-		return $this->getStringParam( 'last_name' );
+		return $this->getStringParam( 'lastName' );
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getCity() {
-		return $this->getStringParam( 'city' );
+		return $this->getAddress()[ 'city' ];
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getCompanyName() {
-		return $this->getStringParam( 'company' );
+		return $this->getStringParam( 'companyName' );
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getCountry() {
-		return $this->getStringParam( 'country' );
+		return $this->getAddress()[ 'country' ];
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getPostalCode() {
-		return $this->getStringParam( 'zip_code' );
+		return $this->getAddress()[ 'zipCode' ];
 	}
 }
