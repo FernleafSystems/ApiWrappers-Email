@@ -72,13 +72,22 @@ class MemberVO {
 	}
 
 	/**
+	 * IMPORTANT: Does not check for whether they are unsubscribed. Instead use isSubscribedToList()
+	 * @param int $nListId
+	 * @return bool
+	 */
+	public function isOnList( $nListId ) {
+		return in_array( $nListId, $this->getListIds() );
+	}
+
+	/**
 	 * Must check unsubscribe list as the user subscribed list will retain the list ID even
 	 * after unsubscribe.
 	 * @param int $nListId
 	 * @return bool
 	 */
 	public function isSubscribedToList( $nListId ) {
-		return in_array( $nListId, $this->getListIds() ) && !$this->isUnsubscribedFromList( $nListId );
+		return $this->isOnList( $nListId ) && !$this->isUnsubscribedFromList( $nListId );
 	}
 
 	/**
