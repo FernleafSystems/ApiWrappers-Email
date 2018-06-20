@@ -17,7 +17,7 @@ class Delete extends Drip\Api {
 	 * @return $this
 	 */
 	public function setEmail( $sEmail ) {
-		return $this->setRawDataItem( 'email', $sEmail );
+		return $this->setParam( 'email', $sEmail );
 	}
 
 	/**
