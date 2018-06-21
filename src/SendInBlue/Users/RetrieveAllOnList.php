@@ -17,10 +17,11 @@ class RetrieveAllOnList extends Api {
 		$aAllMembers = array();
 
 		$nOffset = 0;
+		$nPageLimit = 50;
 		do {
 			$aMembers = null;
 			$aResults = $this->setRequestDataItem( 'offset', $nOffset )
-							 ->setRequestDataItem( 'limit', 50 )
+							 ->setRequestDataItem( 'limit', $nPageLimit )
 							 ->send()
 							 ->getDecodedResponseBody();
 
@@ -32,7 +33,7 @@ class RetrieveAllOnList extends Api {
 					$aResults[ 'contacts' ]
 				);
 				$aAllMembers = array_merge( $aAllMembers, $aMembers );
-				$nOffset++;
+				$nOffset += $nPageLimit;
 				continue;
 			}
 		} while ( !empty( $aMembers ) );

@@ -21,25 +21,25 @@ class RetrieveAll extends Api {
 		$aAllLists = array();
 
 		$nOffset = 0;
+		$nPageLimit = 50;
 		do {
 			$aLists = null;
 			$aResults = $this->setRequestDataItem( 'offset', $nOffset )
-							 ->setRequestDataItem( 'limit', 50 )
+							 ->setRequestDataItem( 'limit', $nPageLimit )
 							 ->send()
 							 ->getDecodedResponseBody();
 
 			if ( is_array( $aResults ) && isset( $aResults[ 'lists' ] ) ) {
 				$aLists = array_map(
-					function( $aList ) {
+					function ( $aList ) {
 						return ( new ListVO() )->applyFromArray( $aList );
 					},
 					$aResults[ 'lists' ]
 				);
 				$aAllLists = array_merge( $aAllLists, $aLists );
-				$nOffset++;
+				$nOffset += $nPageLimit;
 				continue;
 			}
-
 		} while ( !empty( $aLists ) );
 
 		return $aAllLists;
