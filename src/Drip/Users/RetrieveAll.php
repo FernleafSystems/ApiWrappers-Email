@@ -69,6 +69,31 @@ class RetrieveAll extends Drip\Api {
 	}
 
 	/**
+	 * @param int $nTimestamp
+	 * @return $this
+	 */
+	public function filterBySubscribedAfter( $nTimestamp ) {
+		return $this->filterByTimestampField( 'subscribed_after', $nTimestamp );
+	}
+
+	/**
+	 * @param int $nTimestamp
+	 * @return $this
+	 */
+	public function filterBySubscribedBefore( $nTimestamp ) {
+		return $this->filterByTimestampField( 'subscribed_before', $nTimestamp );
+	}
+
+	/**
+	 * @param string $sField
+	 * @param int    $nTimestamp
+	 * @return $this
+	 */
+	public function filterByTimestampField( $sField, $nTimestamp ) {
+		return $this->setRequestDataItem( $sField, date( 'c', $nTimestamp ) );
+	}
+
+	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
