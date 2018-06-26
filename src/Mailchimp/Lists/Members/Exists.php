@@ -14,11 +14,13 @@ class Exists {
 
 	/**
 	 * @param string $sEmail
+	 * @param string $sListId
 	 * @return bool
 	 */
-	public function exists( $sEmail ) {
+	public function exists( $sEmail, $sListId ) {
 		$oMember = ( new Retrieve() )
 			->setConnection( $this->getConnection() )
+			->setListId( $sListId )
 			->byEmail( $sEmail );
 		return !empty( $oMember );
 	}

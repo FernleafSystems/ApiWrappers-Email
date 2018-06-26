@@ -36,25 +36,11 @@ class Retrieve extends Api {
 	}
 
 	/**
-	 * @return string
-	 */
-	public function getMemberId() {
-		return $this->getStringParam( 'member_id' );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getListId() {
-		return $this->getStringParam( 'list_id' );
-	}
-
-	/**
 	 * @param string $sId
 	 * @return $this
 	 */
 	public function setListId( $sId ) {
-		return $this->setRawDataItem( 'list_id', $sId );
+		return $this->setParam( 'list_id', $sId );
 	}
 
 	/**
@@ -62,13 +48,13 @@ class Retrieve extends Api {
 	 * @return $this
 	 */
 	public function setMemberId( $sId ) {
-		return $this->setRawDataItem( 'member_id', $sId );
+		return $this->setParam( 'member_id', $sId );
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'lists/%s/members/%s', $this->getListId(), $this->getMemberId() );
+		return sprintf( 'lists/%s/members/%s', $this->getParam( 'list_id' ), $this->getParam( 'member_id' ) );
 	}
 }
