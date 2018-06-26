@@ -128,14 +128,58 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	/**
 	 * @return bool
 	 */
-	public function isEventUserSubscribe() {
-		return ( $this->getEventType() == 'subscribe' );
+	public function isEvent_CampaignStatus() {
+		return $this->isEvent( 'campaign' );
 	}
 
 	/**
 	 * @return bool
 	 */
+	public function isEvent_Cleaned() {
+		return $this->isEvent( 'cleaned' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isEvent_ProfileUpdate() {
+		return $this->isEvent( 'profile' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isEvent_Subscribe() {
+		return $this->isEvent( 'subscribe' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isEvent_Unsubscribe() {
+		return $this->isEvent( 'unsubscribe' );
+	}
+
+	/**
+	 * @param string $sType
+	 * @return bool
+	 */
+	public function isEvent( $sType ) {
+		return ( $this->getEvent() == $sType );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isEventUserSubscribe() {
+		return $this->isEvent_Subscribe();
+	}
+
+	/**
+	 * @deprecated
+	 * @return bool
+	 */
 	public function isEventUserUnsubscribe() {
-		return ( $this->getEventType() == 'unsubscribe' );
+		return $this->isEvent_Unsubscribe();
 	}
 }

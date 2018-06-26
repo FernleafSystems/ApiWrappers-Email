@@ -46,14 +46,13 @@ class RetrieveAll extends Drip\Api {
 	 */
 	public function addTagToFilter( $sNewTag ) {
 		$sTags = $this->getRequestDataItem( 'tags' );
-		if ( is_null( $sTags ) || !is_string( $sTags ) ) {
+		if ( !is_string( $sTags ) ) {
 			$sTags = '';
 		}
 		$aTags = explode( ',', $sTags );
-		if ( !in_array( $sNewTag, $aTags ) ) {
-			$aTags[] = $sNewTag;
-		}
-		return $this->setRequestDataItem( 'tags', implode( ',', $aTags ) );
+		$aTags[] = $sNewTag;
+
+		return $this->setRequestDataItem( 'tags', implode( ',', array_unique( $aTags ) ) );
 	}
 
 	/**
@@ -66,6 +65,31 @@ class RetrieveAll extends Drip\Api {
 			$this->setRequestDataItem( 'status', $sStatus );
 		}
 		return $this;
+	}
+
+	/**
+	 * @param int $nTimestamp
+	 * @return $this
+	 */
+	public function filterBySubscribedAfter( $nTimestamp ) {
+		return $this->filterByTimestampField( 'subscribed_after', $nTimestamp );
+	}
+
+	/**
+	 * @param int $nTimestamp
+	 * @return $this
+	 */
+	public function filterBySubscribedBefore( $nTimestamp ) {
+		return $this->filterByTimestampField( 'subscribed_before', $nTimestamp );
+	}
+
+	/**
+	 * @param string $sField
+	 * @param int    $nTimestamp
+	 * @return $this
+	 */
+	public function filterByTimestampField( $sField, $nTimestamp ) {
+		return $this->setRequestDataItem( $sField, date( 'c', $nTimestamp ) );
 	}
 
 	/**
