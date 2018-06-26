@@ -29,7 +29,7 @@ class Retrieve extends Api {
 		try {
 			$aRes = $this->send()
 						 ->getDecodedResponseBody();
-			if ( is_array( $aRes ) ) {
+			if ( !empty( $aRes ) && is_array( $aRes ) ) {
 				$oAc = ( new AccountVO() )->applyFromArray( $aRes );
 			}
 		}
