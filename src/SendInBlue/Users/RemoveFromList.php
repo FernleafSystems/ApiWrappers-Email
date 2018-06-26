@@ -2,15 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
-class RemoveFromList extends Update {
-
-	/**
-	 * @param int $nListId
-	 * @return $this
-	 */
-	public function setList( $nListId ) {
-		return $this->setLists( [ $nListId ] );
-	}
+class RemoveFromList extends SubscribeToLists {
 
 	/**
 	 * @param array $aLists
