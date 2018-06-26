@@ -46,14 +46,13 @@ class RetrieveAll extends Drip\Api {
 	 */
 	public function addTagToFilter( $sNewTag ) {
 		$sTags = $this->getRequestDataItem( 'tags' );
-		if ( is_null( $sTags ) || !is_string( $sTags ) ) {
+		if ( !is_string( $sTags ) ) {
 			$sTags = '';
 		}
 		$aTags = explode( ',', $sTags );
-		if ( !in_array( $sNewTag, $aTags ) ) {
-			$aTags[] = $sNewTag;
-		}
-		return $this->setRequestDataItem( 'tags', implode( ',', $aTags ) );
+		$aTags[] = $sNewTag;
+
+		return $this->setRequestDataItem( 'tags', implode( ',', array_unique( $aTags ) ) );
 	}
 
 	/**
