@@ -17,7 +17,7 @@ class Retrieve extends Api {
 	 * @return MemberVO|null
 	 */
 	public function byEmail( $sEmail ) {
-		return $this->byId( md5( $sEmail ) );
+		return $this->byId( md5( strtolower( $sEmail ) ) );
 	}
 
 	/**
