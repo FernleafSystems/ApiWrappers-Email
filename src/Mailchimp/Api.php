@@ -16,9 +16,10 @@ class Api extends BaseApi {
 	protected function prepFinalRequestData() {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
+
 		$this->setRequestHeader( 'Accept', $oCon->getContentType() )
 			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() )
-			 ->setRequestHeader( 'Authorization', 'apikey ' . $oCon->getApiKey() );
+			 ->setRequestHeader( 'Authorization', 'Basic '.base64_encode( 'anything:'.$oCon->getApiKey() ) );
 
 		return parent::prepFinalRequestData();
 	}
@@ -30,6 +31,6 @@ class Api extends BaseApi {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
 		$sBase = sprintf( $oCon->getBaseUrl(), explode( '-', $oCon->getApiKey() )[ 1 ] );
-		return rtrim( $sBase, '/' ) . '/';
+		return rtrim( $sBase, '/' ).'/';
 	}
 }
