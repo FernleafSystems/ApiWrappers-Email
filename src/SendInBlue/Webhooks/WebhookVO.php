@@ -89,4 +89,11 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	public function isEvent_Unsubscribe() {
 		return ( $this->getEvent() == 'unsubscribe' );
 	}
+
+	/**
+	 * @return bool
+	 */
+	public function isValid() {
+		return !empty( $this->getWebhookId() );
+	}
 }

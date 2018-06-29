@@ -176,6 +176,13 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function isValid() {
+		return !empty( $this->getEvent() );
+	}
+
+	/**
 	 * @deprecated
 	 * @return bool
 	 */
