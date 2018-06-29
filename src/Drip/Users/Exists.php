@@ -2,24 +2,22 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
+use FernleafSystems\ApiWrappers\Base\ConnectionConsumer;
+
 /**
  * Class Exists
  * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  */
-class Exists extends Retrieve {
+class Exists {
 
-	/**
-	 * @return bool
-	 */
-	public function req() {
-		return !empty( parent::req() );
-	}
+	use ConnectionConsumer;
 
 	/**
 	 * @param string $sEmail
 	 * @return bool
 	 */
 	public function byEmail( $sEmail ) {
-		return !empty( parent::byEmail( $sEmail ) );
+		$oRtr = ( new Retrieve() )->setConnection( $this->getConnection() );
+		return !empty( $oRtr->byEmail( $sEmail ) );
 	}
 }
