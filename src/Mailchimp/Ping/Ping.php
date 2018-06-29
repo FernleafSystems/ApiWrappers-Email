@@ -17,4 +17,11 @@ class Ping extends Api {
 					 ->getDecodedResponseBody();
 		return !empty( $aRes ) && is_array( $aRes ) && isset( $aRes[ 'health_status' ] );
 	}
+
+	/**
+	 * @return string
+	 */
+	protected function getUrlEndpoint() {
+		return sprintf( 'ping' );
+	}
 }
