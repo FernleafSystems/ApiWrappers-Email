@@ -112,6 +112,13 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function isValid() {
+		return !empty( $this->getAccountId() );
+	}
+
+	/**
 	 * @deprecated just use the getSubscriber() to get the VO
 	 * @return array
 	 */
