@@ -13,20 +13,25 @@ class Delete extends Drip\Api {
 	const REQUEST_METHOD = 'delete';
 
 	/**
-	 * IMPORTANT: this doesn't take into consideration that the API can also
-	 * use a subscriber's ID instead of email. But we haven't coded for IDs (yet)
-	 * @return array
-	 */
-	protected function getCriticalRequestItems() {
-		return [ 'email' ];
-	}
-
-	/**
 	 * @param string $sEmail
 	 * @return $this
 	 */
 	public function setEmail( $sEmail ) {
 		return $this->setParam( 'email', $sEmail );
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	protected function preSendVerification() {
+		parent::preSendVerification();
+
+		if ( is_null( $this->getParam( 'email' ) ) ) {
+			throw new \Exception( 'Email is not provided.' );
+		}
+		if ( filter_var( $this->getParam( 'email' ), FILTER_VALIDATE_EMAIL ) ) {
+			throw new \Exception( 'Email provided is not valid.' );
+		}
 	}
 
 	/**
