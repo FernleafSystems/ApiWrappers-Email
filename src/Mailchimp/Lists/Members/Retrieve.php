@@ -15,11 +15,11 @@ class Retrieve extends Base {
 	 * @return MemberVO|null
 	 */
 	public function byEmail( $sEmail ) {
-		return $this->byId( md5( strtolower( $sEmail ) ) );
+		return $this->byId( $this->idFromEmail( $sEmail ) );
 	}
 
 	/**
-	 * @param string $sId ID, otherwise known as the subscriber hash (md5).
+	 * @param string $sId - otherwise known as subscriber hash (md5).
 	 * @return MemberVO|null
 	 */
 	public function byId( $sId ) {

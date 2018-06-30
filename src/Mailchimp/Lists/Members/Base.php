@@ -26,6 +26,14 @@ class Base extends Api {
 	}
 
 	/**
+	 * @param string $sEmail
+	 * @return string
+	 */
+	protected function idFromEmail( $sEmail ) {
+		return md5( strtolower( $sEmail ) );
+	}
+
+	/**
 	 * @throws \Exception
 	 */
 	protected function preSendVerification() {
