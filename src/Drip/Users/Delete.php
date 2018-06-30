@@ -29,7 +29,7 @@ class Delete extends Drip\Api {
 		if ( is_null( $this->getParam( 'email' ) ) ) {
 			throw new \Exception( 'Email is not provided.' );
 		}
-		if ( filter_var( $this->getParam( 'email' ), FILTER_VALIDATE_EMAIL ) ) {
+		if ( !filter_var( $this->getParam( 'email' ), FILTER_VALIDATE_EMAIL ) ) {
 			throw new \Exception( 'Email provided is not valid.' );
 		}
 	}
