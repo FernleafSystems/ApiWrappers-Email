@@ -2,13 +2,11 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
 
-use FernleafSystems\ApiWrappers\Email\Mailchimp\Api;
-
 /**
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members
  */
-class Retrieve extends Api {
+class Retrieve extends Base {
 
 	const REQUEST_METHOD = 'get';
 
@@ -39,22 +37,24 @@ class Retrieve extends Api {
 	 * @param string $sId
 	 * @return $this
 	 */
-	public function setListId( $sId ) {
-		return $this->setParam( 'list_id', $sId );
+	public function setMemberId( $sId ) {
+		return $this->setParam( 'member_id', $sId );
 	}
 
 	/**
-	 * @param string $sId
-	 * @return $this
+	 * @throws \Exception
 	 */
-	public function setMemberId( $sId ) {
-		return $this->setParam( 'member_id', $sId );
+	protected function preSendVerification() {
+		parent::preSendVerification();
+		if ( is_null( $this->getParam( 'member_id' ) ) ) {
+			throw new \Exception( 'Member ID is not specified.' );
+		}
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'lists/%s/members/%s', $this->getParam( 'list_id' ), $this->getParam( 'member_id' ) );
+		return sprintf( 'lists/%s/members/%s', $this->getListId(), $this->getParam( 'member_id' ) );
 	}
 }

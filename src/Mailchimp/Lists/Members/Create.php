@@ -2,13 +2,11 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
 
-use FernleafSystems\ApiWrappers\Email\Mailchimp\Api;
-
 /**
  * Class Create
  * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members
  */
-class Create extends Api {
+class Create extends Base {
 
 	const REQUEST_METHOD = 'post';
 
@@ -18,14 +16,6 @@ class Create extends Api {
 	 */
 	public function setEmail( $sEmail ) {
 		return $this->setRequestDataItem( 'email_address', $sEmail );
-	}
-
-	/**
-	 * @param string $sId
-	 * @return $this
-	 */
-	public function setListId( $sId ) {
-		return $this->setParam( 'list_id', $sId );
 	}
 
 	/**
@@ -76,6 +66,6 @@ class Create extends Api {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'lists/%s/members', $this->getParam( 'list_id' ) );
+		return sprintf( 'lists/%s/members', $this->getListId() );
 	}
 }

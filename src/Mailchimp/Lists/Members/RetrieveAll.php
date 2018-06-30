@@ -2,13 +2,11 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
 
-use FernleafSystems\ApiWrappers\Email\Mailchimp\Api;
-
 /**
  * Class RetrieveAll
  * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members
  */
-class RetrieveAll extends Api {
+class RetrieveAll extends Base {
 
 	const REQUEST_METHOD = 'get';
 
@@ -42,21 +40,6 @@ class RetrieveAll extends Api {
 		} while ( !empty( $aMembers ) );
 
 		return $aAllMembers;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getListId() {
-		return $this->getStringParam( 'list_id' );
-	}
-
-	/**
-	 * @param string $sId
-	 * @return $this
-	 */
-	public function setListId( $sId ) {
-		return $this->setRawDataItem( 'list_id', $sId );
 	}
 
 	/**
