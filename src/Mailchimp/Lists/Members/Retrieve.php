@@ -2,13 +2,11 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
 
-use FernleafSystems\ApiWrappers\Email\Mailchimp\Api;
-
 /**
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members
  */
-class Retrieve extends Api {
+class Retrieve extends Base {
 
 	const REQUEST_METHOD = 'get';
 
@@ -17,11 +15,11 @@ class Retrieve extends Api {
 	 * @return MemberVO|null
 	 */
 	public function byEmail( $sEmail ) {
-		return $this->byId( md5( $sEmail ) );
+		return $this->byId( $this->idFromEmail( $sEmail ) );
 	}
 
 	/**
-	 * @param string $sId ID, otherwise known as the subscriber hash (md5).
+	 * @param string $sId - otherwise known as subscriber hash (md5).
 	 * @return MemberVO|null
 	 */
 	public function byId( $sId ) {
@@ -36,39 +34,27 @@ class Retrieve extends Api {
 	}
 
 	/**
-	 * @return string
-	 */
-	public function getMemberId() {
-		return $this->getStringParam( 'member_id' );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getListId() {
-		return $this->getStringParam( 'list_id' );
-	}
-
-	/**
-	 * @param string $sId
-	 * @return $this
-	 */
-	public function setListId( $sId ) {
-		return $this->setRawDataItem( 'list_id', $sId );
-	}
-
-	/**
 	 * @param string $sId
 	 * @return $this
 	 */
 	public function setMemberId( $sId ) {
-		return $this->setRawDataItem( 'member_id', $sId );
+		return $this->setParam( 'member_id', $sId );
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	protected function preSendVerification() {
+		parent::preSendVerification();
+		if ( is_null( $this->getParam( 'member_id' ) ) ) {
+			throw new \Exception( 'Member ID is not specified.' );
+		}
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'lists/%s/members/%s', $this->getListId(), $this->getMemberId() );
+		return sprintf( 'lists/%s/members/%s', $this->getListId(), $this->getParam( 'member_id' ) );
 	}
 }

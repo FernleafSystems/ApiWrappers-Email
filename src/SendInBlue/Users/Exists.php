@@ -2,14 +2,19 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
-class Exists extends Retrieve {
+use FernleafSystems\ApiWrappers\Base\ConnectionConsumer;
+
+class Exists {
+
+	use ConnectionConsumer;
 
 	/**
-	 * TODO: this needs done right. It's make-believe
 	 * @return bool
 	 */
-	public function exists() {
-		$aResult = parent::send();
-		return !empty( $aResult );
+	public function exists( $sEmail ) {
+		$oSub = ( new Retrieve() )
+			->setConnection( $this->getConnection() )
+			->byEmail( $sEmail );
+		return !empty( $oSub );
 	}
 }

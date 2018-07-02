@@ -10,4 +10,11 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  */
 class WebhookVO {
 	use StdClassAdapter;
+
+	/**
+	 * @return bool
+	 */
+	public function isValid() {
+		return false;
+	}
 }

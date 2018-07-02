@@ -43,6 +43,14 @@ class MemberVO {
 	}
 
 	/**
+	 * These are all the lists a user is subscribed to excluding those they're unsubscribed from.
+	 * @return array
+	 */
+	public function getActiveListIds() {
+		return array_diff( $this->getListIds(), $this->getUnsubscribedListIds() );
+	}
+
+	/**
 	 * @return array
 	 */
 	public function getListIds() {
@@ -52,7 +60,7 @@ class MemberVO {
 	/**
 	 * @return array
 	 */
-	public function getUnsubscribedListId() {
+	public function getUnsubscribedListIds() {
 		return $this->getArrayParam( 'list_unsubscribed' );
 	}
 
@@ -72,13 +80,22 @@ class MemberVO {
 	}
 
 	/**
+	 * IMPORTANT: Does not check for whether they are unsubscribed. Instead use isSubscribedToList()
+	 * @param int $nListId
+	 * @return bool
+	 */
+	public function isOnList( $nListId ) {
+		return in_array( $nListId, $this->getListIds() );
+	}
+
+	/**
 	 * Must check unsubscribe list as the user subscribed list will retain the list ID even
 	 * after unsubscribe.
 	 * @param int $nListId
 	 * @return bool
 	 */
 	public function isSubscribedToList( $nListId ) {
-		return in_array( $nListId, $this->getListIds() ) && !$this->isUnsubscribedFromList( $nListId );
+		return in_array( $nListId, $this->getActiveListIds() );
 	}
 
 	/**
@@ -86,6 +103,6 @@ class MemberVO {
 	 * @return bool
 	 */
 	public function isUnsubscribedFromList( $nListId ) {
-		return in_array( $nListId, $this->getUnsubscribedListId() );
+		return in_array( $nListId, $this->getUnsubscribedListIds() );
 	}
 }

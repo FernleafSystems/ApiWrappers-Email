@@ -15,6 +15,6 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	 * @return string
 	 */
 	public function getContentType() {
-		return 'application/vnd.api+json';
+		return 'application/json';
 	}
 }

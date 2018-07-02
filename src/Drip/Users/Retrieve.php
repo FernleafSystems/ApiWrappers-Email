@@ -11,13 +11,26 @@ class Retrieve extends Delete {
 	const REQUEST_METHOD = 'get';
 
 	/**
+	 * @return MemberVO|null
+	 */
+	public function req() {
+		try {
+			$oUser = $this->asVo();
+		}
+		catch ( \Exception $oE ) {
+			$oUser = null;
+		}
+		return $oUser;
+	}
+
+	/**
 	 * @param string $sEmail
 	 * @return MemberVO|null
 	 */
 	public function byEmail( $sEmail ) {
 		return $this->setEmail( $sEmail )
 					->removeRequestDataItem( 'id' )
-					->asVo();
+					->req();
 	}
 
 	/**

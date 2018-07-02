@@ -10,6 +10,20 @@ use FernleafSystems\ApiWrappers\Base\BaseApi;
  */
 class Api extends BaseApi {
 
+	const IS_ACCOUNT_REQUEST = true;
+
+	/**
+	 * @return $this
+	 */
+	public function req() {
+		try {
+			$this->send();
+		}
+		catch ( \Exception $oE ) {
+		}
+		return $this;
+	}
+
 	/**
 	 * @return array
 	 */
@@ -29,6 +43,13 @@ class Api extends BaseApi {
 	protected function getBaseUrl() {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
-		return rtrim( $oCon->getBaseUrl(), '/' ) . '/';
+		return rtrim( $oCon->getBaseUrl( $this->isAccountRequest() ), '/' ).'/';
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function isAccountRequest() {
+		return static::IS_ACCOUNT_REQUEST;
 	}
 }

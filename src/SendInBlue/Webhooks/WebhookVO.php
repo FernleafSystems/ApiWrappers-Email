@@ -30,6 +30,13 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
+	 * @return int
+	 */
+	public function getEventTimestamp() {
+		return $this->getParam( 'ts_event' );
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getEventReason() {
@@ -37,12 +44,14 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
-	 * @param bool $bAsTimestamp
-	 * @return int|string
+	 * @return int
 	 */
-	public function getFiredAt( $bAsTimestamp = true ) {
-		$sTimestamp = $this->getStringParam( 'date' );
-		return $bAsTimestamp ? strtotime( $sTimestamp ) : $sTimestamp;
+	public function getFiredAt() {
+		$nTs = $this->getParam( 'ts_sent' );
+		if ( empty( $nTs ) ) {
+			$nTs = strtotime( $this->getStringParam( 'date' ) );
+		}
+		return $nTs;
 	}
 
 	/**
@@ -60,9 +69,31 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
+	 * @deprecated
 	 * @return bool
 	 */
 	public function isListAddition() {
+		return $this->isEvent_ListAddition();
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isEvent_ListAddition() {
 		return ( $this->getEvent() == 'list_addition' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isEvent_Unsubscribe() {
+		return ( $this->getEvent() == 'unsubscribe' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isValid() {
+		return !empty( $this->getWebhookId() );
 	}
 }
