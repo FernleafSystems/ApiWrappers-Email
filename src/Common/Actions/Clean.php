@@ -34,9 +34,9 @@ abstract class Clean {
 
 	/**
 	 * @param mixed|Drip\Users\MemberVO|Members\MemberVO|SendInBlue\Users\MemberVO $oContact
-	 * @return $this
+	 * @return mixed|Drip\Users\MemberVO|Members\MemberVO|SendInBlue\Users\MemberVO
 	 */
-	abstract public function names( $oContact ) ;
+	abstract public function names( $oContact );
 
 	/**
 	 * @return string

@@ -16,7 +16,7 @@ class Clean extends Common\Actions\Clean {
 
 	/**
 	 * @param Users\MemberVO $oContact
-	 * @return $this
+	 * @return Users\MemberVO
 	 */
 	public function names( $oContact ) {
 		$sFKey = $this->getFirstNameKey();
@@ -30,6 +30,9 @@ class Clean extends Common\Actions\Clean {
 			->setCustomField( $sLKey, $sLast )
 			->setEmail( $oContact->getEmail() )
 			->req();
-		return $this;
+
+		return ( new Users\Retrieve() )
+			->setConnection( $this->getConnection() )
+			->byEmail( $oContact->getEmail() );
 	}
 }

@@ -16,7 +16,7 @@ class Clean extends Common\Actions\Clean {
 
 	/**
 	 * @param Members\MemberVO $oContact
-	 * @return $this
+	 * @return Members\MemberVO|null
 	 */
 	public function names( $oContact ) {
 		$sFKey = $this->getFirstNameKey();
@@ -34,6 +34,10 @@ class Clean extends Common\Actions\Clean {
 				]
 			)
 			->byEmail( $oContact->getEmail() );
-		return $this;
+
+		return ( new Members\Retrieve() )
+			->setConnection( $this->getConnection() )
+			->setListId( $oContact->getListId() )
+			->byEmail( $oContact->getEmail() );
 	}
 }
