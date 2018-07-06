@@ -20,7 +20,7 @@ class Clean extends Common\Actions\Clean {
 	 */
 	public function names( $oContact ) {
 		$sFKey = $this->getFirstNameKey();
-		$sLKey = $this->getFirstNameKey();
+		$sLKey = $this->getLastNameKey();
 		list( $sFirst, $sLast ) = ( new Common\Data\CleanNames() )
 			->names( $oContact->getCustomField( $sFKey ), $oContact->getCustomField( $sLKey ) );
 

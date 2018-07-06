@@ -23,16 +23,11 @@ class CleanNames {
 	 * @return string[] - size 2, 1st item is Firstname, 2nd item is surname
 	 */
 	public function names( $sFirstName, $sLastName ) {
-
-		if ( !is_string( $sFirstName ) ) {
-			$sFirstName = '';
-		}
-		if ( !is_string( $sLastName ) ) {
-			$sLastName = '';
-		}
+		$sFirstName = trim( (string)$sFirstName );
+		$sLastName = trim( (string)$sLastName );
 
 		// If last name is empty, and there's a space in the first name, split it
-		if ( empty( $sLastName ) && strpos( $sFirstName, ' ' ) !== false ) {
+		if ( empty( $sLastName ) && strpos( $sFirstName, ' ' ) ) {
 
 			// we don't break up names with
 			$aSpecialCases = array( 'de', 'van' );
