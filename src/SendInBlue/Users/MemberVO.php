@@ -54,7 +54,7 @@ class MemberVO {
 	 * @return array
 	 */
 	public function getListIds() {
-		return $this->getArrayParam( 'listid' );
+		return $this->getArrayParam( 'listIds' );
 	}
 
 	/**
@@ -76,7 +76,7 @@ class MemberVO {
 	 * @return bool
 	 */
 	public function isGloballyBlacklisted() {
-		return ( $this->getParam( 'blacklisted', 0 ) == 1 );
+		return (bool)$this->getParam( 'emailBlacklisted', false );
 	}
 
 	/**

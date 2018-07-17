@@ -20,7 +20,7 @@ class Retrieve extends Api {
 	}
 
 	/**
-	 * ref: https://apidocs.sendinblue.com/account/#7
+	 * ref: https://developers.sendinblue.com/v3.0/reference#getaccount-6
 	 * @return AccountVO|null
 	 */
 	protected function asVo() {
@@ -29,13 +29,8 @@ class Retrieve extends Api {
 		try {
 			$aRes = $this->send()
 						 ->getDecodedResponseBody();
-			if ( is_array( $aRes ) && !empty( $aRes[ 'data' ] ) ) {
-				foreach ( $aRes[ 'data' ] as $aData ) {
-					if ( isset( $aData[ 'client_id' ] ) ) {
-						$oAc = ( new AccountVO() )->applyFromArray( $aData );
-						break;
-					}
-				}
+			if ( !empty( $aRes ) && is_array( $aRes ) ) {
+				$oAc = ( new AccountVO() )->applyFromArray( $aRes );
 			}
 		}
 		catch ( \Exception $oE ) {

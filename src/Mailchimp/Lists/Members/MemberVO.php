@@ -27,6 +27,13 @@ class MemberVO {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getListId() {
+		return $this->getStringParam( 'list_id' );
+	}
+
+	/**
 	 * @return array
 	 */
 	public function getMergeFields() {
