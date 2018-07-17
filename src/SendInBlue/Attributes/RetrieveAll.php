@@ -1,57 +1,57 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Lists;
+namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Attributes;
 
 use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
 
 /**
  * Class RetrieveAll
- * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Lists
+ * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Attributes
  */
 class RetrieveAll extends Api {
 
 	const REQUEST_METHOD = 'get';
 
 	/**
-	 * @return ListVO[]
+	 * @return AttributeVO[]
 	 */
 	public function retrieve() {
 
-		$aAllLists = array();
+		$aAll = array();
 
 		$nOffset = 0;
 		$nPageLimit = 50;
 		do {
-			$aLists = null;
+			$aResultItems = null;
 			try {
 				$aResults = $this->setRequestDataItem( 'offset', $nOffset )
 								 ->setRequestDataItem( 'limit', $nPageLimit )
 								 ->send()
 								 ->getDecodedResponseBody();
-				if ( is_array( $aResults ) && isset( $aResults[ 'lists' ] ) ) {
-					$aLists = array_map(
-						function ( $aList ) {
-							return ( new ListVO() )->applyFromArray( $aList );
+
+				if ( is_array( $aResults ) && isset( $aResults[ 'attributes' ] ) ) {
+					$aResultItems = array_map(
+						function ( $aItem ) {
+							return ( new AttributeVO() )->applyFromArray( $aItem );
 						},
-						$aResults[ 'lists' ]
+						$aResults[ 'attributes' ]
 					);
-					$aAllLists = array_merge( $aAllLists, $aLists );
+					$aAll = array_merge( $aAll, $aResultItems );
 					$nOffset += $nPageLimit;
 					continue;
 				}
 			}
 			catch ( \Exception $oE ) {
 			}
+		} while ( !empty( $aResultItems ) );
 
-		} while ( !empty( $aLists ) );
-
-		return $aAllLists;
+		return $aAll;
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'contacts/lists' );
+		return 'contacts/attributes';
 	}
 }

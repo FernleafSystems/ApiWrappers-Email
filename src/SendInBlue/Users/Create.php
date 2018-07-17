@@ -28,6 +28,6 @@ class Create extends Api {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return 'user/createdituser';
+		return 'contacts';
 	}
 }

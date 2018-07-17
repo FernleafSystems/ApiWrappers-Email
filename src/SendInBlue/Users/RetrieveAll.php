@@ -4,18 +4,21 @@ namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
 use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
 
-class RetrieveAllOnList extends Api {
+/**
+ * Class RetrieveAll
+ * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Users
+ */
+class RetrieveAll extends Api {
 
 	const REQUEST_METHOD = 'get';
 
 	/**
 	 * Note the MemberVO data here is limited to 'email', 'listid', 'id', 'blacklisted'
-	 * @deprecated use RetrieveAll
 	 * @return MemberVO[]
 	 */
 	public function retrieve() {
 
-		$aAllMembers = array();
+		$aAll = array();
 
 		$nOffset = 0;
 		$nPageLimit = 50;
@@ -34,7 +37,7 @@ class RetrieveAllOnList extends Api {
 						},
 						$aResults[ 'contacts' ]
 					);
-					$aAllMembers = array_merge( $aAllMembers, $aMembers );
+					$aAll = array_merge( $aAll, $aMembers );
 					$nOffset += $nPageLimit;
 					continue;
 				}
@@ -43,7 +46,7 @@ class RetrieveAllOnList extends Api {
 			}
 		} while ( !empty( $aMembers ) );
 
-		return $aAllMembers;
+		return $aAll;
 	}
 
 	/**
@@ -58,6 +61,13 @@ class RetrieveAllOnList extends Api {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'contacts/lists/%s/contacts', $this->getParam( 'list_id' ) );
+		$nListId = $this->getParam( 'list_id' );
+		if ( is_null( $nListId ) ) {
+			$sEnd = 'contacts';
+		}
+		else {
+			$sEnd = sprintf( 'contacts/lists/%s/contacts', $nListId );
+		}
+		return $sEnd;
 	}
 }
