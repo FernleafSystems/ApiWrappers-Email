@@ -21,19 +21,25 @@ class Clean extends Common\Actions\Clean {
 	public function names( $oContact ) {
 		$sFKey = $this->getFirstNameKey();
 		$sLKey = $this->getLastNameKey();
-		list( $sFirst, $sLast ) = ( new Common\Data\CleanNames() )
-			->names( $oContact->getAttribute( $sFKey ), $oContact->getAttribute( $sLKey ) );
+		$sOriginalFirst = $oContact->getAttribute( $sFKey );
+		$sOriginalLast = $oContact->getAttribute( $sLKey );
 
-		( new Users\Update() )
-			->setConnection( $this->getConnection() )
-			->setAttributes(
-				[
-					$sFKey => $sFirst,
-					$sLKey => $sLast,
-				]
-			)
-			->setEmail( $oContact->getEmail() )
-			->req();
+		list( $sNewFirst, $sNewLast ) = ( new Common\Data\CleanNames() )
+			->names( $sOriginalFirst, $sOriginalLast );
+
+		// No unnecessary updates and so no unnecessary webhook firing on profile updates
+		if ( $sOriginalFirst != $sNewFirst || $sOriginalLast != $sNewLast ) {
+			( new Users\Update() )
+				->setConnection( $this->getConnection() )
+				->setAttributes(
+					[
+						$sFKey => $sNewFirst,
+						$sLKey => $sNewLast,
+					]
+				)
+				->setEmail( $oContact->getEmail() )
+				->req();
+		}
 
 		return ( new Users\Retrieve() )
 			->setConnection( $this->getConnection() )
