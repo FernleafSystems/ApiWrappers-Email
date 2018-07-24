@@ -21,19 +21,25 @@ class Clean extends Common\Actions\Clean {
 	public function names( $oContact ) {
 		$sFKey = $this->getFirstNameKey();
 		$sLKey = $this->getLastNameKey();
-		list( $sFirst, $sLast ) = ( new Common\Data\CleanNames() )
-			->names( $oContact->getMergeField( $sFKey ), $oContact->getMergeField( $sLKey ) );
+		$sOriginalFirst = $oContact->getMergeField( $sFKey );
+		$sOriginalLast = $oContact->getMergeField( $sLKey );
 
-		( new Members\Update() )
-			->setConnection( $this->getConnection() )
-			->setListId( $oContact->getListId() )
-			->setMergeFields(
-				[
-					$sFKey => $sFirst,
-					$sLKey => $sLast,
-				]
-			)
-			->byEmail( $oContact->getEmail() );
+		list( $sNewFirst, $sNewLast ) = ( new Common\Data\CleanNames() )
+			->names( $sOriginalFirst, $sOriginalLast );
+
+		// No unnecessary updates and so no unnecessary webhook firing on profile updates
+		if ( $sOriginalFirst != $sNewFirst || $sOriginalLast != $sNewLast ) {
+			( new Members\Update() )
+				->setConnection( $this->getConnection() )
+				->setListId( $oContact->getListId() )
+				->setMergeFields(
+					[
+						$sFKey => $sNewFirst,
+						$sLKey => $sNewLast,
+					]
+				)
+				->byEmail( $oContact->getEmail() );
+		}
 
 		return ( new Members\Retrieve() )
 			->setConnection( $this->getConnection() )
