@@ -11,6 +11,6 @@ class Capture extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Capture
 	 * @return WebhookVO
 	 */
 	public function capture() {
-		return ( new WebhookVO() )->setRawData( $this->fromInput()->getRawData() );
+		return ( new WebhookVO() )->applyFromArray( $this->fromInput()->getRawDataAsArray() );
 	}
 }
