@@ -27,7 +27,8 @@ class AccountVO {
 	}
 
 	/**
-	 * @return string|int|null
+	 * @param bool $bAsUnixTimestamp
+	 * @return false|int|string
 	 */
 	public function getCreatedAt( $bAsUnixTimestamp ) {
 		$sCreatedAt = $this->getStringParam( 'created_at' );

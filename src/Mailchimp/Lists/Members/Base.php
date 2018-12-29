@@ -22,7 +22,7 @@ class Base extends Api {
 	 * @return $this
 	 */
 	public function setListId( $sId ) {
-		return $this->setRawDataItem( 'list_id', $sId );
+		return $this->setParam( 'list_id', $sId );
 	}
 
 	/**
