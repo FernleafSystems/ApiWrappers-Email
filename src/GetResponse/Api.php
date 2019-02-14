@@ -2,6 +2,8 @@
 
 namespace FernleafSystems\ApiWrappers\Email\GetResponse;
 
+use FernleafSystems\ApiWrappers\Base\BaseVO;
+
 /**
  * Class Api
  * @package FernleafSystems\ApiWrappers\Email\GetResponse
@@ -18,6 +20,24 @@ class Api extends \FernleafSystems\ApiWrappers\Base\BaseApi {
 		catch ( \Exception $oE ) {
 		}
 		return $this;
+	}
+
+	/**
+	 * @return BaseVO|mixed|null
+	 */
+	public function asVo() {
+		$oVo = null;
+		if ( $this->req()->isLastRequestSuccess() ) {
+			$oVo = $this->getVO()->applyFromArray( $this->getDecodedResponseBody() );
+		}
+		return $oVo;
+	}
+
+	/**
+	 * @return BaseVO|mixed
+	 */
+	protected function getVO() {
+		return new BaseVO();
 	}
 
 	/**

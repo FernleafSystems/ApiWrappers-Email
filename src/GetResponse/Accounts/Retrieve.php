@@ -14,11 +14,14 @@ class Retrieve extends \FernleafSystems\ApiWrappers\Email\GetResponse\Api {
 	 * @return AccountVO|null
 	 */
 	public function asVo() {
-		$oVo = null;
-		if ( $this->req()->isLastRequestSuccess() ) {
-			$oVo = ( new AccountVO() )->applyFromArray( $this->getDecodedResponseBody() );
-		}
-		return $oVo;
+		return parent::asVo();
+	}
+
+	/**
+	 * @return AccountVO|mixed
+	 */
+	protected function getVO() {
+		return new AccountVO();
 	}
 
 	/**
