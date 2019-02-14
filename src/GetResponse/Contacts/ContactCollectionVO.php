@@ -7,7 +7,7 @@ namespace FernleafSystems\ApiWrappers\Email\GetResponse\Contacts;
  * @package FernleafSystems\ApiWrappers\Email\GetResponse\Contacts
  * @property ContactOnListVO[] $listContacts - key is ListID, value Contact - use getter() instead of direct access
  */
-class ContactVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
+class ContactCollectionVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
 
 	/**
 	 * For the first list-contact

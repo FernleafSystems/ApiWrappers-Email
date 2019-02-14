@@ -14,20 +14,6 @@ class Create extends Base {
 	const REQUEST_METHOD = 'post';
 
 	/**
-	 * @param string $sTag
-	 * @return $this
-	 */
-	public function addTag( $sTag ) {
-		$aTags = $this->getRequestDataItem( 'tags' );
-		if ( !is_array( $aTags ) ) {
-			$aTags = array();
-		}
-
-		$aTags[] = [ 'tagId' => $sTag ];
-		return $this->setRequestDataItem( 'tags', $aTags );
-	}
-
-	/**
 	 * @param string $sFieldKey
 	 * @param mixed  $mFieldValue
 	 * @return $this
@@ -77,7 +63,6 @@ class Create extends Base {
 		$oList = ( new GetResponse\Lists\Retrieve() )
 			->setConnection( $this->getConnection() )
 			->byName( $sName );
-		var_dump( $oList );
 		if ( empty( $oList ) ) {
 			throw new \Exception( sprintf( 'List by name "%s" does not exist', $sName ) );
 		}

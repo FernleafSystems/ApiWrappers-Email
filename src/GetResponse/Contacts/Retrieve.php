@@ -21,17 +21,17 @@ class Retrieve extends Base {
 	 *
 	 * @param string $sEmail
 	 * @param bool   $bFull
-	 * @return ContactVO
+	 * @return ContactCollectionVO
 	 */
 	public function byEmail( $sEmail, $bFull = false ) {
 		$oVo = null;
 
 		$this->setRequestQueryDataItem( 'query[email]', $sEmail )->req();
 		if ( $this->isLastRequestSuccess() ) {
-			$oVo = $this->getVO();
+			$oVo = new ContactCollectionVO();
 			$aSubContacts = [];
 			foreach ( $this->getDecodedResponseBody() as $aContactInfo ) {
-				$oCL = ( new ContactOnListVO() )->applyFromArray( $aContactInfo );
+				$oCL = $this->getVO()->applyFromArray( $aContactInfo );
 
 				$sListId = $oCL->campaign[ 'campaignId' ];
 				if ( $bFull ) {
@@ -50,6 +50,27 @@ class Retrieve extends Base {
 	}
 
 	/**
+	 * @param string $sEmail
+	 * @param string $sList - id or name
+	 * @return ContactOnListVO|null
+	 */
+	public function byEmailOnList( $sEmail, $sList ) {
+		$oTheListContact = null;
+		$oCollection = $this->byEmail( $sEmail );
+		if ( !empty( $oCollection ) ) {
+			foreach ( $oCollection->getListContacts() as $oCon ) {
+				if ( in_array( $sList, [ $oCon->campaign[ 'name' ], $oCon->campaign[ 'campaignId' ] ] ) ) {
+					$oTheListContact = ( new Retrieve() )
+						->setConnection( $this->getConnection() )
+						->byId( $oCon->contactId );
+					break;
+				}
+			}
+		}
+		return $oTheListContact;
+	}
+
+	/**
 	 * Each email on a list is considered a separate contact and has a separate ID.  So this requests returns that
 	 * contact for that particular list.
 	 * @param string $sId
@@ -65,17 +86,17 @@ class Retrieve extends Base {
 	}
 
 	/**
-	 * @return ContactVO|null
+	 * @return ContactCollectionVO|null
 	 */
 	public function asVo() {
 		return parent::asVo();
 	}
 
 	/**
-	 * @return ContactVO
+	 * @return ContactOnListVO
 	 */
 	protected function getVO() {
-		return new ContactVO();
+		return new ContactOnListVO();
 	}
 
 	/**
