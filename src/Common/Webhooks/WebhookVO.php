@@ -9,6 +9,7 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  * @package FernleafSystems\ApiWrappers\Email\Common\Webhooks
  */
 class WebhookVO {
+
 	use StdClassAdapter;
 
 	/**
