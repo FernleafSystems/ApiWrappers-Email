@@ -41,6 +41,15 @@ class Api extends \FernleafSystems\ApiWrappers\Base\BaseApi {
 	}
 
 	/**
+	 * @return int[]
+	 */
+	public function getSuccessfulResponseCodes() {
+		$aCodes = parent::getSuccessfulResponseCodes();
+		$aCodes[] = 202;
+		return $aCodes;
+	}
+
+	/**
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {

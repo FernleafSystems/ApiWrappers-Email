@@ -57,7 +57,7 @@ class Retrieve extends Base {
 	 */
 	public function byId( $sId ) {
 		$oVo = null;
-		$this->setParam( 'contactId', $sId )->req();
+		$this->setParam( 'id', $sId )->req();
 		if ( $this->isLastRequestSuccess() ) {
 			$oVo = ( new ContactOnListVO() )->applyFromArray( $this->getDecodedResponseBody() );
 		}
@@ -82,7 +82,8 @@ class Retrieve extends Base {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		$sId = $this->getParam( 'contactId' );
-		return empty( $sId ) ? parent::getUrlEndpoint() : 'contacts/'.$sId;
+		$sId = $this->getParam( 'id' );
+		$sEndPoint = parent::getUrlEndpoint();
+		return empty( $sId ) ? $sEndPoint : $sEndPoint.'/'.$sId;
 	}
 }

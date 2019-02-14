@@ -1,15 +1,15 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\GetResponse\Contacts;
 
 use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
-use FernleafSystems\ApiWrappers\Email\Drip;
+use FernleafSystems\ApiWrappers\Email\GetResponse;
 
 /**
  * Class Create
- * @package FernleafSystems\ApiWrappers\Email\Drip\Users
+ * @package FernleafSystems\ApiWrappers\Email\GetResponse\Contacts
  */
-class Create extends Drip\Api {
+class Create extends Base {
 
 	const REQUEST_METHOD = 'post';
 
@@ -18,40 +18,13 @@ class Create extends Drip\Api {
 	 * @return $this
 	 */
 	public function addTag( $sTag ) {
-		return $this->addTags( [ $sTag ] );
-	}
-
-	/**
-	 * @param array $aNewTags
-	 * @return $this
-	 */
-	public function addTags( $aNewTags ) {
 		$aTags = $this->getRequestDataItem( 'tags' );
 		if ( !is_array( $aTags ) ) {
 			$aTags = array();
 		}
 
-		if ( !is_array( $aNewTags ) ) {
-			$aNewTags = array( $aNewTags );
-		}
-
-		$aTags = array_unique( array_merge( $aTags, $aNewTags ) );
+		$aTags[] = [ 'tagId' => $sTag ];
 		return $this->setRequestDataItem( 'tags', $aTags );
-	}
-
-	/**
-	 * @param string $sTag
-	 * @return $this
-	 */
-	public function removeTag( $sTag ) {
-		$aTags = $this->getRequestDataItem( 'remove_tags' );
-		if ( is_null( $aTags ) || !is_array( $aTags ) ) {
-			$aTags = array();
-		}
-		if ( !in_array( $sTag, $aTags ) ) {
-			$aTags[] = $sTag;
-		}
-		return $this->setRequestDataItem( 'remove_tags', $aTags );
 	}
 
 	/**
@@ -60,20 +33,23 @@ class Create extends Drip\Api {
 	 * @return $this
 	 */
 	public function setCustomField( $sFieldKey, $mFieldValue ) {
-		$aFields = $this->getRequestDataItem( 'custom_fields' );
-		if ( is_null( $aFields ) || !is_array( $aFields ) ) {
+		$aFields = $this->getRequestDataItem( 'customFieldValues' );
+		if ( !is_array( $aFields ) ) {
 			$aFields = array();
 		}
-		$aFields[ $sFieldKey ] = $mFieldValue;
-		return $this->setCustomFields( $aFields );
+		$aFields[] = [
+			'customFieldId' => $sFieldKey,
+			'value'         => is_array( $mFieldValue ) ? $mFieldValue : [ $mFieldValue ]
+		];
+		return $this->setRequestDataItem( 'customFieldValues', $aFields );
 	}
 
 	/**
-	 * @param array $aFields
+	 * @param int $nDay
 	 * @return $this
 	 */
-	public function setCustomFields( $aFields ) {
-		return $this->setRequestDataItem( 'custom_fields', $aFields );
+	public function setDayOfCycle( $nDay = 0 ) {
+		return $this->setRequestDataItem( 'dayOfCycle', $nDay );
 	}
 
 	/**
@@ -85,19 +61,27 @@ class Create extends Drip\Api {
 	}
 
 	/**
-	 * @param string $sName
+	 * @param string $sId
 	 * @return $this
 	 */
-	public function setFirstName( $sName ) {
-		return $this->setCustomField( 'first_name', $sName );
+	public function setListId( $sId ) {
+		return $this->setRequestDataItem( 'campaign', [ 'campaignId' => $sId ] );
 	}
 
 	/**
 	 * @param string $sName
 	 * @return $this
+	 * @throws \Exception
 	 */
-	public function setLastName( $sName ) {
-		return $this->setCustomField( 'last_name', $sName );
+	public function setListName( $sName ) {
+		$oList = ( new GetResponse\Lists\Retrieve() )
+			->setConnection( $this->getConnection() )
+			->byName( $sName );
+		var_dump( $oList );
+		if ( empty( $oList ) ) {
+			throw new \Exception( sprintf( 'List by name "%s" does not exist', $sName ) );
+		}
+		return $this->setListId( $oList->campaignId );
 	}
 
 	/**
@@ -106,39 +90,13 @@ class Create extends Drip\Api {
 	 */
 	public function setName( $sName ) {
 		list( $sFirst, $sLast ) = ( new CleanNames() )->name( $sName );
-		return $this->setFirstName( $sFirst )
-					->setLastName( $sLast );
+		return $this->setRequestDataItem( 'name', $sFirst.' '.$sLast );
 	}
 
 	/**
-	 * @param int $nValue - in cents, not floats
-	 * @return $this
-	 */
-	public function setLifetimeValue( $nValue ) {
-		return $this->setRequestDataItem( 'lifetime_value', (int)round( $nValue ) );
-	}
-
-	/**
-	 * @param string $sId
-	 * @return $this
-	 */
-	public function setUserId( $sId ) {
-		return $this->setRequestDataItem( 'user_id', $sId );
-	}
-
-	/**
-	 * It's rare to override this Final data request, but when creating subscribers the data for
-	 * the new subscriber needs to be wrapped up in an array.
 	 * @return array
 	 */
-	public function getRequestDataFinal() {
-		return array( 'subscribers' => array( $this->getRequestData() ) );
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return 'subscribers';
+	protected function getCriticalRequestItems() {
+		return [ 'email', 'campaign', 'name' ];
 	}
 }
