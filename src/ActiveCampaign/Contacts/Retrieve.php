@@ -15,11 +15,18 @@ class Retrieve extends Base {
 	 * @return ContactVO
 	 */
 	public function byEmail( $sEmail ) {
+		$oContact = null;
 		$aContacts = ( new Find() )
 			->setConnection( $this->getConnection() )
 			->filterByEmail( $sEmail )
 			->run();
-		return empty( $aContacts ) ? null : array_shift( $aContacts );
+		if ( !empty( $aContacts ) ) {
+			/** @var ContactVO $oContact */
+			$oContact = array_shift( $aContacts );
+			// Contact data that comes through
+			$oContact = $this->byId( $oContact->id );
+		}
+		return $oContact;
 	}
 
 	/**
@@ -30,7 +37,9 @@ class Retrieve extends Base {
 		$oVo = null;
 		$this->setParam( 'id', $sId )->req();
 		if ( $this->isLastRequestSuccess() ) {
-			$oVo = $this->getVO()->applyFromArray( $this->getDecodedResponseBody() );
+			$aBody = $this->getDecodedResponseBody();
+			$oVo = $this->getVO()->applyFromArray( $aBody[ 'contact' ] );
+			$oVo->meta = $aBody;
 		}
 		return $oVo;
 	}

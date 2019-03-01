@@ -11,6 +11,8 @@ class Find extends Base {
 	const REQUEST_METHOD = 'get';
 
 	/**
+	 * Note that the information supplied for each contact is lighter than if you retrieve an
+	 * individual.
 	 * @return ContactVO[]
 	 */
 	public function run() {
