@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\GetResponse;
+namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign;
 
 use FernleafSystems\ApiWrappers\Base\BaseVO;
 
 /**
  * Class Api
- * @package FernleafSystems\ApiWrappers\Email\GetResponse
+ * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign
  */
 class Api extends \FernleafSystems\ApiWrappers\Base\BaseApi {
 
@@ -41,7 +41,7 @@ class Api extends \FernleafSystems\ApiWrappers\Base\BaseApi {
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
-		$this->setRequestHeader( 'X-Auth-Token', sprintf( 'api-key %s', $this->getConnection()->getApiKey() ) );
+		$this->setRequestHeader( 'Api-Token', $this->getConnection()->getApiKey() );
 		return parent::prepFinalRequestData();
 	}
 
