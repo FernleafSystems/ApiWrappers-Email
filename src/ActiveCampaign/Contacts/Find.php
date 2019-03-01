@@ -2,6 +2,8 @@
 
 namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts;
 
+use FernleafSystems\ApiWrappers\Email\ActiveCampaign\Common\Pagination;
+
 /**
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts
@@ -9,6 +11,7 @@ namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts;
 class Find extends Base {
 
 	const REQUEST_METHOD = 'get';
+	use Pagination;
 
 	/**
 	 * Note that the information supplied for each contact is lighter than if you retrieve an
@@ -16,21 +19,7 @@ class Find extends Base {
 	 * @return ContactVO[]
 	 */
 	public function run() {
-		$aContacts = [];
-
-		if ( $this->req()->isLastRequestSuccess() ) {
-			$aData = $this->getDecodedResponseBody();
-			if ( !empty( $aData[ 'contacts' ] ) && is_array( $aData[ 'contacts' ] ) ) {
-				$aContacts = array_map(
-					function ( $aContact ) {
-						return $this->getVO()->applyFromArray( $aContact );
-					},
-					$aData[ 'contacts' ]
-				);
-			}
-		}
-
-		return $aContacts;
+		return $this->runPagedQuery();
 	}
 
 	/**
@@ -64,6 +53,13 @@ class Find extends Base {
 	 */
 	public function filterBy( $sField, $sValue ) {
 		return $this->setRequestDataItem( $sField, $sValue );
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getResponseDataKey() {
+		return 'contacts';
 	}
 
 	/**

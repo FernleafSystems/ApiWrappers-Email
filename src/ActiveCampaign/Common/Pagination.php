@@ -29,7 +29,11 @@ trait Pagination {
 		$this->setPaginationPage( 1 );
 		do {
 			$aTags = null;
+
+			$this->setRequestDataItem( 'limit', $this->getPaginationPerPage() );
+			$this->setRequestDataItem( 'offset', $this->getPaginationPageOffset() );
 			$this->req();
+
 			if ( $this->isLastRequestSuccess() ) {
 				$aTags = $this->getDecodedResponseBody()[ $this->getResponseDataKey() ];
 				$aAllTags = array_merge(
@@ -52,28 +56,17 @@ trait Pagination {
 	}
 
 	/**
-	 * Overrides the BaseAPI to insert page info. Remember to increment the page after the request
-	 * @return array
-	 */
-	public function getRequestQueryData() {
-		$aData = parent::getRequestQueryData();
-		$aData[ 'limit' ] = $this->getPageLimit();
-		$aData[ 'offset' ] = $this->getPageOffset();
-		return $aData;
-	}
-
-	/**
 	 * @return int
 	 */
-	public function getPageLimit() {
+	public function getPaginationPerPage() {
 		return is_numeric( $this->nPerPage ) ? min( 100, abs( $this->nPerPage ) ) : 100;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getPageOffset() {
-		return $this->getPageLimit()*max( ( $this->getCurrentPage() - 1 ), 0 );
+	public function getPaginationPageOffset() {
+		return $this->getPaginationPerPage()*max( ( $this->getCurrentPage() - 1 ), 0 );
 	}
 
 	/**
