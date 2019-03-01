@@ -11,6 +11,13 @@ use FernleafSystems\ApiWrappers\Email\ActiveCampaign;
 class Base extends ActiveCampaign\Api {
 
 	/**
+	 * @return TagVO
+	 */
+	protected function getVO() {
+		return new TagVO();
+	}
+
+	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
