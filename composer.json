@@ -10,8 +10,7 @@
   "repositories": [
   ],
   "require":      {
-    "fernleafsystems/apiwrappers-base": "^1.0.0",
-    "activecampaign/api-php":           "^2.0.0"
+    "fernleafsystems/apiwrappers-base": "^1.0.0"
   },
   "require-dev":  {
   },
