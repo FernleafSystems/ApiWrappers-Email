@@ -19,8 +19,7 @@ class Retrieve extends Base {
 		$this->setParam( 'id', $sId )->req();
 		if ( $this->isLastRequestSuccess() ) {
 			$aBody = $this->getDecodedResponseBody();
-			$oVo = $this->getVO()->applyFromArray( $aBody[ 'contact' ] );
-			$oVo->meta = $aBody;
+			$oVo = $this->getVO()->applyFromArray( $aBody[ 'tag' ] );
 		}
 		return $oVo;
 	}

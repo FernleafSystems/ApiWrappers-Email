@@ -10,9 +10,10 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  * @property string id
  * @property string tagType
  * @property string tag - the name of the tag
+ * @property string description
  * @property string subscriber_count
  * @property string cdate
- * @property array links
+ * @property array  links
  */
 class TagVO {
 
