@@ -13,9 +13,9 @@ class Ping extends Api {
 	const REQUEST_METHOD = 'get';
 
 	public function run() {
-		$aRes = $this->send()
+		$aRes = $this->req()
 					 ->getDecodedResponseBody();
-		return !empty( $aRes ) && is_array( $aRes ) && isset( $aRes[ 'health_status' ] );
+		return is_array( $aRes ) && isset( $aRes[ 'health_status' ] );
 	}
 
 	/**

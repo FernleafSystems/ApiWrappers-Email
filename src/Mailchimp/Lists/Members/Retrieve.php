@@ -24,7 +24,7 @@ class Retrieve extends Base {
 	 */
 	public function byId( $sId ) {
 		$aResult = $this->setMemberId( $sId )
-						->send()
+						->req()
 						->getDecodedResponseBody();
 		$oMember = null;
 		if ( is_array( $aResult ) && !empty( $aResult ) ) {

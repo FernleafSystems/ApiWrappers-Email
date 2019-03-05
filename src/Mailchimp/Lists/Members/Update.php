@@ -16,7 +16,7 @@ class Update extends Create {
 	 */
 	public function byEmail( $sEmail ) {
 		$aResult = $this->setMemberId( $this->idFromEmail( $sEmail ) )
-						->send()
+						->req()
 						->getDecodedResponseBody();
 		$oMember = null;
 		if ( is_array( $aResult ) && !empty( $aResult ) ) {

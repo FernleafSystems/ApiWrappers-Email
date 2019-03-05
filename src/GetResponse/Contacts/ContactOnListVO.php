@@ -2,8 +2,6 @@
 
 namespace FernleafSystems\ApiWrappers\Email\GetResponse\Contacts;
 
-use FernleafSystems\ApiWrappers\Email\GetResponse;
-
 /**
  * Class ContactOnListVO
  * @package FernleafSystems\ApiWrappers\Email\GetResponse\Contacts

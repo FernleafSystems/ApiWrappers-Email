@@ -2,8 +2,6 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Purchases;
 
-use FernleafSystems\ApiWrappers\Email\Drip;
-
 /**
  * Class Create
  * @package FernleafSystems\ApiWrappers\Email\Drip\Purchases

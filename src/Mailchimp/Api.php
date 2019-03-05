@@ -11,16 +11,10 @@ use FernleafSystems\ApiWrappers\Base\BaseApi;
 class Api extends BaseApi {
 
 	/**
-	 * @return array
 	 */
-	protected function prepFinalRequestData() {
-		/** @var Connection $oCon */
-		$oCon = $this->getConnection();
-
-		$this->setRequestHeader( 'Accept', $oCon->getContentType() )
-			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() )
-			 ->setRequestHeader( 'Authorization', 'Basic '.base64_encode( 'anything:'.$oCon->api_key ) );
-
-		return parent::prepFinalRequestData();
+	protected function preFlight() {
+		$this->setRequestHeader( 'Accept', $this->getRequestContentType() )
+			 ->setRequestHeader( 'Content-Type', $this->getRequestContentType() )
+			 ->setRequestHeader( 'Authorization', 'Basic '.base64_encode( 'anything:'.$this->getConnection()->api_key ) );
 	}
 }
