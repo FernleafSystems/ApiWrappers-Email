@@ -21,7 +21,7 @@ class TagRemove extends ActiveCampaign\Api {
 		return $this->setRequestDataItem(
 			'contactTag',
 			[
-				'contact' => $oContact->getId(),
+				'contact' => $oContact->id,
 				'tag'     => $sTag,
 			]
 		);

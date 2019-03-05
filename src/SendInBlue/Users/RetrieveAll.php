@@ -2,13 +2,13 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
-use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
+use FernleafSystems\ApiWrappers\Email\SendInBlue;
 
 /**
  * Class RetrieveAll
  * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Users
  */
-class RetrieveAll extends Api {
+class RetrieveAll extends SendInBlue\Api {
 
 	const REQUEST_METHOD = 'get';
 

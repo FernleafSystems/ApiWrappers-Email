@@ -17,16 +17,7 @@ class Api extends BaseApi {
 	 */
 	public function getRequestDataFinal() {
 		$aData = parent::getRequestDataFinal();
-		$aData[ 'apikey' ] = $this->getConnection()->getApiKey();
+		$aData[ 'apikey' ] = $this->getConnection()->api_key;
 		return $aData;
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getBaseUrl() {
-		/** @var Connection $oCon */
-		$oCon = $this->getConnection();
-		return $oCon->getBaseUrl();
 	}
 }

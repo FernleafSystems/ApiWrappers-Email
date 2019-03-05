@@ -13,18 +13,6 @@ class Api extends BaseApi {
 	const IS_ACCOUNT_REQUEST = true;
 
 	/**
-	 * @return $this
-	 */
-	public function req() {
-		try {
-			$this->send();
-		}
-		catch ( \Exception $oE ) {
-		}
-		return $this;
-	}
-
-	/**
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
@@ -33,7 +21,7 @@ class Api extends BaseApi {
 		$this->setRequestHeader( 'Accept', $oCon->getContentType() )
 			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() );
 		$aFinal = parent::prepFinalRequestData();
-		$aFinal[ 'auth' ] = array( $oCon->getApiKey(), '' );
+		$aFinal[ 'auth' ] = array( $oCon->api_key, '' );
 		return $aFinal;
 	}
 
@@ -43,7 +31,8 @@ class Api extends BaseApi {
 	protected function getBaseUrl() {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
-		return rtrim( $oCon->getBaseUrl( $this->isAccountRequest() ), '/' ).'/';
+		$sUrl = $this->isAccountRequest() ? $oCon->getBaseUrlWithAccountId() : $oCon->getBaseUrl();
+		return rtrim( $sUrl, '/' ).'/';
 	}
 
 	/**

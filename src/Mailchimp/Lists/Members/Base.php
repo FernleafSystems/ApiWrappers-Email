@@ -2,13 +2,13 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
 
-use FernleafSystems\ApiWrappers\Email\Mailchimp\Api;
+use FernleafSystems\ApiWrappers\Email\Mailchimp;
 
 /**
  * Class Base
  * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members
  */
-class Base extends Api {
+class Base extends Mailchimp\Api {
 
 	/**
 	 * @return string

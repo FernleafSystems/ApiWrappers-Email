@@ -2,13 +2,13 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Accounts;
 
-use FernleafSystems\ApiWrappers\Email\Drip\Api;
+use FernleafSystems\ApiWrappers\Email\Drip;
 
 /**
  * Class RetrieveAll
  * @package FernleafSystems\ApiWrappers\Email\Drip\Accounts
  */
-class RetrieveAll extends Api {
+class RetrieveAll extends Drip\Api {
 
 	const REQUEST_METHOD = 'get';
 	const IS_ACCOUNT_REQUEST = false;
@@ -21,10 +21,10 @@ class RetrieveAll extends Api {
 	}
 
 	/**
-	 * @return AccountVO[]|null
+	 * @return AccountVO[]
 	 */
 	protected function asVo() {
-		$aAcs = array();
+		$aAcs = [];
 
 		try {
 			$aRes = $this->send()

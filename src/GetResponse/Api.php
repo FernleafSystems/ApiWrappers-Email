@@ -41,16 +41,7 @@ class Api extends \FernleafSystems\ApiWrappers\Base\BaseApi {
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
-		$this->setRequestHeader( 'X-Auth-Token', sprintf( 'api-key %s', $this->getConnection()->getApiKey() ) );
+		$this->setRequestHeader( 'X-Auth-Token', sprintf( 'api-key %s', $this->getConnection()->api_key ) );
 		return parent::prepFinalRequestData();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getBaseUrl() {
-		/** @var Connection $oCon */
-		$oCon = $this->getConnection();
-		return rtrim( $oCon->getBaseUrl(), '/' ).'/';
 	}
 }

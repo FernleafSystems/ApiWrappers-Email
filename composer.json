@@ -10,7 +10,8 @@
   "repositories": [
   ],
   "require":      {
-    "fernleafsystems/apiwrappers-base": "^1.0.0"
+    "ext-json":                         "*",
+    "fernleafsystems/apiwrappers-base": "^1.1.3"
   },
   "require-dev":  {
   },

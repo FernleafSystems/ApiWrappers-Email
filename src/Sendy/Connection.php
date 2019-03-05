@@ -5,26 +5,22 @@ namespace FernleafSystems\ApiWrappers\Email\Sendy;
 /**
  * Class Connection
  * @package FernleafSystems\ApiWrappers\Email\Sendy
+ * @property string $installation_url
  */
 class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
-
-	/**
-	 * @var string
-	 */
-	protected $sUrl;
 
 	/**
 	 * @return string
 	 */
 	public function getBaseUrl() {
-		return $this->sUrl;
+		return $this->installation_url;
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function hasBaseUrl() {
-		return !empty( $this->sUrl );
+		return !empty( $this->installation_url );
 	}
 
 	/**
@@ -32,7 +28,7 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	 * @return $this
 	 */
 	public function setBaseUrl( $sUrl ) {
-		$this->sUrl = $sUrl;
+		$this->installation_url = $sUrl;
 		return $this;
 	}
 }

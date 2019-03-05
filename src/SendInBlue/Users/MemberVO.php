@@ -2,18 +2,17 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\ApiWrappers\Base\BaseVO;
 
 /**
  * Class MemberVO
  * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Users
  */
-class MemberVO {
-
-	use StdClassAdapter;
+class MemberVO extends BaseVO {
 
 	/**
-	 * @return mixed
+	 * @param string $sKey
+	 * @return mixed|null
 	 */
 	public function getAttribute( $sKey ) {
 		$aAttrs = $this->getAttributes();
