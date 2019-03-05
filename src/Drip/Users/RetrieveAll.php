@@ -22,7 +22,7 @@ class RetrieveAll extends Drip\Api {
 		do {
 			$aMembers = $this->setRequestDataItem( 'page', $nPage++ )
 							 ->setRequestDataItem( 'per_page', 1000 )
-							 ->send()
+							 ->req()
 							 ->getDecodedResponseBody();
 
 			$bHasResults = !empty( $aMembers[ 'subscribers' ] ) && is_array( $aMembers[ 'subscribers' ] );

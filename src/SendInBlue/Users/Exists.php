@@ -9,6 +9,7 @@ class Exists {
 	use ConnectionConsumer;
 
 	/**
+	 * @param string $sEmail
 	 * @return bool
 	 */
 	public function exists( $sEmail ) {

@@ -35,6 +35,7 @@ class Retrieve extends Delete {
 
 	/**
 	 * @return MemberVO|null
+	 * @throws \Exception
 	 */
 	public function asVo() {
 		$aResult = $this->send()

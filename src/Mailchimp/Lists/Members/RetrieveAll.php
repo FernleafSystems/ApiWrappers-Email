@@ -22,7 +22,7 @@ class RetrieveAll extends Base {
 			$aMembers = null;
 			$aResults = $this->setRequestDataItem( 'offset', $nOffset )
 							 ->setRequestDataItem( 'count', 100 )
-							 ->send()
+							 ->req()
 							 ->getDecodedResponseBody();
 
 			if ( is_array( $aResults ) && isset( $aResults[ 'members' ] ) ) {

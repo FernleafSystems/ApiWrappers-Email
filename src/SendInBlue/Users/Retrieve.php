@@ -25,7 +25,7 @@ class Retrieve extends Delete {
 	public function asVo() {
 		$oMember = null;
 
-		$aResult = $this->send()
+		$aResult = $this->req()
 						->getDecodedResponseBody();
 		if ( !empty( $aResult ) && is_array( $aResult ) ) {
 			$oMember = ( new MemberVO() )->applyFromArray( $aResult );

@@ -32,6 +32,6 @@ class Remove extends Drip\Api {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'workflows/%s/subscribers/:id_or_email', $this->getParam( 'workflow_id' ), $this->getParam( 'sub_email' ) );
+		return sprintf( 'workflows/%s/subscribers/%s', $this->getParam( 'workflow_id' ), $this->getParam( 'sub_email' ) );
 	}
 }

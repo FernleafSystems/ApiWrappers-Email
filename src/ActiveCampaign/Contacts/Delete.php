@@ -18,7 +18,7 @@ class Delete extends Base {
 		$oContact = ( new Retrieve() )
 			->setConnection( $this->getConnection() )
 			->byEmail( $sEmail );
-		return ( $oContact instanceof ContactVO ) ? $this->byId( $oContact->getId() ) : false;
+		return ( $oContact instanceof ContactVO ) ? $this->byId( $oContact->id ) : false;
 	}
 
 	/**

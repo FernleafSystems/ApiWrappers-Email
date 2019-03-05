@@ -46,7 +46,8 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
-	 * @return mixed|null`
+	 * @param string $sKey
+	 * @return mixed|null
 	 */
 	public function getWebhookDataItem( $sKey ) {
 		$aD = $this->getArrayParam( 'data' );

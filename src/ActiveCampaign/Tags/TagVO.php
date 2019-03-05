@@ -3,7 +3,6 @@
 namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Tags;
 
 use FernleafSystems\ApiWrappers\Base\BaseVO;
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
 
 /**
  * Class ContactVO
