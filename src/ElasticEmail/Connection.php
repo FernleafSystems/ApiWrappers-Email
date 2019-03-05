@@ -8,33 +8,14 @@ namespace FernleafSystems\ApiWrappers\Email\ElasticEmail;
  */
 class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 
-	const BASE_URL = 'https://api.elasticemail.com';
+	const API_URL = 'https://api.elasticemail.com/v%s';
+	const API_VERSION = '2';
 
 	/**
-	 * @var string
-	 */
-	protected $sVersion;
-
-	/**
+	 * @deprecated
 	 * @return string
 	 */
 	public function getVersion() {
-		return empty( $this->sVersion ) ? '2' : $this->sVersion;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getBaseUrl() {
-		return sprintf( self::BASE_URL.'/v%s/', $this->getVersion() );
-	}
-
-	/**
-	 * @param string $sVersion
-	 * @return $this
-	 */
-	public function setVersion( $sVersion ) {
-		$this->sVersion = $sVersion;
-		return $this;
+		return $this->getApiVersion();
 	}
 }

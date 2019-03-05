@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Accounts;
 
-use FernleafSystems\ApiWrappers\Email\Drip\Connection;
+use FernleafSystems\ApiWrappers\Email\Drip;
 
 /**
  * Class Retrieve
@@ -21,9 +21,9 @@ class Retrieve extends RetrieveAll {
 	 * @return AccountVO|null
 	 */
 	public function fromConnection() {
-		/** @var Connection $oCon */
+		/** @var Drip\Connection $oCon */
 		$oCon = $this->getConnection();
-		return $this->byId( $oCon->getAccountId() );
+		return $this->byId( $oCon->account_id );
 	}
 
 	/**

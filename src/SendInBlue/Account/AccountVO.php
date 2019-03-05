@@ -2,15 +2,13 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Account;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\ApiWrappers\Base\BaseVO;
 
 /**
  * Class AccountVO
  * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Account
  */
-class AccountVO {
-
-	use StdClassAdapter;
+class AccountVO extends BaseVO {
 
 	/**
 	 * @return array

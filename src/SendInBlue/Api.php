@@ -11,19 +11,10 @@ use FernleafSystems\ApiWrappers\Base\BaseApi;
 class Api extends BaseApi {
 
 	/**
-	 * @return string
-	 */
-	protected function getBaseUrl() {
-		/** @var Connection $oCon */
-		$oCon = $this->getConnection();
-		return rtrim( $oCon->getBaseUrl(), '/' ).'/';
-	}
-
-	/**
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
-		$this->setRequestHeader( 'api-key', $this->getConnection()->getApiKey() );
+		$this->setRequestHeader( 'api-key', $this->getConnection()->api_key );
 		return parent::prepFinalRequestData();
 	}
 }

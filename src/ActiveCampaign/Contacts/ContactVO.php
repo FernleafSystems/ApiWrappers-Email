@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\ApiWrappers\Base\BaseVO;
 
 /**
  * Class ContactVO
@@ -14,9 +14,7 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  * @property string lastName
  * @property array  meta
  */
-class ContactVO {
-
-	use StdClassAdapter;
+class ContactVO extends BaseVO {
 
 	/**
 	 * @return string

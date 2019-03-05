@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
-use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
+use FernleafSystems\ApiWrappers\Email\SendInBlue;
 
 /**
  * SendInBlue doesn't permit changing of an email address so we must duplicate the old and then unsubscribe it.
@@ -10,10 +10,11 @@ use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
  * Class UpdateEmail
  * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Users
  */
-class UpdateEmail extends Api {
+class UpdateEmail extends SendInBlue\Api {
 
 	/**
 	 * @return bool
+	 * @throws \Exception
 	 */
 	public function update() {
 
@@ -36,6 +37,7 @@ class UpdateEmail extends Api {
 			->setConnection( $this->getConnection() )
 			->setEmail( $this->getOriginalEmail() )
 			->send();
+		return true;
 	}
 
 	/**

@@ -2,15 +2,13 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\ApiWrappers\Base\BaseVO;
 
 /**
  * Class MemberVO
  * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  */
-class MemberVO {
-
-	use StdClassAdapter;
+class MemberVO extends BaseVO {
 
 	/**
 	 * @return string

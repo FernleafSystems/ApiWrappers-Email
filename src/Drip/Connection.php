@@ -8,37 +8,21 @@ namespace FernleafSystems\ApiWrappers\Email\Drip;
  */
 class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 
-	const DRIP_API_VERSION = 2;
-
-	/**
-	 * @var string
-	 */
-	protected $sAccountId;
+	const API_URL = 'https://api.getdrip.com/v%s/%s';
+	const API_VERSION = 2;
 
 	/**
 	 * @return string
 	 */
-	public function getAccountId() {
-		return $this->sAccountId;
+	public function getBaseUrl() {
+		return sprintf( static::API_URL, static::API_VERSION, '' );
 	}
 
 	/**
-	 * @return int
-	 */
-	public function getApiVersion() {
-		return self::DRIP_API_VERSION;
-	}
-
-	/**
-	 * @param bool $bIncludeAccountId
 	 * @return string
 	 */
-	public function getBaseUrl( $bIncludeAccountId = true ) {
-		return sprintf(
-			'https://api.getdrip.com/v%s/%s',
-			$this->getApiVersion(),
-			$bIncludeAccountId ? $this->getAccountId() : ''
-		);
+	public function getBaseUrlWithAccountId() {
+		return sprintf( static::API_URL, static::API_VERSION, $this->account_id );
 	}
 
 	/**
@@ -49,18 +33,27 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	}
 
 	/**
-	 * @return bool
+	 * @param string $sId
+	 * @return $this
 	 */
-	public function hasAccountId() {
-		return !empty( $this->sAccountId );
+	public function setAccountId( $sId ) {
+		$this->account_id = $sId;
+		return $this;
 	}
 
 	/**
-	 * @param string $sApiKey
-	 * @return $this
+	 * @deprecated
+	 * @return bool
 	 */
-	public function setAccountId( $sApiKey ) {
-		$this->sAccountId = $sApiKey;
-		return $this;
+	public function hasAccountId() {
+		return !empty( $this->account_id );
+	}
+
+	/**
+	 * @deprecated
+	 * @return string
+	 */
+	public function getAccountId() {
+		return $this->account_id;
 	}
 }

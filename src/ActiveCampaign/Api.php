@@ -38,19 +38,8 @@ class Api extends \FernleafSystems\ApiWrappers\Base\BaseApi {
 	}
 
 	/**
-	 * @return array
 	 */
-	protected function prepFinalRequestData() {
-		$this->setRequestHeader( 'Api-Token', $this->getConnection()->getApiKey() );
-		return parent::prepFinalRequestData();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getBaseUrl() {
-		/** @var Connection $oCon */
-		$oCon = $this->getConnection();
-		return rtrim( $oCon->getBaseUrl(), '/' ).'/';
+	protected function preFlight() {
+		$this->setRequestHeader( 'Api-Token', $this->getConnection()->api_key );
 	}
 }

@@ -2,15 +2,13 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Lists;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\ApiWrappers\Base\BaseVO;
 
 /**
  * Class ListVO
  * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Lists
  */
-class ListVO {
-
-	use StdClassAdapter;
+class ListVO extends BaseVO {
 
 	/**
 	 * @return int

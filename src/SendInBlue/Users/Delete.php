@@ -2,9 +2,9 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
-use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
+use FernleafSystems\ApiWrappers\Email\SendInBlue;
 
-class Delete extends Api {
+class Delete extends SendInBlue\Api {
 
 	const REQUEST_METHOD = 'delete';
 

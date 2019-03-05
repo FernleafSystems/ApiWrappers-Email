@@ -2,6 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Tags;
 
+use FernleafSystems\ApiWrappers\Base\BaseVO;
 use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
 
 /**
@@ -15,9 +16,7 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  * @property string cdate
  * @property array  links
  */
-class TagVO {
-
-	use StdClassAdapter;
+class TagVO extends BaseVO {
 
 	/**
 	 * @return string

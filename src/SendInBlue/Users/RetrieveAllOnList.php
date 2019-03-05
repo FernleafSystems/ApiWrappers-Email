@@ -2,9 +2,9 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Users;
 
-use FernleafSystems\ApiWrappers\Email\SendInBlue\Api;
+use FernleafSystems\ApiWrappers\Email\SendInBlue;
 
-class RetrieveAllOnList extends Api {
+class RetrieveAllOnList extends SendInBlue\Api {
 
 	const REQUEST_METHOD = 'get';
 

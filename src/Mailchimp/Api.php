@@ -19,18 +19,8 @@ class Api extends BaseApi {
 
 		$this->setRequestHeader( 'Accept', $oCon->getContentType() )
 			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() )
-			 ->setRequestHeader( 'Authorization', 'Basic '.base64_encode( 'anything:'.$oCon->getApiKey() ) );
+			 ->setRequestHeader( 'Authorization', 'Basic '.base64_encode( 'anything:'.$oCon->api_key ) );
 
 		return parent::prepFinalRequestData();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getBaseUrl() {
-		/** @var Connection $oCon */
-		$oCon = $this->getConnection();
-		$sBase = sprintf( $oCon->getBaseUrl(), explode( '-', $oCon->getApiKey() )[ 1 ] );
-		return rtrim( $sBase, '/' ).'/';
 	}
 }

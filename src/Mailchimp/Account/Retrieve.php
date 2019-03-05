@@ -2,13 +2,13 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Account;
 
-use FernleafSystems\ApiWrappers\Email\Mailchimp\Api;
+use FernleafSystems\ApiWrappers\Email\Mailchimp;
 
 /**
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Account
  */
-class Retrieve extends Api {
+class Retrieve extends Mailchimp\Api {
 
 	const REQUEST_METHOD = 'get';
 
@@ -17,14 +17,9 @@ class Retrieve extends Api {
 	 */
 	public function retrieve() {
 		$oMember = null;
-		try {
-			$aRes = $this->send()
-						 ->getDecodedResponseBody();
-			if ( !empty( $aRes ) && is_array( $aRes ) && isset( $aRes[ 'account_id' ] ) ) {
-				$oMember = ( new AccountVO() )->applyFromArray( $aRes );
-			}
-		}
-		catch ( \Exception $oE ) {
+		$aRes = $this->req()->getDecodedResponseBody();
+		if ( is_array( $aRes ) && isset( $aRes[ 'account_id' ] ) ) {
+			$oMember = ( new AccountVO() )->applyFromArray( $aRes );
 		}
 		return $oMember;
 	}

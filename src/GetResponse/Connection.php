@@ -8,34 +8,23 @@ namespace FernleafSystems\ApiWrappers\Email\GetResponse;
  */
 class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 
-	const API_URL = 'https://api.getresponse.com';
+	const API_URL = 'https://api.getresponse.com/v%s';
 	const API_VERSION = 3;
 
 	/**
-	 * @var string
-	 */
-	protected $sAccountId;
-
-	/**
-	 * @return string
-	 */
-	public function getBaseUrl() {
-		return sprintf( '%s/v%s', self::API_URL, self::API_VERSION );
-	}
-
-	/**
+	 * @deprecated
 	 * @return bool
 	 */
 	public function hasAccountId() {
-		return !empty( $this->sAccountId );
+		return !empty( $this->account_id );
 	}
 
 	/**
-	 * @param string $sApiKey
+	 * @param string $sId
 	 * @return $this
 	 */
-	public function setAccountId( $sApiKey ) {
-		$this->sAccountId = $sApiKey;
+	public function setAccountId( $sId ) {
+		$this->account_id = $sId;
 		return $this;
 	}
 }
