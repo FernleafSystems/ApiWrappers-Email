@@ -59,6 +59,6 @@ class CleanNames {
 			$sLastName = str_replace( " $sFrom ", " $sTo ", $sLastName );
 		}
 
-		return array( $sFirstName, $sLastName );
+		return [ $sFirstName, $sLastName ];
 	}
 }

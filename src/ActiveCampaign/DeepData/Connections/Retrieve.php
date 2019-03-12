@@ -1,10 +1,10 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Tags;
+namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Connections;
 
 /**
  * Class Retrieve
- * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts
+ * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Connections
  */
 class Retrieve extends Base {
 
@@ -12,14 +12,14 @@ class Retrieve extends Base {
 
 	/**
 	 * @param string $sId
-	 * @return TagVO
+	 * @return ConnectionVO|null
 	 */
 	public function byId( $sId ) {
 		$oVo = null;
 		$this->setParam( 'id', $sId )->req();
 		if ( $this->isLastRequestSuccess() ) {
-			$aBody = $this->getDecodedResponseBody();
-			$oVo = $this->getVO()->applyFromArray( $aBody[ static::ENDPOINT_KEY ] );
+			$oVo = $this->getVO()
+						->applyFromArray( $this->getDecodedResponseBody()[ static::ENDPOINT_KEY ] );
 		}
 		return $oVo;
 	}
