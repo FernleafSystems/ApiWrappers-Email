@@ -10,24 +10,12 @@ use FernleafSystems\ApiWrappers\Email\ActiveCampaign;
  */
 class Base extends ActiveCampaign\Api {
 
-	/**
-	 * @return ContactVO|null
-	 */
-	public function asVo() {
-		return parent::asVo();
-	}
+	const ENDPOINT_KEY = 'contact';
 
 	/**
 	 * @return ContactVO
 	 */
 	protected function getVO() {
 		return new ContactVO();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return 'contacts';
 	}
 }

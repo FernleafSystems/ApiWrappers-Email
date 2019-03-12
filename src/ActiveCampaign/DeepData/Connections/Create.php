@@ -64,6 +64,6 @@ class Create extends Base {
 	 * @return array
 	 */
 	public function getRequestDataFinal() {
-		return [ 'connection' => parent::getRequestDataFinal() ];
+		return [ static::ENDPOINT_KEY => parent::getRequestDataFinal() ];
 	}
 }

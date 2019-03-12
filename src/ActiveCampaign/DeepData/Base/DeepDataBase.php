@@ -9,13 +9,4 @@ use FernleafSystems\ApiWrappers\Email\ActiveCampaign;
  * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Connections
  */
 class DeepDataBase extends ActiveCampaign\Api {
-
-	const ENDPOINT_KEY = '';
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return static::ENDPOINT_KEY.'s';
-	}
 }

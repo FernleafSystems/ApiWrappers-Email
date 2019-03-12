@@ -10,17 +10,12 @@ use FernleafSystems\ApiWrappers\Email\ActiveCampaign;
  */
 class Base extends ActiveCampaign\Api {
 
+	const ENDPOINT_KEY = 'tag';
+
 	/**
 	 * @return TagVO
 	 */
 	protected function getVO() {
 		return new TagVO();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return 'tags';
 	}
 }

@@ -10,6 +10,8 @@ use FernleafSystems\ApiWrappers\Base\BaseVO;
  */
 class Api extends \FernleafSystems\ApiWrappers\Base\BaseApi {
 
+	const ENDPOINT_KEY = '';
+
 	/**
 	 * @return BaseVO|mixed|null
 	 */
@@ -35,6 +37,13 @@ class Api extends \FernleafSystems\ApiWrappers\Base\BaseApi {
 		$aCodes = parent::getSuccessfulResponseCodes();
 		$aCodes[] = 202;
 		return $aCodes;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getUrlEndpoint() {
+		return static::ENDPOINT_KEY.'s';
 	}
 
 	/**
