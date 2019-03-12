@@ -20,6 +20,12 @@ class Retrieve extends Base {
 		if ( $this->isLastRequestSuccess() ) {
 			$oVo = $this->getVO()
 						->applyFromArray( $this->getDecodedResponseBody()[ static::ENDPOINT_KEY ] );
+			$oVo->ecomOrderProducts = array_map(
+				function ( $aProduct ) {
+					return ( new OrderProductVO() )->applyFromArray( $aProduct );
+				},
+				$oVo->ecomOrderProducts
+			);
 		}
 		return $oVo;
 	}

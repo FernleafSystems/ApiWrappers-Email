@@ -77,6 +77,25 @@ class Create extends Base {
 	}
 
 	/**
+	 * @param OrderProductVO[] $aProducts
+	 * @return $this
+	 */
+	public function setOrderProducts( $aProducts ) {
+		if ( is_array( $aProducts ) ) {
+			$this->setRequestDataItem( 'orderProducts',
+				array_map(
+					function ( $oProduct ) {
+						/** @var OrderProductVO $oProduct */
+						return $oProduct->getRawDataAsArray();
+					},
+					$aProducts
+				)
+			);
+		}
+		return $this;
+	}
+
+	/**
 	 * @param string $mVal
 	 * @return $this
 	 */

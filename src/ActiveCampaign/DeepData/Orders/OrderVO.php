@@ -2,29 +2,28 @@
 
 namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Orders;
 
-use FernleafSystems\ApiWrappers\Base\BaseVO;
-
 /**
- * Class ContactVO
+ * Class OrderVO
  * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Orders
- * @property string $id
- * @property string $connectionid
- * @property string $externalid
- * @property string $email
- * @property string $totalRevenue
- * @property string $totalOrders
- * @property string $totalProducts
- * @property string $avgRevenuePerOrder
- * @property string $avgProductCategory
- * @property string $tstamp
- * @property string $acceptsMarketing - i.e. 0 / 1
+ * @property string           $id
+ * @property string           $connectionid
+ * @property string           $customerid
+ * @property string           $externalid
+ * @property string           $email
+ * @property string           $currency
+ * @property string           $orderNumber
+ * @property string           $orderUrl
+ * @property string           $orderDate
+ * @property string           $totalPrice
+ * @property string           $totalProducts
+ * @property OrderProductVO[] $ecomOrderProducts
  */
-class OrderVO extends BaseVO {
+class OrderVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
 
 	/**
 	 * @return string
 	 */
 	public function getCreatedAtTs() {
-		return strtotime( $this->tstamp );
+		return strtotime( $this->orderDate );
 	}
 }
