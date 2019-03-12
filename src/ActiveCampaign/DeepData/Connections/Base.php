@@ -8,26 +8,14 @@ use FernleafSystems\ApiWrappers\Email\ActiveCampaign;
  * Class Base
  * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Connections
  */
-class Base extends ActiveCampaign\Api {
+class Base extends ActiveCampaign\DeepData\Base\DeepDataBase {
 
-	/**
-	 * @return ConnectionVO|null
-	 */
-	public function asVo() {
-		return parent::asVo();
-	}
+	const ENDPOINT_KEY = 'connection';
 
 	/**
 	 * @return ConnectionVO
 	 */
 	protected function getVO() {
 		return new ConnectionVO();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return 'connections';
 	}
 }

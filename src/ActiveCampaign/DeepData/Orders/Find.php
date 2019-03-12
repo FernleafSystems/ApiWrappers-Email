@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Connections;
+namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Orders;
 
 use FernleafSystems\ApiWrappers\Email\ActiveCampaign\Common\Pagination;
 
 /**
  * Class Find
- * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Connections
+ * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Orders
  */
 class Find extends Base {
 
@@ -14,9 +14,7 @@ class Find extends Base {
 	use Pagination;
 
 	/**
-	 * Note that the information supplied for each contact is lighter than if you retrieve an
-	 * individual.
-	 * @return ConnectionVO[]
+	 * @return OrderVO[]
 	 */
 	public function run() {
 		return $this->runPagedQuery();

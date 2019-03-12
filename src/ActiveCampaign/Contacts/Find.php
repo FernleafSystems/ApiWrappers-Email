@@ -61,11 +61,4 @@ class Find extends Base {
 	protected function getResponseDataKey() {
 		return 'contacts';
 	}
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getParam( 'id' ) );
-	}
 }

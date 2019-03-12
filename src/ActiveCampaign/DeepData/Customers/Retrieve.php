@@ -1,10 +1,10 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Connections;
+namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Customers;
 
 /**
  * Class Retrieve
- * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Connections
+ * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Customers
  */
 class Retrieve extends Base {
 
@@ -12,7 +12,7 @@ class Retrieve extends Base {
 
 	/**
 	 * @param string $sId
-	 * @return ConnectionVO|null
+	 * @return CustomerVO|null
 	 */
 	public function byId( $sId ) {
 		$oVo = null;
