@@ -6,7 +6,9 @@ Supports:
 * Mailchimp v3
 * SendInBlue v3
 * ActiveCampaign v3
-	- Contacts: retrieve, delete, search, meta info
+	- Contacts: create, retrieve, delete, find, meta info
+	- Deep Data: Customers, Orders, Connections
+	- Events Tracking: Customers, Orders, Connections (CR~~U~~D)
 * GetResponse v3
 	- Account: retrieve
 	- Contacts: retrieve, create, update, add/remove tags
