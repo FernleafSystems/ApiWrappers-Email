@@ -29,6 +29,22 @@ class Create extends Base {
 	}
 
 	/**
+	 * @param string $sCurrencyIso3
+	 * @return $this
+	 */
+	public function setCurrency( $sCurrencyIso3 ) {
+		return $this->setRequestDataItem( 'currency', strtoupper( $sCurrencyIso3 ) );
+	}
+
+	/**
+	 * @param string $sId
+	 * @return $this
+	 */
+	public function setCustomerId( $sId ) {
+		return $this->setRequestDataItem( 'customerid', $sId );
+	}
+
+	/**
 	 * @param string $sEmail
 	 * @return $this
 	 */
@@ -45,11 +61,35 @@ class Create extends Base {
 	}
 
 	/**
-	 * @param bool $bAccepts
+	 * @param int $nTimestamp
 	 * @return $this
 	 */
-	public function setAcceptsMarketing( $bAccepts ) {
-		return $this->setRequestDataItem( 'logoUrl', $bAccepts ? 1 : 0 );
+	public function setOrderDate( $nTimestamp ) {
+		return $this->setRequestDataItem( 'orderDate', date( 'c', $nTimestamp ) );
+	}
+
+	/**
+	 * @param string $mVal
+	 * @return $this
+	 */
+	public function setOrderNumber( $mVal ) {
+		return $this->setRequestDataItem( 'orderNumber', $mVal );
+	}
+
+	/**
+	 * @param string $mVal
+	 * @return $this
+	 */
+	public function setOrderUrl( $mVal ) {
+		return $this->setRequestDataItem( 'orderUrl', $mVal );
+	}
+
+	/**
+	 * @param string $mVal
+	 * @return $this
+	 */
+	public function setTotalPrice( $mVal ) {
+		return $this->setRequestDataItem( 'totalPrice', $mVal );
 	}
 
 	/**
