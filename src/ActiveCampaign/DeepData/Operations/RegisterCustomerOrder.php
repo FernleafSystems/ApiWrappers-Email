@@ -56,17 +56,19 @@ class RegisterCustomerOrder {
 		}
 
 		{// Create Order
+			$oOrd = $this->order;
 			$oApi = ( new DeepData\Orders\Create() )
 				->setConnection( $oCon )
 				->setConnectionId( $this->service->id )
 				->setEmail( $oCustomer->email )
 				->setCustomerId( $oCustomer->id )
-				->setExternalId( $this->order->externalid )
-				->setTotalPrice( $this->order->totalPrice )
-				->setCurrency( $this->order->currency )
-				->setOrderUrl( $this->order->orderUrl )
-				->setOrderDate( $this->order->orderDate )
-				->setOrderProducts( $this->order->ecomOrderProducts );
+				->setExternalId( $oOrd->externalid )
+				->setTotalPrice( $oOrd->totalPrice )
+				->setCurrency( $oOrd->currency )
+				->setOrderUrl( $oOrd->orderUrl )
+				->setOrderDate( $oOrd->orderDate )
+				->setOrderNumber( empty( $oOrd->orderNumber ) ? $oOrd->externalid : $oOrd->orderNumber )
+				->setOrderProducts( $oOrd->ecomOrderProducts );
 			$oOrder = $oApi->create();
 			if ( !$oOrder instanceof DeepData\Orders\OrderVO ) {
 				throw new \Exception( sprintf( 'Order %s could not be loaded or created', $this->email ) );
