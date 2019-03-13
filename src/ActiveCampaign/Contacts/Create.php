@@ -10,11 +10,14 @@ use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
  */
 class Create extends Base {
 
+	/**
+	 * @return ContactVO|null
+	 */
 	public function create() {
 		$oContact = null;
 		if ( $this->req()->isLastRequestSuccess() ) {
 			$oContact = $this->getVO()
-							 ->applyFromArray( $this->getDecodedResponseBody()[ 'contact' ] );
+							 ->applyFromArray( $this->getDecodedResponseBody()[ static::ENDPOINT_KEY ] );
 		}
 		return $oContact;
 	}
@@ -46,37 +49,13 @@ class Create extends Base {
 	}
 
 	/**
-	 * @param string $sEmail
-	 * @return ContactVO
+	 * @param string $sName
+	 * @return $this
 	 */
-	public function byEmail( $sEmail ) {
-		$oContact = null;
-		$aContacts = ( new Find() )
-			->setConnection( $this->getConnection() )
-			->filterByEmail( $sEmail )
-			->run();
-		if ( !empty( $aContacts ) ) {
-			/** @var ContactVO $oContact */
-			$oContact = array_shift( $aContacts );
-			// Contact data that comes through
-			$oContact = $this->byId( $oContact->id );
-		}
-		return $oContact;
-	}
-
-	/**
-	 * @param string $sId
-	 * @return ContactVO
-	 */
-	public function byId( $sId ) {
-		$oVo = null;
-		$this->setParam( 'id', $sId )->req();
-		if ( $this->isLastRequestSuccess() ) {
-			$aBody = $this->getDecodedResponseBody();
-			$oVo = $this->getVO()->applyFromArray( $aBody[ 'contact' ] );
-			$oVo->meta = $aBody;
-		}
-		return $oVo;
+	public function setName( $sName ) {
+		$aClean = ( new CleanNames() )->names( $sName, '' );
+		return $this->setFirstName( $aClean[ 0 ] )
+					->setLastName( $aClean[ 1 ] );
 	}
 
 	/**
@@ -84,12 +63,5 @@ class Create extends Base {
 	 */
 	public function getRequestDataFinal() {
 		return [ static::ENDPOINT_KEY => parent::getRequestDataFinal() ];
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getParam( 'id' ) );
 	}
 }
