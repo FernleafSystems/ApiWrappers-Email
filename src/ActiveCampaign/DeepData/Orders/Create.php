@@ -12,12 +12,12 @@ class Create extends Base {
 	 * @return OrderVO|null
 	 */
 	public function create() {
-		$oConnection = null;
+		$oOrder = null;
 		if ( $this->req()->isLastRequestSuccess() ) {
-			$oConnection = $this->getVO()
-								->applyFromArray( $this->getDecodedResponseBody()[ static::ENDPOINT_KEY ] );
+			$oOrder = $this->getVO()
+						   ->applyFromArray( $this->getDecodedResponseBody()[ static::ENDPOINT_KEY ] );
 		}
-		return $oConnection;
+		return $oOrder;
 	}
 
 	/**
@@ -37,7 +37,7 @@ class Create extends Base {
 	}
 
 	/**
-	 * @param string $sId
+	 * @param string $sId - The Customer ID as it is on ActiveCampaign
 	 * @return $this
 	 */
 	public function setCustomerId( $sId ) {
@@ -61,11 +61,14 @@ class Create extends Base {
 	}
 
 	/**
-	 * @param int $nTimestamp
+	 * @param int|string $nTimestamp - unix timestamp or full string e.g. 2016-09-13T17:41:39-04:00
 	 * @return $this
 	 */
 	public function setOrderDate( $nTimestamp ) {
-		return $this->setRequestDataItem( 'orderDate', date( 'c', $nTimestamp ) );
+		if ( is_int( $nTimestamp ) ) {
+			$nTimestamp = date( 'c', $nTimestamp );
+		}
+		return $this->setRequestDataItem( 'orderDate', $nTimestamp );
 	}
 
 	/**
@@ -77,20 +80,12 @@ class Create extends Base {
 	}
 
 	/**
-	 * @param OrderProductVO[] $aProducts
+	 * @param array[] $aProducts
 	 * @return $this
 	 */
 	public function setOrderProducts( $aProducts ) {
 		if ( is_array( $aProducts ) ) {
-			$this->setRequestDataItem( 'orderProducts',
-				array_map(
-					function ( $oProduct ) {
-						/** @var OrderProductVO $oProduct */
-						return $oProduct->getRawDataAsArray();
-					},
-					$aProducts
-				)
-			);
+			$this->setRequestDataItem( 'orderProducts', $aProducts );
 		}
 		return $this;
 	}

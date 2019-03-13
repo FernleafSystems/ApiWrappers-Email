@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Orders;
 
-use FernleafSystems\ApiWrappers\Email\ActiveCampaign\Common\Pagination;
+use FernleafSystems\ApiWrappers\Email\ActiveCampaign;
 
 /**
  * Class Find
@@ -11,7 +11,7 @@ use FernleafSystems\ApiWrappers\Email\ActiveCampaign\Common\Pagination;
 class Find extends Base {
 
 	const REQUEST_METHOD = 'get';
-	use Pagination;
+	use ActiveCampaign\Common\Pagination;
 
 	/**
 	 * @return OrderVO[]

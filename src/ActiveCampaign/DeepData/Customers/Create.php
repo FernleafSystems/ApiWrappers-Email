@@ -12,12 +12,12 @@ class Create extends Base {
 	 * @return CustomerVO|null
 	 */
 	public function create() {
-		$oConnection = null;
+		$oCustomer = null;
 		if ( $this->req()->isLastRequestSuccess() ) {
-			$oConnection = $this->getVO()
+			$oCustomer = $this->getVO()
 								->applyFromArray( $this->getDecodedResponseBody()[ static::ENDPOINT_KEY ] );
 		}
-		return $oConnection;
+		return $oCustomer;
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Create extends Base {
 	 * @return $this
 	 */
 	public function setAcceptsMarketing( $bAccepts ) {
-		return $this->setRequestDataItem( 'logoUrl', $bAccepts ? 1 : 0 );
+		return $this->setRequestDataItem( 'acceptsMarketing', $bAccepts ? 1 : 0 );
 	}
 
 	/**

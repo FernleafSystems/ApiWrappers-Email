@@ -23,6 +23,22 @@ class Find extends Base {
 	}
 
 	/**
+	 * @param string $sService
+	 * @return $this
+	 */
+	public function filterByService( $sService ) {
+		return $this->setRequestDataItem( 'filters[service]', $sService );
+	}
+
+	/**
+	 * @param string $sId
+	 * @return $this
+	 */
+	public function filterByExternalId( $sId ) {
+		return $this->setRequestDataItem( 'filters[externalid]', $sId );
+	}
+
+	/**
 	 * @return string
 	 */
 	protected function getResponseDataKey() {

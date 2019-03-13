@@ -11,6 +11,18 @@ class Retrieve extends Base {
 	const REQUEST_METHOD = 'get';
 
 	/**
+	 * @param string $sServiceId
+	 * @return ConnectionVO|null
+	 */
+	public function byService( $sServiceId ) {
+		$aFindResults = ( new Find() )
+			->setConnection( $this->getConnection() )
+			->filterByService( $sServiceId )
+			->run();
+		return array_shift( $aFindResults );
+	}
+
+	/**
 	 * @param string $sId
 	 * @return ConnectionVO|null
 	 */
