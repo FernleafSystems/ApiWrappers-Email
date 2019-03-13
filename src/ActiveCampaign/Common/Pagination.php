@@ -24,7 +24,7 @@ trait Pagination {
 	 * @return BaseVO[]|mixed
 	 */
 	protected function runPagedQuery() {
-		$aAllTags = [];
+		$aAllResults = [];
 
 		$this->setPaginationPage( 1 );
 		do {
@@ -36,8 +36,8 @@ trait Pagination {
 
 			if ( $this->isLastRequestSuccess() ) {
 				$aTags = $this->getDecodedResponseBody()[ $this->getResponseDataKey() ];
-				$aAllTags = array_merge(
-					$aAllTags,
+				$aAllResults = array_merge(
+					$aAllResults,
 					array_map(
 						function ( $aData ) {
 							/** @var BaseVO $oVO */
@@ -52,7 +52,7 @@ trait Pagination {
 
 		} while ( !empty( $aTags ) );
 
-		return $aAllTags;
+		return $aAllResults;
 	}
 
 	/**

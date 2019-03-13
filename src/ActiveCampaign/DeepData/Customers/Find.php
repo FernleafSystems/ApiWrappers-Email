@@ -21,6 +21,30 @@ class Find extends Base {
 	}
 
 	/**
+	 * @param string $sEmail
+	 * @return $this
+	 */
+	public function filterByEmail( $sEmail ) {
+		return $this->setRequestDataItem( 'filters[email]', $sEmail );
+	}
+
+	/**
+	 * @param string $sId
+	 * @return $this
+	 */
+	public function filterByExternalId( $sId ) {
+		return $this->setRequestDataItem( 'filters[externalid]', $sId );
+	}
+
+	/**
+	 * @param string $sId
+	 * @return $this
+	 */
+	public function filterByConnectionId( $sId ) {
+		return $this->setRequestDataItem( 'filters[connectionid]', $sId );
+	}
+
+	/**
 	 * @return string
 	 */
 	protected function getResponseDataKey() {
