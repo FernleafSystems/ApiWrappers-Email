@@ -98,4 +98,11 @@ class Track extends ActiveCampaign\Api {
 	protected function getCriticalRequestItems() {
 		return [ 'event', 'eventdata' ];
 	}
+
+	/**
+	 * @return string
+	 */
+	protected function getUrlEndpoint() {
+		return '';
+	}
 }
