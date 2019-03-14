@@ -55,25 +55,37 @@ class RegisterCustomerOrder {
 			}
 		}
 
-		{// Create Order
-			$oOrd = $this->order;
-			$oApi = ( new DeepData\Orders\Create() )
+		$oOrd = $this->order;
+
+		{// Create Order if it doesn't already exist
+			$aOrders = ( new DeepData\Orders\Find() )
 				->setConnection( $oCon )
-				->setConnectionId( $this->service->id )
-				->setEmail( $oCustomer->email )
-				->setCustomerId( $oCustomer->id )
-				->setExternalId( $oOrd->externalid )
-				->setTotalPrice( $oOrd->totalPrice )
-				->setCurrency( $oOrd->currency )
-				->setOrderUrl( $oOrd->orderUrl )
-				->setOrderDate( $oOrd->orderDate )
-				->setOrderNumber( empty( $oOrd->orderNumber ) ? $oOrd->externalid : $oOrd->orderNumber )
-				->setOrderProducts( $oOrd->ecomOrderProducts );
-			$oOrder = $oApi->create();
-			if ( !$oOrder instanceof DeepData\Orders\OrderVO ) {
-				throw new \Exception( sprintf( 'Order %s could not be loaded or created', $this->email ) );
+				->filterByServiceConnectionId( $this->service->id )
+				->filterByEmail( $oCustomer->email )
+				->filterByExternalId( $oOrd->externalid )
+				->run();
+			$oOrder = array_shift( $aOrders );
+
+			if ( empty( $oOrder ) ) {
+				$oApi = ( new DeepData\Orders\Create() )
+					->setConnection( $oCon )
+					->setConnectionId( $this->service->id )
+					->setEmail( $oCustomer->email )
+					->setCustomerId( $oCustomer->id )
+					->setExternalId( $oOrd->externalid )
+					->setTotalPrice( $oOrd->totalPrice )
+					->setCurrency( $oOrd->currency )
+					->setOrderUrl( $oOrd->orderUrl )
+					->setOrderDate( $oOrd->orderDate )
+					->setOrderNumber( empty( $oOrd->orderNumber ) ? $oOrd->externalid : $oOrd->orderNumber )
+					->setOrderProducts( $oOrd->ecomOrderProducts );
+				$oOrder = $oApi->create();
+				if ( !$oOrder instanceof DeepData\Orders\OrderVO ) {
+					throw new \Exception( sprintf( 'Order %s could not be loaded or created', $this->email ) );
+				}
 			}
 		}
+
 		return $oOrder;
 	}
 
