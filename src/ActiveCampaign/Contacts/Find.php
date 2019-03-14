@@ -5,7 +5,7 @@ namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts;
 use FernleafSystems\ApiWrappers\Email\ActiveCampaign\Common\Pagination;
 
 /**
- * Class Retrieve
+ * Class Find
  * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts
  */
 class Find extends Base {
@@ -59,6 +59,6 @@ class Find extends Base {
 	 * @return string
 	 */
 	protected function getResponseDataKey() {
-		return 'contacts';
+		return static::ENDPOINT_KEY.'s';
 	}
 }
