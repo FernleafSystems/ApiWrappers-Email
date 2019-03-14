@@ -16,6 +16,7 @@ namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Orders;
  * @property string  $orderDate
  * @property string  $totalPrice - must of smallest units, e.g $12 = 1200
  * @property string  $totalProducts
+ * @property string  $source     - 1 to ensure automation is triggered
  * @property array[] $ecomOrderProducts
  */
 class OrderVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
