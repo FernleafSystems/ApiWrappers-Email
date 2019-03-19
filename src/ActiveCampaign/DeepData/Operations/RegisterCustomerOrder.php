@@ -67,11 +67,13 @@ class RegisterCustomerOrder {
 			$oOrder = array_shift( $aOrders );
 
 			if ( empty( $oOrder ) ) {
+				$oOrd->source = '1';
 				$oApi = ( new DeepData\Orders\Create() )
 					->setConnection( $oCon )
 					->setConnectionId( $this->service->id )
 					->setEmail( $oCustomer->email )
 					->setCustomerId( $oCustomer->id )
+					->setSource( $oOrd->source )
 					->setExternalId( $oOrd->externalid )
 					->setTotalPrice( $oOrd->totalPrice )
 					->setCurrency( $oOrd->currency )

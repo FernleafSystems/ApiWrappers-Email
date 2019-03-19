@@ -99,6 +99,14 @@ class Create extends Base {
 	}
 
 	/**
+	 * @param string $sSource
+	 * @return $this
+	 */
+	public function setSource( $sSource = '1' ) {
+		return $this->setRequestDataItem( 'source', $sSource );
+	}
+
+	/**
 	 * @param string $mVal
 	 * @return $this
 	 */
