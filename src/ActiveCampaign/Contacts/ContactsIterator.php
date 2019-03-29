@@ -2,11 +2,13 @@
 
 namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts;
 
+use FernleafSystems\ApiWrappers\Email\Common\CommonIterator;
+
 /**
  * Class ContactsIterator
  * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts
  */
-class ContactsIterator extends \FernleafSystems\ApiWrappers\Email\Common\CommonIterator {
+class ContactsIterator extends CommonIterator {
 
 	/**
 	 * @return ContactVO|mixed
