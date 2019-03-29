@@ -17,6 +17,22 @@ class Create extends SendInBlue\Api {
 	}
 
 	/**
+	 * @param bool $bIsBlackListed
+	 * @return $this
+	 */
+	public function setIsBlackListedEmail( $bIsBlackListed ) {
+		return $this->setRequestDataItem( 'emailBlacklisted', $bIsBlackListed );
+	}
+
+	/**
+	 * @param bool $bIsBlackListed
+	 * @return $this
+	 */
+	public function setIsBlackListedSms( $bIsBlackListed ) {
+		return $this->setRequestDataItem( 'smsBlacklisted', $bIsBlackListed );
+	}
+
+	/**
 	 * @param string $sEmail
 	 * @return $this
 	 */
