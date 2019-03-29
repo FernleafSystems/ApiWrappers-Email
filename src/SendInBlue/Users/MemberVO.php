@@ -7,6 +7,11 @@ use FernleafSystems\ApiWrappers\Base\BaseVO;
 /**
  * Class MemberVO
  * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Users
+ * @property array  $attributes
+ * @property string $email
+ * @property bool   $emailBlacklisted
+ * @property array  $listIds
+ * @property array  $list_unsubscribed
  */
 class MemberVO extends BaseVO {
 
@@ -34,8 +39,8 @@ class MemberVO extends BaseVO {
 	}
 
 	/**
-	 * @deprecated is this valid/used?
 	 * @return string
+	 * @deprecated is this valid/used?
 	 */
 	public function getId() {
 		return $this->getNumericParam( 'id' );
@@ -64,8 +69,8 @@ class MemberVO extends BaseVO {
 	}
 
 	/**
-	 * @deprecated
 	 * @return bool
+	 * @deprecated
 	 */
 	public function isBlacklisted() {
 		return $this->isGloballyBlacklisted();
