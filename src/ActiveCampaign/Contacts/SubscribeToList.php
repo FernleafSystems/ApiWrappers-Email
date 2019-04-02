@@ -2,8 +2,6 @@
 
 namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts;
 
-use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
-
 /**
  * Class SubscribeToList
  * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\Contacts
