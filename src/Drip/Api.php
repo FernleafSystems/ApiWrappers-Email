@@ -41,4 +41,12 @@ class Api extends BaseApi {
 	protected function isAccountRequest() {
 		return static::IS_ACCOUNT_REQUEST;
 	}
+
+	/**
+	 * @param int $nTimestamp
+	 * @return string
+	 */
+	static public function convertToStandardDateFormat( $nTimestamp ) {
+		return date( 'c', $nTimestamp );
+	}
 }

@@ -89,7 +89,7 @@ class RetrieveAll extends Drip\Api {
 	 * @return $this
 	 */
 	public function filterByTimestampField( $sField, $nTimestamp ) {
-		return $this->setRequestDataItem( $sField, date( 'c', $nTimestamp ) );
+		return $this->setRequestDataItem( $sField, $this->convertToStandardDateFormat( $nTimestamp ) );
 	}
 
 	/**
