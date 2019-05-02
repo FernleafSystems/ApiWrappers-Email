@@ -15,8 +15,8 @@ class Clean extends Common\Actions\Clean {
 	const DEFAULT_LAST_NAME_KEY = 'last_name';
 
 	/**
-	 * @param Users\MemberVO $oContact
-	 * @return Users\MemberVO
+	 * @param Users\PeopleVO $oContact
+	 * @return Users\PeopleVO
 	 */
 	public function names( $oContact ) {
 		$sFKey = $this->getFirstNameKey();
@@ -33,12 +33,12 @@ class Clean extends Common\Actions\Clean {
 				->setConnection( $this->getConnection() )
 				->setCustomField( $sFKey, $sNewFirst )
 				->setCustomField( $sLKey, $sNewLast )
-				->setEmail( $oContact->getEmail() )
+				->setEmail( $oContact->email )
 				->req();
 		}
 
 		return ( new Users\Retrieve() )
 			->setConnection( $this->getConnection() )
-			->byEmail( $oContact->getEmail() );
+			->byEmail( $oContact->email );
 	}
 }

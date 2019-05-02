@@ -33,118 +33,6 @@ class Create extends Drip\ShopperActivity\BaseShopperActivity {
 	}
 
 	/**
-	 * @param string $sVal
-	 * @return $this
-	 */
-	public function setAction( $sVal ) {
-		return $this->setRequestDataItem( 'action', $sVal );
-	}
-
-	/**
-	 * @param string $sVal
-	 * @return $this
-	 */
-	public function setEmail( $sVal ) {
-		return $this->setRequestDataItem( 'provider', $sVal );
-	}
-
-	/**
-	 * @param string $sVal
-	 * @return $this
-	 */
-	public function setProvider( $sVal ) {
-		return $this->setRequestDataItem( 'provider', $sVal );
-	}
-
-	/**
-	 * @param string $sVal - your internal order ID
-	 * @return $this
-	 */
-	public function setInternalOrderId( $sVal ) {
-		return $this->setRequestDataItem( 'order_id', $sVal );
-	}
-
-	/**
-	 * @param string $sVal - your internal order ID
-	 * @return $this
-	 */
-	public function setPublicOrderId( $sVal ) {
-		return $this->setRequestDataItem( 'order_public_id', $sVal );
-	}
-
-	/**
-	 * @param string $nVal
-	 * @return $this
-	 */
-	public function setRefundAmount( $nVal ) {
-		return $this->setRequestDataItem( 'refund_amount', $nVal );
-	}
-
-	/**
-	 * @param string $nVal
-	 * @return $this
-	 */
-	public function setTotal_Discounts( $nVal ) {
-		return $this->setRequestDataItem( 'total_discounts', $nVal );
-	}
-
-	/**
-	 * @param string $nVal
-	 * @return $this
-	 */
-	public function setTotal_Fees( $nVal ) {
-		return $this->setRequestDataItem( 'total_fees', $nVal );
-	}
-
-	/**
-	 * @param string $nVal
-	 * @return $this
-	 */
-	public function setTotal_Shipping( $nVal ) {
-		return $this->setRequestDataItem( 'total_taxes', $nVal );
-	}
-
-	/**
-	 * @param string $nVal
-	 * @return $this
-	 */
-	public function setTotal_GrandTotal( $nVal ) {
-		return $this->setRequestDataItem( 'grand_total', $nVal );
-	}
-
-	/**
-	 * @param string $nVal
-	 * @return $this
-	 */
-	public function setTotal_Taxes( $nVal ) {
-		return $this->setRequestDataItem( 'total_taxes', $nVal );
-	}
-
-	/**
-	 * @param string $sVal - ISO3 e.g. EUR, GBP, USD
-	 * @return $this
-	 */
-	public function setCurrency( $sVal ) {
-		return $this->setRequestDataItem( 'currency', strtoupper( $sVal ) );
-	}
-
-	/**
-	 * @param string $sVal
-	 * @return $this
-	 */
-	public function setOrderUrl( $sVal ) {
-		return $this->setRequestDataItem( 'order_url', $sVal );
-	}
-
-	/**
-	 * @param int $nTimestamp
-	 * @return $this
-	 */
-	public function setDateAt( $nTimestamp ) {
-		return $this->setRequestDataItem( 'occurred_at', $this->convertToStandardDateFormat( $nTimestamp ) );
-	}
-
-	/**
 	 * @throws \Exception
 	 */
 	protected function preSendVerification() {
@@ -176,5 +64,12 @@ class Create extends Drip\ShopperActivity\BaseShopperActivity {
 			throw new \InvalidArgumentException( sprintf( 'Invalid action provided "%s"', $sAction ) );
 		}
 		return true;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getUrlEndpoint() {
+		return parent::getUrlEndpoint().'/order';
 	}
 }

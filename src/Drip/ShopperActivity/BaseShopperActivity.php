@@ -12,12 +12,9 @@ use FernleafSystems\ApiWrappers\Email\Drip;
 class BaseShopperActivity extends Drip\Api {
 
 	/**
-	 * @param Drip\Connection $oConnection
-	 * @return $this
+	 * @return string
 	 */
-	public function setConnection( $oConnection ) {
-		$oConn = clone $oConnection;
-		$oConn->override_api_version = 3;
-		return parent::setConnection( $oConn );
+	protected function getUrlEndpoint() {
+		return 'shopper_activity';
 	}
 }
