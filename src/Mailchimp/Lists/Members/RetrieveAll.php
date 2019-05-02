@@ -15,7 +15,7 @@ class RetrieveAll extends Base {
 	 */
 	public function retrieve() {
 
-		$aAllMembers = array();
+		$aAllMembers = [];
 
 		$nOffset = 0;
 		do {
@@ -27,7 +27,7 @@ class RetrieveAll extends Base {
 
 			if ( is_array( $aResults ) && isset( $aResults[ 'members' ] ) ) {
 				$aMembers = array_map(
-					function( $aMember ) {
+					function ( $aMember ) {
 						return ( new MemberVO() )->applyFromArray( $aMember );
 					},
 					$aResults[ 'members' ]
@@ -36,7 +36,6 @@ class RetrieveAll extends Base {
 				$nOffset++;
 				continue;
 			}
-
 		} while ( !empty( $aMembers ) );
 
 		return $aAllMembers;

@@ -2,13 +2,11 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Tags;
 
-use FernleafSystems\ApiWrappers\Email\Drip;
-
 /**
  * Class RemoveFromSubscriber
  * @package FernleafSystems\ApiWrappers\Email\Drip\Tags
  */
-class RemoveFromSubscriber extends Drip\Api {
+class RemoveFromSubscriber extends Base {
 
 	const REQUEST_METHOD = 'delete';
 

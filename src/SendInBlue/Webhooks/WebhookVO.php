@@ -69,8 +69,8 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
-	 * @deprecated
 	 * @return bool
+	 * @deprecated
 	 */
 	public function isListAddition() {
 		return $this->isEvent_ListAddition();

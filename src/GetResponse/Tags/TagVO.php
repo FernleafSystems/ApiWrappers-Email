@@ -11,4 +11,5 @@ namespace FernleafSystems\ApiWrappers\Email\GetResponse\Tags;
  * @property string color
  */
 class TagVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
+
 }

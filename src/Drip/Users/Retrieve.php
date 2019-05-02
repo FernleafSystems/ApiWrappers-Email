@@ -16,7 +16,6 @@ class Retrieve extends Delete {
 	 */
 	public function byEmail( $sEmail ) {
 		return $this->setEmail( $sEmail )
-					->removeRequestDataItem( 'id' )
 					->asVo();
 	}
 
@@ -27,8 +26,8 @@ class Retrieve extends Delete {
 		$oMember = null;
 		if ( $this->req()->isLastRequestSuccess() ) {
 			$aRes = $this->getDecodedResponseBody();
-			if ( is_array( $aRes ) && !empty( $aRes[ 'subscribers' ][ 0 ] ) ) {
-				$oMember = $this->getVO()->applyFromArray( $aRes[ 'subscribers' ][ 0 ] );
+			if ( is_array( $aRes ) && !empty( $aRes[ static::ENDPOINT_KEY ][ 0 ] ) ) {
+				$oMember = $this->getVO()->applyFromArray( $aRes[ static::ENDPOINT_KEY ][ 0 ] );
 			}
 		}
 		return $oMember;

@@ -7,6 +7,7 @@ namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Webhooks;
  * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Webhooks
  */
 class Capture extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Capture {
+
 	/**
 	 * @return WebhookVO
 	 */

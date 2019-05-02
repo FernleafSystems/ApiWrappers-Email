@@ -12,8 +12,8 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	const API_VERSION = 3;
 
 	/**
-	 * @deprecated
 	 * @return bool
+	 * @deprecated
 	 */
 	public function hasAccountId() {
 		return !empty( $this->account_id );

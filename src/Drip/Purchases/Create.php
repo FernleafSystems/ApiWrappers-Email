@@ -2,9 +2,8 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Purchases;
 
-use FernleafSystems\ApiWrappers\Email\Drip;
-
 /**
+ * @deprecated
  * Class Create
  * @package FernleafSystems\ApiWrappers\Email\Drip\Purchases
  */
@@ -31,7 +30,7 @@ class Create extends Base {
 
 		$aItems = $this->getRequestDataItem( 'items' );
 		if ( !is_array( $aItems ) ) {
-			$aItems = array();
+			$aItems = [];
 		}
 
 		$aNewItems = array_map(
@@ -101,18 +100,16 @@ class Create extends Base {
 	public function setProperty( $sKey, $mValue ) {
 		$aProps = $this->getRequestDataItem( 'properties' );
 		if ( !is_array( $aProps ) ) {
-			$aProps = array();
+			$aProps = [];
 		}
 		$aProps[ $sKey ] = $mValue;
 		return $this->setProperties( $aProps );
 	}
 
 	/**
-	 * It's rare to override this Final data request, but when creating subscribers the data for
-	 * the new subscriber needs to be wrapped up in an array.
-	 * @return array
+	 * @return string
 	 */
-	public function getRequestDataFinal() {
-		return array( 'purchases' => array( $this->getRequestData() ) );
+	protected function getRequestPayloadDataKey() {
+		return 'purchases';
 	}
 }

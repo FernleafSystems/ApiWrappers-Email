@@ -49,7 +49,6 @@ trait Pagination {
 				);
 			}
 			$this->incrementPage();
-
 		} while ( !empty( $aTags ) );
 
 		return $aAllResults;

@@ -23,12 +23,12 @@ class RetrievePage extends Base {
 					  ->req()
 					  ->getDecodedResponseBody();
 
-		if ( !empty( $aResp[ 'subscribers' ] ) && is_array( $aResp[ 'subscribers' ] ) ) {
+		if ( !empty( $aResp[ static::ENDPOINT_KEY ] ) && is_array( $aResp[ static::ENDPOINT_KEY ] ) ) {
 			$aMembers = array_map(
 				function ( $aMemberData ) {
 					return $this->getVO()->applyFromArray( $aMemberData );
 				},
-				$aResp[ 'subscribers' ]
+				$aResp[ static::ENDPOINT_KEY ]
 			);
 		}
 

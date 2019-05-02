@@ -16,6 +16,6 @@ class RetrieveAll extends Base {
 		$aResults = $this->send()
 						 ->getDecodedResponseBody();
 
-		return isset( $aResults[ 'purchases' ] ) ? $aResults[ 'purchases' ] : array();
+		return isset( $aResults[ 'purchases' ] ) ? $aResults[ 'purchases' ] : [];
 	}
 }

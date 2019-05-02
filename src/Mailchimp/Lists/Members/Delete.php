@@ -7,5 +7,6 @@ namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
  * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members
  */
 class Delete extends Retrieve {
+
 	const REQUEST_METHOD = 'delete';
 }

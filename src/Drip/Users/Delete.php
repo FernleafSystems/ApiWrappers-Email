@@ -11,35 +11,32 @@ class Delete extends Base {
 	const REQUEST_METHOD = 'delete';
 
 	/**
-	 * @param string $sEmail
+	 * @param string $sVal
 	 * @return $this
 	 */
-	public function setEmail( $sEmail ) {
-		return $this->setParam( 'email', $sEmail );
+	public function setEmail( $sVal ) {
+		return $this->setParam( 'sub_identifier', $sVal );
 	}
 
 	/**
-	 * @throws \Exception
+	 * @param string $sVal
+	 * @return $this
 	 */
-	protected function preSendVerification() {
-		parent::preSendVerification();
-
-		if ( !filter_var( $this->getParam( 'email' ), FILTER_VALIDATE_EMAIL ) ) {
-			throw new \Exception( 'Email provided is not valid.' );
-		}
+	public function setId( $sVal ) {
+		return $this->setParam( 'sub_identifier', $sVal );
 	}
 
 	/**
 	 * @return string[]
 	 */
 	protected function getCriticalRequestItems() {
-		return [ 'email' ];
+		return [ 'sub_identifier' ];
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'subscribers/%s', urlencode( $this->getStringParam( 'email' ) ) );
+		return parent::getUrlEndpoint().'/'.rawurlencode( $this->getStringParam( 'email' ) );
 	}
 }

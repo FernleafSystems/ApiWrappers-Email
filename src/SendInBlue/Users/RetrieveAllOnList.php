@@ -10,12 +10,12 @@ class RetrieveAllOnList extends SendInBlue\Api {
 
 	/**
 	 * Note the MemberVO data here is limited to 'email', 'listid', 'id', 'blacklisted'
-	 * @deprecated use RetrieveAll
 	 * @return MemberVO[]
+	 * @deprecated use RetrieveAll
 	 */
 	public function retrieve() {
 
-		$aAllMembers = array();
+		$aAllMembers = [];
 
 		$nOffset = 0;
 		$nPageLimit = 50;

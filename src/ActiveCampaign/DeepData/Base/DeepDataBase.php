@@ -9,4 +9,5 @@ use FernleafSystems\ApiWrappers\Email\ActiveCampaign;
  * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Connections
  */
 class DeepDataBase extends ActiveCampaign\Api {
+
 }

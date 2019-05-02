@@ -2,13 +2,11 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Tags;
 
-use FernleafSystems\ApiWrappers\Email\Drip;
-
 /**
  * Class ApplyToSubscriber
  * @package FernleafSystems\ApiWrappers\Email\Drip\Tags
  */
-class ApplyToSubscriber extends Drip\Api {
+class ApplyToSubscriber extends Base {
 
 	/**
 	 * @param string $sEmail
@@ -27,16 +25,9 @@ class ApplyToSubscriber extends Drip\Api {
 	}
 
 	/**
-	 * @return array
-	 */
-	public function getRequestDataFinal() {
-		return array( 'tags' => array( $this->getRequestData() ) );
-	}
-
-	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
-		return 'tags';
+	protected function getRequestPayloadDataKey() {
+		return static::ENDPOINT_KEY;
 	}
 }

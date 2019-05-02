@@ -33,12 +33,12 @@ class Capture {
 	 * @return WebhookVO
 	 */
 	public function fromJson( $sJson ) {
-		$aDecoded = array();
+		$aDecoded = [];
 
 		if ( !empty( $sJson ) && is_string( $sJson ) ) {
 			$aDecoded = json_decode( $sJson, true );
 			if ( !is_array( $aDecoded ) ) {
-				$aDecoded = array();
+				$aDecoded = [];
 			}
 		}
 
