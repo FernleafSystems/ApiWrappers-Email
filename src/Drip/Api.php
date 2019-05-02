@@ -31,14 +31,15 @@ class Api extends BaseApi {
 	protected function getBaseUrl() {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
-		$sUrl = $this->isAccountRequest() ? $oCon->getBaseUrlWithAccountId() : $oCon->getBaseUrl();
+		$sUrl = static::IS_ACCOUNT_REQUEST ? $oCon->getBaseUrlWithAccountId() : $oCon->getBaseUrl();
 		return rtrim( $sUrl, '/' ).'/';
 	}
 
 	/**
-	 * @return bool
+	 * @param int $nTimestamp
+	 * @return string
 	 */
-	protected function isAccountRequest() {
-		return static::IS_ACCOUNT_REQUEST;
+	static public function convertToStandardDateFormat( $nTimestamp ) {
+		return date( 'c', $nTimestamp );
 	}
 }

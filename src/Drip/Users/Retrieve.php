@@ -11,38 +11,25 @@ class Retrieve extends Delete {
 	const REQUEST_METHOD = 'get';
 
 	/**
-	 * @return MemberVO|null
-	 */
-	public function req() {
-		try {
-			$oUser = $this->asVo();
-		}
-		catch ( \Exception $oE ) {
-			$oUser = null;
-		}
-		return $oUser;
-	}
-
-	/**
 	 * @param string $sEmail
-	 * @return MemberVO|null
+	 * @return PeopleVO|null
 	 */
 	public function byEmail( $sEmail ) {
 		return $this->setEmail( $sEmail )
 					->removeRequestDataItem( 'id' )
-					->req();
+					->asVo();
 	}
 
 	/**
-	 * @return MemberVO|null
-	 * @throws \Exception
+	 * @return PeopleVO|null
 	 */
 	public function asVo() {
-		$aResult = $this->send()
-						->getDecodedResponseBody();
 		$oMember = null;
-		if ( is_array( $aResult ) && !empty( $aResult[ 'subscribers' ][ 0 ] ) ) {
-			$oMember = ( new MemberVO() )->applyFromArray( $aResult[ 'subscribers' ][ 0 ] );
+		if ( $this->req()->isLastRequestSuccess() ) {
+			$aRes = $this->getDecodedResponseBody();
+			if ( is_array( $aRes ) && !empty( $aRes[ 'subscribers' ][ 0 ] ) ) {
+				$oMember = $this->getVO()->applyFromArray( $aRes[ 'subscribers' ][ 0 ] );
+			}
 		}
 		return $oMember;
 	}

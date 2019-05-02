@@ -2,6 +2,8 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Purchases;
 
+use FernleafSystems\ApiWrappers\Email\Drip;
+
 /**
  * Class Create
  * @package FernleafSystems\ApiWrappers\Email\Drip\Purchases
@@ -80,7 +82,7 @@ class Create extends Base {
 	 * @return $this
 	 */
 	public function setTime( $nOccurredAt ) {
-		return $this->setRequestDataItem( 'occurred_at', date( 'c', $nOccurredAt ) );
+		return $this->setRequestDataItem( 'occurred_at', $this->convertToStandardDateFormat( $nOccurredAt ) );
 	}
 
 	/**

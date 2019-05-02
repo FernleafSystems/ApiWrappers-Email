@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Webhooks;
 
-use FernleafSystems\ApiWrappers\Email\Drip\Users\MemberVO;
+use FernleafSystems\ApiWrappers\Email\Drip\Users\PeopleVO;
 
 /**
  * Class WebhookVO
@@ -32,10 +32,10 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
-	 * @return MemberVO
+	 * @return PeopleVO
 	 */
 	public function getSubscriber() {
-		return ( new MemberVO() )->applyFromArray( $this->getWebhookDataItem( 'subscriber' ) );
+		return ( new PeopleVO() )->applyFromArray( $this->getWebhookDataItem( 'subscriber' ) );
 	}
 
 	/**

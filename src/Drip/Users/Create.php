@@ -3,15 +3,28 @@
 namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
 use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
-use FernleafSystems\ApiWrappers\Email\Drip;
 
 /**
  * Class Create
  * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  */
-class Create extends Drip\Api {
+class Create extends Base {
 
 	const REQUEST_METHOD = 'post';
+
+	/**
+	 * @return PeopleVO|null
+	 */
+	public function create() {
+		$oMemberVO = null;
+		if ( $this->req()->isLastRequestSuccess() ) {
+			$aResp = $this->getDecodedResponseBody();
+			if ( !empty( $aResp[ 'subscribers' ] ) ) {
+				$oMemberVO = $this->getVO()->applyFromArray( array_shift( $aResp[ 'subscribers' ] ) );
+			}
+		}
+		return $oMemberVO;
+	}
 
 	/**
 	 * @param string $sTag
@@ -28,15 +41,12 @@ class Create extends Drip\Api {
 	public function addTags( $aNewTags ) {
 		$aTags = $this->getRequestDataItem( 'tags' );
 		if ( !is_array( $aTags ) ) {
-			$aTags = array();
+			$aTags = [];
 		}
-
 		if ( !is_array( $aNewTags ) ) {
-			$aNewTags = array( $aNewTags );
+			$aNewTags = [ $aNewTags ];
 		}
-
-		$aTags = array_unique( array_merge( $aTags, $aNewTags ) );
-		return $this->setRequestDataItem( 'tags', $aTags );
+		return $this->setRequestDataItem( 'tags', array_unique( array_merge( $aTags, $aNewTags ) ) );
 	}
 
 	/**
@@ -45,13 +55,11 @@ class Create extends Drip\Api {
 	 */
 	public function removeTag( $sTag ) {
 		$aTags = $this->getRequestDataItem( 'remove_tags' );
-		if ( is_null( $aTags ) || !is_array( $aTags ) ) {
-			$aTags = array();
+		if ( !is_array( $aTags ) ) {
+			$aTags = [];
 		}
-		if ( !in_array( $sTag, $aTags ) ) {
-			$aTags[] = $sTag;
-		}
-		return $this->setRequestDataItem( 'remove_tags', $aTags );
+		$aTags[] = $sTag;
+		return $this->setRequestDataItem( 'remove_tags', array_unique( $aTags ) );
 	}
 
 	/**
@@ -61,8 +69,8 @@ class Create extends Drip\Api {
 	 */
 	public function setCustomField( $sFieldKey, $mFieldValue ) {
 		$aFields = $this->getRequestDataItem( 'custom_fields' );
-		if ( is_null( $aFields ) || !is_array( $aFields ) ) {
-			$aFields = array();
+		if ( !is_array( $aFields ) ) {
+			$aFields = [];
 		}
 		$aFields[ $sFieldKey ] = $mFieldValue;
 		return $this->setCustomFields( $aFields );
@@ -132,7 +140,7 @@ class Create extends Drip\Api {
 	 * @return array
 	 */
 	public function getRequestDataFinal() {
-		return array( 'subscribers' => array( $this->getRequestData() ) );
+		return [ 'subscribers' => [ $this->getRequestData() ] ];
 	}
 
 	/**

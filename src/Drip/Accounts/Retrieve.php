@@ -13,13 +13,6 @@ class Retrieve extends RetrieveAll {
 	/**
 	 * @return AccountVO|null
 	 */
-	public function req() {
-		return $this->asVo();
-	}
-
-	/**
-	 * @return AccountVO|null
-	 */
 	public function fromConnection() {
 		/** @var Drip\Connection $oCon */
 		$oCon = $this->getConnection();
@@ -32,13 +25,13 @@ class Retrieve extends RetrieveAll {
 	 */
 	public function byId( $sId ) {
 		return $this->setId( $sId )
-					->req();
+					->asVo();
 	}
 
 	/**
 	 * @return AccountVO|null
 	 */
-	protected function asVo() {
+	public function asVo() {
 		$aAcs = parent::asVo();
 		return array_pop( $aAcs );
 	}
