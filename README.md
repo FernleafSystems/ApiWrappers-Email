@@ -2,7 +2,7 @@
 
 Supports:
 
-* Drip
+* Drip v2 + v3-Shopper Activity API
 * Mailchimp v3
 * SendInBlue v3
 * ActiveCampaign v3
