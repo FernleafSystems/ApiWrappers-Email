@@ -37,6 +37,6 @@ class Delete extends Base {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return parent::getUrlEndpoint().'/'.rawurlencode( $this->getStringParam( 'email' ) );
+		return parent::getUrlEndpoint().'/'.rawurlencode( $this->getStringParam( 'sub_identifier' ) );
 	}
 }
