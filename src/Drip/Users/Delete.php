@@ -27,13 +27,6 @@ class Delete extends Base {
 	}
 
 	/**
-	 * @return string[]
-	 */
-	protected function getCriticalRequestItems() {
-		return [ 'sub_identifier' ];
-	}
-
-	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
