@@ -18,7 +18,7 @@ class RetrieveAll extends SendInBlue\Api {
 	 */
 	public function retrieve() {
 
-		$aAll = array();
+		$aAll = [];
 
 		$nOffset = 0;
 		$nPageLimit = 50;

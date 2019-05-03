@@ -12,8 +12,8 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	const API_VERSION = '2';
 
 	/**
-	 * @deprecated
 	 * @return string
+	 * @deprecated
 	 */
 	public function getVersion() {
 		return $this->getApiVersion();

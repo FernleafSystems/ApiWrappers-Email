@@ -17,7 +17,7 @@ class RetrieveAll extends Api {
 	 */
 	public function retrieve() {
 
-		$aAll = array();
+		$aAll = [];
 
 		$nOffset = 0;
 		$nPageLimit = 50;

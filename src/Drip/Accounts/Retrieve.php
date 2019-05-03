@@ -25,14 +25,14 @@ class Retrieve extends RetrieveAll {
 	 */
 	public function byId( $sId ) {
 		return $this->setId( $sId )
-					->asVo();
+					->asVO();
 	}
 
 	/**
 	 * @return AccountVO|null
 	 */
-	public function asVo() {
-		$aAcs = parent::asVo();
+	public function asVO() {
+		$aAcs = parent::asVOs();
 		return array_pop( $aAcs );
 	}
 
@@ -48,6 +48,6 @@ class Retrieve extends RetrieveAll {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'accounts/%s', rawurlencode( $this->getParam( 'id' ) ) );
+		return static::ENDPOINT_KEY.'/'.rawurlencode( $this->getParam( 'id' ) );
 	}
 }

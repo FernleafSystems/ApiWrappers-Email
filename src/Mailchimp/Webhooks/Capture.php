@@ -7,6 +7,7 @@ namespace FernleafSystems\ApiWrappers\Email\Mailchimp\Webhooks;
  * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Webhooks
  */
 class Capture extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Capture {
+
 	/**
 	 * @return WebhookVO
 	 */

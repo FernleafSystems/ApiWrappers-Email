@@ -14,29 +14,16 @@ class RetrieveAll extends Base {
 	/**
 	 * @return AccountVO[]
 	 */
-	public function asVo() {
+	public function asVOs() {
 		$aAcs = [];
-
-		try {
-			$aRes = $this->send()
-						 ->getDecodedResponseBody();
-
-			if ( is_array( $aRes ) && !empty( $aRes[ 'accounts' ] ) ) {
-				foreach ( $aRes[ 'accounts' ] as $aAc ) {
+		if ( $this->req()->isLastRequestSuccess() ) {
+			$aRes = $this->getDecodedResponseBody();
+			if ( !empty( $aRes[ static::ENDPOINT_KEY ] ) && is_array( $aRes ) ) {
+				foreach ( $aRes[ static::ENDPOINT_KEY ] as $aAc ) {
 					$aAcs[] = $this->getVO()->applyFromArray( $aAc );
 				}
 			}
 		}
-		catch ( \Exception $oE ) {
-		}
-
 		return $aAcs;
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return 'accounts';
 	}
 }

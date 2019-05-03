@@ -10,6 +10,7 @@ use FernleafSystems\ApiWrappers\Email\Drip;
  */
 class Record extends Drip\Api {
 
+	const ENDPOINT_KEY = 'events';
 	const REQUEST_METHOD = 'post';
 
 	/**
@@ -52,7 +53,7 @@ class Record extends Drip\Api {
 	public function setProperty( $sKey, $mValue ) {
 		$aProps = $this->getRequestDataItem( 'custom_fields' );
 		if ( !is_array( $aProps ) ) {
-			$aProps = array();
+			$aProps = [];
 		}
 		$aProps[ $sKey ] = $mValue;
 		return $this->setProperties( $aProps );
@@ -67,18 +68,16 @@ class Record extends Drip\Api {
 	}
 
 	/**
-	 * It's rare to override this Final data request, but when creating subscribers the data for
-	 * the new subscriber needs to be wrapped up in an array.
-	 * @return array
+	 * @return string
 	 */
-	public function getRequestDataFinal() {
-		return array( 'events' => array( $this->getRequestData() ) );
+	protected function getRequestPayloadDataKey() {
+		return static::ENDPOINT_KEY;
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return 'events';
+		return static::ENDPOINT_KEY;
 	}
 }

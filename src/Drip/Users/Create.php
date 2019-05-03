@@ -19,8 +19,8 @@ class Create extends Base {
 		$oMemberVO = null;
 		if ( $this->req()->isLastRequestSuccess() ) {
 			$aResp = $this->getDecodedResponseBody();
-			if ( !empty( $aResp[ 'subscribers' ] ) ) {
-				$oMemberVO = $this->getVO()->applyFromArray( array_shift( $aResp[ 'subscribers' ] ) );
+			if ( !empty( $aResp[ static::ENDPOINT_KEY ] ) ) {
+				$oMemberVO = $this->getVO()->applyFromArray( array_shift( $aResp[ static::ENDPOINT_KEY ] ) );
 			}
 		}
 		return $oMemberVO;
@@ -135,18 +135,9 @@ class Create extends Base {
 	}
 
 	/**
-	 * It's rare to override this Final data request, but when creating subscribers the data for
-	 * the new subscriber needs to be wrapped up in an array.
-	 * @return array
-	 */
-	public function getRequestDataFinal() {
-		return [ 'subscribers' => [ $this->getRequestData() ] ];
-	}
-
-	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
-		return 'subscribers';
+	protected function getRequestPayloadDataKey() {
+		return static::ENDPOINT_KEY;
 	}
 }

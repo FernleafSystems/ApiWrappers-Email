@@ -17,7 +17,7 @@ class RetrieveAll extends Api {
 	 */
 	public function retrieve() {
 
-		$aAllLists = array();
+		$aAllLists = [];
 
 		$nOffset = 0;
 		$nPageLimit = 50;
@@ -42,7 +42,6 @@ class RetrieveAll extends Api {
 			}
 			catch ( \Exception $oE ) {
 			}
-
 		} while ( !empty( $aLists ) );
 
 		return $aAllLists;

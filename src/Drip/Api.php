@@ -10,6 +10,7 @@ use FernleafSystems\ApiWrappers\Base\BaseApi;
  */
 class Api extends BaseApi {
 
+	const ENDPOINT_KEY = '';
 	const IS_ACCOUNT_REQUEST = true;
 
 	/**
@@ -21,7 +22,7 @@ class Api extends BaseApi {
 		$this->setRequestHeader( 'Accept', $oCon->getContentType() )
 			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() );
 		$aFinal = parent::prepFinalRequestData();
-		$aFinal[ 'auth' ] = array( $oCon->api_key, '' );
+		$aFinal[ 'auth' ] = [ $oCon->api_key, '' ];
 		return $aFinal;
 	}
 
@@ -33,6 +34,44 @@ class Api extends BaseApi {
 		$oCon = $this->getConnection();
 		$sUrl = static::IS_ACCOUNT_REQUEST ? $oCon->getBaseUrlWithAccountId() : $oCon->getBaseUrl();
 		return rtrim( $sUrl, '/' ).'/';
+	}
+
+	/**
+	 * It's rare to override this Final data request, but when creating subscribers, for example, the data for
+	 * the new subscriber needs to be wrapped up in an array.
+	 * @return array
+	 */
+	public function getRequestDataFinal() {
+		$aPayload = $this->getRequestData();
+		$sPayloadKey = $this->getRequestPayloadDataKey();
+		if ( !empty( $sPayloadKey ) ) {
+			$aPayload = [ $sPayloadKey => [ $aPayload ] ];
+		}
+		return $aPayload;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getRequestPayloadDataKey() {
+		return '';
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getResponsePayloadDataKey() {
+		return '';
+	}
+
+	/**
+	 * @return int[]
+	 */
+	public function getSuccessfulResponseCodes() {
+		$aCodes = parent::getSuccessfulResponseCodes();
+		$aCodes[] = 202;
+		$aCodes[] = 204;
+		return $aCodes;
 	}
 
 	/**

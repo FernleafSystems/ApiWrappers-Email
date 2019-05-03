@@ -27,15 +27,15 @@ class Start extends Drip\Api {
 	public function addSubscribers( $aNewSubs ) {
 		$aSubs = $this->getRequestDataItem( 'subscribers' );
 		if ( !is_array( $aSubs ) ) {
-			$aSubs = array();
+			$aSubs = [];
 		}
 
 		if ( !is_array( $aNewSubs ) ) {
-			$aNewSubs = array( $aNewSubs );
+			$aNewSubs = [ $aNewSubs ];
 		}
 
 		foreach ( $aNewSubs as $sSub ) {
-			$aSubs[] = array( 'email' => $sSub );
+			$aSubs[] = [ 'email' => $sSub ];
 		}
 
 		return $this->setRequestDataItem( 'subscribers', $aSubs );

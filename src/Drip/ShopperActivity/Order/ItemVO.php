@@ -22,4 +22,5 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\ShopperActivity\Order;
  * @property string   image_url
  */
 class ItemVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
+
 }

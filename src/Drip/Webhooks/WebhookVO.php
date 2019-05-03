@@ -120,58 +120,58 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	}
 
 	/**
-	 * @deprecated just use the getSubscriber() to get the VO
 	 * @return array
+	 * @deprecated just use the getSubscriber() to get the VO
 	 */
 	public function getSubscriberData() {
 		return $this->getWebhookDataItem( 'subscriber' );
 	}
 
 	/**
-	 * @deprecated just use the getSubscriber() to get the VO
 	 * @return array
+	 * @deprecated just use the getSubscriber() to get the VO
 	 */
 	public function getSubscriberCustomFields() {
-		return $this->getSubscriber()->getCustomFields();
+		return $this->getSubscriber()->custom_fields;
 	}
 
 	/**
-	 * @deprecated just use the getSubscriber() to get the VO
 	 * @return string
+	 * @deprecated just use the getSubscriber() to get the VO
 	 */
 	public function getSubscriberEmail() {
-		return $this->getSubscriber()->getEmail();
+		return $this->getSubscriber()->email;
 	}
 
 	/**
-	 * @deprecated just use the getSubscriber() to get the VO
 	 * @return string
+	 * @deprecated just use the getSubscriber() to get the VO
 	 */
 	public function getSubscriberId() {
-		return $this->getSubscriber()->getId();
+		return $this->getSubscriber()->id;
 	}
 
 	/**
-	 * @deprecated just use the getSubscriber() to get the VO
 	 * @return string
+	 * @deprecated just use the getSubscriber() to get the VO
 	 */
 	public function getSubscriberStatus() {
-		return $this->getSubscriber()->getStatus();
+		return $this->getSubscriber()->status;
 	}
 
 	/**
-	 * @deprecated just use the getSubscriber() to get the VO
 	 * @return array
+	 * @deprecated just use the getSubscriber() to get the VO
 	 */
 	public function getSubscriberTags() {
-		return $this->getSubscriber()->getTags();
+		return $this->getSubscriber()->tags;
 	}
 
 	/**
-	 * @deprecated just use the getSubscriber() to get the VO
 	 * @return string
+	 * @deprecated just use the getSubscriber() to get the VO
 	 */
 	public function getSubscriberUserId() {
-		return $this->getSubscriber()->getUserId();
+		return $this->getSubscriber()->user_id;
 	}
 }

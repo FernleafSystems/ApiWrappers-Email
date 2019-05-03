@@ -15,7 +15,7 @@ class Create extends Base {
 		$oCustomer = null;
 		if ( $this->req()->isLastRequestSuccess() ) {
 			$oCustomer = $this->getVO()
-								->applyFromArray( $this->getDecodedResponseBody()[ static::ENDPOINT_KEY ] );
+							  ->applyFromArray( $this->getDecodedResponseBody()[ static::ENDPOINT_KEY ] );
 		}
 		return $oCustomer;
 	}

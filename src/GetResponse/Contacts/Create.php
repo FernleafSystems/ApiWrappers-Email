@@ -21,7 +21,7 @@ class Create extends Base {
 	public function setCustomField( $sFieldKey, $mFieldValue ) {
 		$aFields = $this->getRequestDataItem( 'customFieldValues' );
 		if ( !is_array( $aFields ) ) {
-			$aFields = array();
+			$aFields = [];
 		}
 		$aFields[] = [
 			'customFieldId' => $sFieldKey,

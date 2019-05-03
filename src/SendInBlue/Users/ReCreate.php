@@ -23,8 +23,8 @@ class ReCreate {
 			->setConnection( $oConn )
 			->exists( $sEmail );
 
-		$aAttrs = array();
-		$aActiveLists = array();
+		$aAttrs = [];
+		$aActiveLists = [];
 
 		if ( $bExists ) {
 			$oSub = ( new Retrieve() )

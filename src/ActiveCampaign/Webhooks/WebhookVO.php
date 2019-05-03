@@ -15,4 +15,5 @@ namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Webhooks;
  * @property array  $subscriber
  */
 class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\WebhookVO {
+
 }

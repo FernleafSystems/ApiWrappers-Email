@@ -30,7 +30,7 @@ class CleanNames {
 		if ( empty( $sLastName ) && strpos( $sFirstName, ' ' ) ) {
 
 			// we don't break up names with
-			$aSpecialCases = array( 'de', 'van' );
+			$aSpecialCases = [ 'de', 'van' ];
 			$bIsSpecialCase = false;
 			foreach ( $aSpecialCases as $sCase ) {
 				if ( stripos( $sFirstName, " $sCase " ) ) {
@@ -50,10 +50,10 @@ class CleanNames {
 		$sLastName = preg_replace( $sPregPattern, '', ucwords( $sLastName ) );
 
 		// Then if there's "van" or "de" ensure they are lower-cased
-		$aSpecialConversions = array(
+		$aSpecialConversions = [
 			'Van' => 'van',
 			'De'  => 'de'
-		);
+		];
 		foreach ( $aSpecialConversions as $sFrom => $sTo ) {
 			$sFirstName = str_replace( " $sFrom ", " $sTo ", $sFirstName );
 			$sLastName = str_replace( " $sFrom ", " $sTo ", $sLastName );

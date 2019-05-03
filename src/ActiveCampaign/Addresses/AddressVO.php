@@ -19,4 +19,5 @@ use FernleafSystems\ApiWrappers\Base\BaseVO;
  * @property int    isDefault - 0/1
  */
 class AddressVO extends BaseVO {
+
 }

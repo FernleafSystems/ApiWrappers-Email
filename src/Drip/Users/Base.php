@@ -10,6 +10,8 @@ use FernleafSystems\ApiWrappers\Email\Drip;
  */
 class Base extends Drip\Api {
 
+	const ENDPOINT_KEY = 'subscribers';
+
 	/**
 	 * @return PeopleVO
 	 */
@@ -21,6 +23,6 @@ class Base extends Drip\Api {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return 'subscribers';
+		return static::ENDPOINT_KEY;
 	}
 }

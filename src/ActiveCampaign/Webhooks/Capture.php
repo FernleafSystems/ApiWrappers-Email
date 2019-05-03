@@ -7,6 +7,7 @@ namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Webhooks;
  * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\Webhooks
  */
 class Capture extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Capture {
+
 	/**
 	 * @return WebhookVO
 	 */
