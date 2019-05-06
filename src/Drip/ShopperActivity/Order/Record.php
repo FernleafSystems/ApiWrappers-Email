@@ -5,14 +5,14 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\ShopperActivity\Order;
 use FernleafSystems\ApiWrappers\Email\Drip;
 
 /**
- * Class Create
+ * Class Record
  * @package FernleafSystems\ApiWrappers\Email\Drip\ShopperActivity\Order
  */
-class Create extends Drip\ShopperActivity\BaseShopperActivity {
+class Record extends Drip\ShopperActivity\BaseShopperActivity {
 
 	/**
 	 * @param ItemVO $oItem
-	 * @return Create
+	 * @return Record
 	 */
 	public function addItem( ItemVO $oItem ) {
 		$aItems = $this->getRequestDataItem( 'items' );
