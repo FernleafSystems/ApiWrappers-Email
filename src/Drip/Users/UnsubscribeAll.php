@@ -3,18 +3,17 @@
 namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
 /**
- * Class Delete
+ * Class UnsubscribeAll
  * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  */
-class Delete extends Base {
+class UnsubscribeAll extends Base {
 
 	use SubscriberAction;
-	const REQUEST_METHOD = 'delete';
 
 	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getSubId() );
+		return sprintf( '%s/%s/unsubscribe_all', parent::getUrlEndpoint(), $this->getSubId() );
 	}
 }

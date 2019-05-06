@@ -6,8 +6,9 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  */
-class Retrieve extends Delete {
+class Retrieve extends Base {
 
+	use SubscriberAction;
 	const REQUEST_METHOD = 'get';
 
 	/**
@@ -31,5 +32,12 @@ class Retrieve extends Delete {
 			}
 		}
 		return $oMember;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getUrlEndpoint() {
+		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getSubId() );
 	}
 }
