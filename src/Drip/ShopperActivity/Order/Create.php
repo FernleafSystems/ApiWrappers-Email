@@ -40,6 +40,59 @@ class Create extends Drip\ShopperActivity\BaseShopperActivity {
 		$this->isActionValid();
 	}
 
+	protected function preFlight() {
+		$this->castRequestParameters();
+	}
+
+	/**
+	 * DRIP Shopper API is unforgiving with variable types and will error when prices are sent as
+	 * strings and certain string fields are sent as ints, so before sending, cast everything that may
+	 * cause errors.
+	 */
+	private function castRequestParameters() {
+		$aOrderFieldCallbacks = [
+			'floatval' => [
+				'grand_total',
+				'total_discounts',
+				'total_fees',
+				'total_shipping',
+				'refund_amount',
+				'total_taxes'
+			],
+			'strval'   => [ 'order_public_id' ],
+		];
+
+		$aReqData = $this->getRequestData();
+		foreach ( $aOrderFieldCallbacks as $cCallback => $aOrderFields ) {
+			foreach ( $aOrderFields as $sField ) {
+				if ( isset( $aReqData[ $sField ] ) ) {
+					$aReqData[ $sField ] = call_user_func( $cCallback, $aReqData[ $sField ] );
+				}
+			}
+		}
+
+		$aItemFieldCallbacks = [
+			'floatval' => [ 'price', 'taxes', 'total', 'discount', 'fees', 'shipping' ],
+			'intval'   => [ 'quantity' ],
+			'strval'   => [ 'product_id' ],
+		];
+		$aReqData[ 'items' ] = array_map(
+			function ( $aItemData ) use ( $aItemFieldCallbacks ) {
+				foreach ( $aItemFieldCallbacks as $cCallback => $aFields ) {
+					foreach ( $aFields as $sField ) {
+						if ( isset( $aItemData[ $sField ] ) ) {
+							$aItemData[ $sField ] = call_user_func( $cCallback, $aItemData[ $sField ] );
+						}
+					}
+				}
+				return $aItemData;
+			},
+			$aReqData[ 'items' ]
+		);
+
+		$this->setRequestData( $aReqData, false );
+	}
+
 	/**
 	 * @return string[]
 	 */
