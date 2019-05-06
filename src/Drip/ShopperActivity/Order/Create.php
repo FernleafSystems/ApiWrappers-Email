@@ -59,7 +59,7 @@ class Create extends Drip\ShopperActivity\BaseShopperActivity {
 				'refund_amount',
 				'total_taxes'
 			],
-			'strval'   => [ 'order_public_id' ],
+			'strval'   => [ 'order_public_id', 'order_id' ],
 		];
 
 		$aReqData = $this->getRequestData();
