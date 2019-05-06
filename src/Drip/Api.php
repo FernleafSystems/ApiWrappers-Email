@@ -17,12 +17,8 @@ class Api extends BaseApi {
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
-		/** @var Connection $oCon */
-		$oCon = $this->getConnection();
-		$this->setRequestHeader( 'Accept', $oCon->getContentType() )
-			 ->setRequestHeader( 'Content-Type', $oCon->getContentType() );
 		$aFinal = parent::prepFinalRequestData();
-		$aFinal[ 'auth' ] = [ $oCon->api_key, '' ];
+		$aFinal[ 'auth' ] = [ $this->getConnection()->api_key, '' ];
 		return $aFinal;
 	}
 
@@ -58,20 +54,10 @@ class Api extends BaseApi {
 	}
 
 	/**
-	 * @return string
-	 */
-	protected function getResponsePayloadDataKey() {
-		return '';
-	}
-
-	/**
 	 * @return int[]
 	 */
 	public function getSuccessfulResponseCodes() {
-		$aCodes = parent::getSuccessfulResponseCodes();
-		$aCodes[] = 202;
-		$aCodes[] = 204;
-		return $aCodes;
+		return array_merge( parent::getSuccessfulResponseCodes(), [ 202, 204 ] );
 	}
 
 	/**
