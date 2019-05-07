@@ -39,4 +39,11 @@ class SubscribePersonTo extends Base {
 	protected function getUrlEndpoint() {
 		return sprintf( '%s/%s/subscribers', parent::getUrlEndpoint(), $this->getCampaignId() );
 	}
+
+	/**
+	 * @return string
+	 */
+	protected function getRequestPayloadDataKey() {
+		return 'subscribers';
+	}
 }
