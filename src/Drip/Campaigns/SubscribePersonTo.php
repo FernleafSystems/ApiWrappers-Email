@@ -8,13 +8,7 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\Campaigns;
  */
 class SubscribePersonTo extends Base {
 
-	/**
-	 * @param string $sId
-	 * @return $this
-	 */
-	public function setCampaignId( $sId ) {
-		return $this->setParam( 'campaign_id', $sId );
-	}
+	use CampaignAction;
 
 	/**
 	 * @param string $sEmail
@@ -43,6 +37,6 @@ class SubscribePersonTo extends Base {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s/subscribers', parent::getUrlEndpoint(), $this->getParam( 'campaign_id' ) );
+		return sprintf( '%s/%s/subscribers', parent::getUrlEndpoint(), $this->getCampaignId() );
 	}
 }
