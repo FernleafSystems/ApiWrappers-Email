@@ -19,6 +19,14 @@ class SubscribePersonTo extends Base {
 	}
 
 	/**
+	 * @param bool $bIsOptin
+	 * @return $this
+	 */
+	public function setIsDoubleOption( $bIsOptin ) {
+		return $this->setRequestDataItem( 'double_optin', $bIsOptin );
+	}
+
+	/**
 	 * @param int $nIndex
 	 * @return $this
 	 */
