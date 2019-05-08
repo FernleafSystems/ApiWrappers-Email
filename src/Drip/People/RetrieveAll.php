@@ -1,11 +1,11 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 /**
  * @deprecated not required; use PeopleIterator instead
  * Class RetrieveAll
- * @package    FernleafSystems\ApiWrappers\Email\Drip\Users
+ * @package    FernleafSystems\ApiWrappers\Email\Drip\People
  */
 class RetrieveAll extends Base {
 

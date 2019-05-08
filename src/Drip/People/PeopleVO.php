@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 use FernleafSystems\ApiWrappers\Base\BaseVO;
 
 /**
  * Class SubscriberVO
- * @package FernleafSystems\ApiWrappers\Email\Drip\Users
+ * @package FernleafSystems\ApiWrappers\Email\Drip\People
  * @property string   $id
  * @property string   $email
  * @property string   $href

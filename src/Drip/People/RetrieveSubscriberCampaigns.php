@@ -1,10 +1,10 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 /**
  * Class RetrieveCampaigns
- * @package FernleafSystems\ApiWrappers\Email\Drip\Users
+ * @package FernleafSystems\ApiWrappers\Email\Drip\People
  */
 class RetrieveSubscriberCampaigns extends Base {
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 /**
  * Class Exists
- * @package FernleafSystems\ApiWrappers\Email\Drip\Users
+ * @package FernleafSystems\ApiWrappers\Email\Drip\People
  */
 class Exists extends Base {
 

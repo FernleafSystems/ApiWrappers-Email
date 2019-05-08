@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
+namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 use FernleafSystems\ApiWrappers\Base\ConnectionConsumer;
 
 /**
  * Class PeopleIterator
- * @package FernleafSystems\ApiWrappers\Email\Drip\Users
+ * @package FernleafSystems\ApiWrappers\Email\Drip\People
  */
 class PeopleIterator extends \FernleafSystems\ApiWrappers\Email\Drip\Common\CommonIterator {
 

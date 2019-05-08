@@ -33,8 +33,8 @@ abstract class Clean {
 	protected $sLastNameKey;
 
 	/**
-	 * @param mixed|Drip\Users\PeopleVO|Members\MemberVO|SendInBlue\Users\MemberVO $oContact
-	 * @return mixed|Drip\Users\PeopleVO|Members\MemberVO|SendInBlue\Users\MemberVO
+	 * @param mixed|Drip\People\PeopleVO|Members\MemberVO|SendInBlue\Users\MemberVO $oContact
+	 * @return mixed|Drip\People\PeopleVO|Members\MemberVO|SendInBlue\Users\MemberVO
 	 */
 	abstract public function names( $oContact );
 

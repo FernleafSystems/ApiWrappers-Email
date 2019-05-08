@@ -3,7 +3,7 @@
 namespace FernleafSystems\ApiWrappers\Email\Drip\Actions;
 
 use FernleafSystems\ApiWrappers\Email\Common;
-use FernleafSystems\ApiWrappers\Email\Drip\Users;
+use FernleafSystems\ApiWrappers\Email\Drip\People;
 
 /**
  * Class CleanNames
@@ -15,8 +15,8 @@ class Clean extends Common\Actions\Clean {
 	const DEFAULT_LAST_NAME_KEY = 'last_name';
 
 	/**
-	 * @param Users\PeopleVO $oContact
-	 * @return Users\PeopleVO
+	 * @param People\PeopleVO $oContact
+	 * @return People\PeopleVO
 	 */
 	public function names( $oContact ) {
 		$sFKey = $this->getFirstNameKey();
@@ -29,7 +29,7 @@ class Clean extends Common\Actions\Clean {
 
 		// No unnecessary updates and so no unnecessary webhook firing on profile updates
 		if ( $sOriginalFirst != $sNewFirst || $sOriginalLast != $sNewLast ) {
-			( new Users\Update() )
+			( new People\Update() )
 				->setConnection( $this->getConnection() )
 				->setCustomField( $sFKey, $sNewFirst )
 				->setCustomField( $sLKey, $sNewLast )
@@ -37,7 +37,7 @@ class Clean extends Common\Actions\Clean {
 				->req();
 		}
 
-		return ( new Users\Retrieve() )
+		return ( new People\Retrieve() )
 			->setConnection( $this->getConnection() )
 			->byEmail( $oContact->email );
 	}

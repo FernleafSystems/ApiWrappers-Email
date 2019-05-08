@@ -11,10 +11,10 @@ use FernleafSystems\ApiWrappers\Email\Drip;
 class People_CreateUpdate extends Base {
 
 	/**
-	 * @param Drip\Users\PeopleVO $oPerson
+	 * @param Drip\People\PeopleVO $oPerson
 	 * @return $this
 	 */
-	public function addPerson( Drip\Users\PeopleVO $oPerson ) {
+	public function addPerson( Drip\People\PeopleVO $oPerson ) {
 		return $this->addPersonData( $oPerson->getRawDataAsArray() );
 	}
 
