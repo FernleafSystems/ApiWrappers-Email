@@ -127,6 +127,78 @@ class Create extends Base {
 	}
 
 	/**
+	 * @param string $sConsent - granted, denied, unknown
+	 * @return $this
+	 */
+	public function setEuConsent( $sConsent = 'granted' ) {
+		return $this->setRequestDataItem( 'eu_consent', $sConsent );
+	}
+
+	/**
+	 * @param int $sTZ - in Olsen, e.g America/Los_Angeles
+	 * @return $this
+	 */
+	public function setTimezone( $sTZ ) {
+		return $this->setRequestDataItem( 'time_zone', $sTZ );
+	}
+
+	/**
+	 * @param int $nOffset - in minutes
+	 * @return $this
+	 */
+	public function setUtcOffset( $nOffset ) {
+		return $this->setRequestDataItem( 'utc_offset', $nOffset );
+	}
+
+	/**
+	 * @param string $sVal
+	 * @return $this
+	 */
+	public function setUserAgent( $sVal ) {
+		return $this->setRequestDataItem( 'user_agent', $sVal );
+	}
+
+	/**
+	 * @param string $sIp
+	 * @return $this
+	 */
+	public function setIpAddress( $sIp ) {
+		return $this->setRequestDataItem( 'ip_address', $sIp );
+	}
+
+	/**
+	 * @param string $sVal
+	 * @return $this
+	 */
+	public function setLandingUrl( $sVal ) {
+		return $this->setRequestDataItem( 'landing_url', $sVal );
+	}
+
+	/**
+	 * @param bool $bIs
+	 * @return $this
+	 */
+	public function setIsProspect( $bIs ) {
+		return $this->setRequestDataItem( 'prospect', $bIs );
+	}
+
+	/**
+	 * @param string $sVal
+	 * @return $this
+	 */
+	public function setOriginalReferrer( $sVal ) {
+		return $this->setRequestDataItem( 'original_referrer', $sVal );
+	}
+
+	/**
+	 * @param int $nScore - starting lead score
+	 * @return $this
+	 */
+	public function setBaseLeadScore( $nScore ) {
+		return $this->setRequestDataItem( 'base_lead_score', $nScore );
+	}
+
+	/**
 	 * @param string $sId
 	 * @return $this
 	 */
