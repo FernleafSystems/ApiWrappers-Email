@@ -3,9 +3,10 @@
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 use FernleafSystems\ApiWrappers\Base\BaseVO;
+use FernleafSystems\ApiWrappers\Email;
 
 /**
- * Class SubscriberVO
+ * Class PeopleVO
  * @package FernleafSystems\ApiWrappers\Email\Drip\People
  * @property string   $id
  * @property string   $email
@@ -72,5 +73,46 @@ class PeopleVO extends BaseVO {
 	 */
 	public function getCustomField( $sFieldId ) {
 		return isset( $this->custom_fields[ $sFieldId ] ) ? $this->custom_fields[ $sFieldId ] : null;
+	}
+
+	/**
+	 * @param string $sField
+	 * @param mixed $mValue
+	 * @return $this
+	 */
+	public function setCustomField( $sField, $mValue ) {
+		$aCFs = $this->custom_fields;
+		if ( !is_array( $aCFs ) ) {
+			$aCFs = [];
+		}
+		$aCFs[ $sField ] = $mValue;
+		$this->custom_fields = $aCFs;
+		return $this;
+	}
+
+	/**
+	 * @param string $sName
+	 * @return $this
+	 */
+	public function setFirstName( $sName ) {
+		return $this->setCustomField( 'first_name', $sName );
+	}
+
+	/**
+	 * @param string $sName
+	 * @return $this
+	 */
+	public function setLastName( $sName ) {
+		return $this->setCustomField( 'last_name', $sName );
+	}
+
+	/**
+	 * @param string $sName
+	 * @return $this
+	 */
+	public function setName( $sName ) {
+		list( $sFirst, $sLast ) = ( new Email\Common\Data\CleanNames() )->name( $sName );
+		return $this->setFirstName( $sFirst )
+					->setLastName( $sLast );
 	}
 }
