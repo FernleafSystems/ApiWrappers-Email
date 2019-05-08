@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Webhooks;
 
-use FernleafSystems\ApiWrappers\Email\Drip\Users\PeopleVO;
+use FernleafSystems\ApiWrappers\Email\Drip\People\PeopleVO;
 
 /**
  * Class WebhookVO

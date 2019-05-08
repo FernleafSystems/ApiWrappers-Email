@@ -6,15 +6,15 @@ use FernleafSystems\ApiWrappers\Email\Drip;
 
 /**
  * Class Base
- * @package FernleafSystems\ApiWrappers\Email\Drip\Users
+ * @package FernleafSystems\ApiWrappers\Email\Drip\People
  */
 class People_Unsubscribe extends Base {
 
 	/**
-	 * @param Drip\Users\PeopleVO $oPerson
+	 * @param Drip\People\PeopleVO $oPerson
 	 * @return $this
 	 */
-	public function addPerson( Drip\Users\PeopleVO $oPerson ) {
+	public function addPerson( Drip\People\PeopleVO $oPerson ) {
 		return $this->addEmail( $oPerson->email );
 	}
 
