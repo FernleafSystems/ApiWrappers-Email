@@ -14,6 +14,14 @@ class Api extends BaseApi {
 	const IS_ACCOUNT_REQUEST = true;
 
 	/**
+	 * @param int $nTimestamp
+	 * @return string
+	 */
+	static public function convertToStdDateFormat( $nTimestamp ) {
+		return date( 'c', $nTimestamp );
+	}
+
+	/**
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
@@ -51,20 +59,5 @@ class Api extends BaseApi {
 	 */
 	protected function getRequestPayloadDataKey() {
 		return '';
-	}
-
-	/**
-	 * @return int[]
-	 */
-	public function getSuccessfulResponseCodes() {
-		return array_merge( parent::getSuccessfulResponseCodes(), [ 202, 204 ] );
-	}
-
-	/**
-	 * @param int $nTimestamp
-	 * @return string
-	 */
-	static public function convertToStandardDateFormat( $nTimestamp ) {
-		return date( 'c', $nTimestamp );
 	}
 }

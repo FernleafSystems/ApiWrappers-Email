@@ -11,10 +11,8 @@ use FernleafSystems\ApiWrappers\Base\BaseApi;
 class Api extends BaseApi {
 
 	/**
-	 * @return array
 	 */
-	protected function prepFinalRequestData() {
+	protected function preFlight() {
 		$this->setRequestHeader( 'api-key', $this->getConnection()->api_key );
-		return parent::prepFinalRequestData();
 	}
 }

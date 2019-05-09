@@ -7,79 +7,79 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
 /**
  * Class AttributeVO
  * @package FernleafSystems\ApiWrappers\Email\SendInBlue\Attributes
+ * @property string $category
+ * @property string $name
+ * @property string $type
+ * @property array  $enumeration
  */
 class AttributeVO {
 
 	use StdClassAdapter;
 
 	/**
-	 * @return string
-	 */
-	public function getCategory() {
-		return $this->getStringParam( 'category' );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getName() {
-		return $this->getStringParam( 'name' );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getType() {
-		return $this->getStringParam( 'type' );
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getEnumeration() {
-		return $this->getArrayParam( 'enumeration' );
-	}
-
-	/**
-	 * @param string $sType
-	 * @return bool
-	 */
-	public function isType( $sType ) {
-		return $this->getType() == $sType;
-	}
-
-	/**
 	 * @return bool
 	 */
 	public function isType_Category() {
-		return $this->isType( 'category' );
+		return $this->type == 'category';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isType_Date() {
-		return $this->isType( 'date' );
+		return $this->type == 'date';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isType_Float() {
-		return $this->isType( 'float' );
+		return $this->type == 'float';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isType_Id() {
-		return $this->isType( 'id' );
+		return $this->type == 'id';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isType_Text() {
-		return $this->isType( 'text' );
+		return $this->type == 'text';
+	}
+
+	/**
+	 * @return string
+	 * @deprecated
+	 */
+	public function getCategory() {
+		return $this->category;
+	}
+
+	/**
+	 * @return string
+	 * @deprecated
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * @return string
+	 * @deprecated
+	 */
+	public function getType() {
+		return $this->type;
+	}
+
+	/**
+	 * @return array
+	 * @deprecated
+	 */
+	public function getEnumeration() {
+		return $this->enumeration;
 	}
 }

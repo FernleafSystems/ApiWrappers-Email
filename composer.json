@@ -11,7 +11,7 @@
   ],
   "require":      {
     "ext-json":                         "*",
-    "fernleafsystems/apiwrappers-base": "^1.0"
+    "fernleafsystems/apiwrappers-base": "^1.1.7"
   },
   "require-dev":  {
   },

@@ -47,8 +47,8 @@ class Delete extends Api {
 		/** @var AttributeVO $oAttr */
 		$oAttr = $this->getParam( 'attribute' );
 		return sprintf( 'contacts/attributes/%s/%s',
-			rawurlencode( $oAttr->getCategory() ),
-			rawurlencode( $oAttr->getName() )
+			rawurlencode( $oAttr->category ),
+			rawurlencode( $oAttr->name )
 		);
 	}
 }

@@ -65,7 +65,7 @@ class OrderVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
 	 * @return $this
 	 */
 	public function setDateAt( $nTs ) {
-		$this->occurred_at = Drip\Api::convertToStandardDateFormat( $nTs );
+		$this->occurred_at = Drip\Api::convertToStdDateFormat( $nTs );
 		return $this;
 	}
 }

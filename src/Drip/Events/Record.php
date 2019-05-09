@@ -42,7 +42,7 @@ class Record extends Drip\Api {
 	 * @return $this
 	 */
 	public function setTime( $nOccurredAt ) {
-		return $this->setRequestDataItem( 'occurred_at', $this->convertToStandardDateFormat( $nOccurredAt ) );
+		return $this->setRequestDataItem( 'occurred_at', $this->convertToStdDateFormat( $nOccurredAt ) );
 	}
 
 	/**

@@ -22,7 +22,7 @@ class Retrieve {
 
 		$oTheAttr = null;
 		foreach ( $oRtr->retrieve() as $oAttr ) {
-			if ( $sName == $oAttr->getName() ) {
+			if ( $sName == $oAttr->name ) {
 				$oTheAttr = $oAttr;
 			}
 		}
