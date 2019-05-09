@@ -9,4 +9,5 @@ use FernleafSystems\ApiWrappers\Base\BaseVO;
  * @package FernleafSystems\ApiWrappers\Email\Drip\Campaigns
  */
 class CampaignVO extends BaseVO {
+
 }

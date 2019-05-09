@@ -77,7 +77,7 @@ class PeopleVO extends BaseVO {
 
 	/**
 	 * @param string $sField
-	 * @param mixed $mValue
+	 * @param mixed  $mValue
 	 * @return $this
 	 */
 	public function setCustomField( $sField, $mValue ) {

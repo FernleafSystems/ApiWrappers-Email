@@ -82,6 +82,6 @@ trait RetrievePageConsumer {
 	 * @return $this
 	 */
 	public function filterByTimestampField( $sField, $nTimestamp ) {
-		return $this->setRequestDataItem( $sField, $this->convertToStandardDateFormat( $nTimestamp ) );
+		return $this->setRequestDataItem( $sField, $this->convertToStdDateFormat( $nTimestamp ) );
 	}
 }

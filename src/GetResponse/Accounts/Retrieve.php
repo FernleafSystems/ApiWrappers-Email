@@ -11,13 +11,6 @@ class Retrieve extends \FernleafSystems\ApiWrappers\Email\GetResponse\Api {
 	const REQUEST_METHOD = 'get';
 
 	/**
-	 * @return AccountVO|null
-	 */
-	public function asVo() {
-		return parent::asVo();
-	}
-
-	/**
 	 * @return AccountVO|mixed
 	 */
 	protected function getVO() {
@@ -28,6 +21,6 @@ class Retrieve extends \FernleafSystems\ApiWrappers\Email\GetResponse\Api {
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( 'accounts' );
+		return 'accounts';
 	}
 }
