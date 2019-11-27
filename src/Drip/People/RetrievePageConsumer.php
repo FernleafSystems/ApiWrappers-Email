@@ -18,7 +18,7 @@ trait RetrievePageConsumer {
 	 * @return RetrievePage
 	 */
 	public function getPageRetriever() {
-		if ( !isset( $this->oPager ) ) {
+		if ( !isset( $this->oRetrievePager ) ) {
 			$this->oRetrievePager = ( new RetrievePage() )->setConnection( $this->getConnection() );
 		}
 		return $this->oRetrievePager;
