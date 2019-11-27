@@ -45,7 +45,9 @@ trait RetrievePageConsumer {
 		$aTags = explode( ',', $sTags );
 		$aTags[] = $sNewTag;
 
-		return $this->setRequestDataItem( 'tags', implode( ',', array_unique( $aTags ) ) );
+		$this->getPageRetriever()
+			 ->setRequestDataItem( 'tags', implode( ',', array_unique( $aTags ) ) );
+		return $this;
 	}
 
 	/**
@@ -55,7 +57,8 @@ trait RetrievePageConsumer {
 	public function filterByStatus( $sStatus ) {
 		$sStatus = strtolower( $sStatus );
 		if ( in_array( $sStatus, [ 'active', 'unsubscribed', 'undeliverable', 'active_or_unsubscribed', 'all' ] ) ) {
-			$this->setRequestDataItem( 'status', $sStatus );
+			$this->getPageRetriever()
+				 ->setRequestDataItem( 'status', $sStatus );
 		}
 		return $this;
 	}
@@ -82,6 +85,8 @@ trait RetrievePageConsumer {
 	 * @return $this
 	 */
 	public function filterByTimestampField( $sField, $nTimestamp ) {
-		return $this->setRequestDataItem( $sField, $this->convertToStdDateFormat( $nTimestamp ) );
+		$oPager = $this->getPageRetriever();
+		$oPager->setRequestDataItem( $sField, $oPager->convertToStdDateFormat( $nTimestamp ) );
+		return $this;
 	}
 }
