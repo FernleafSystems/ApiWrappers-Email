@@ -42,9 +42,9 @@ class SendEmail {
 			$msgID = $res->MessageID;
 		}
 		catch ( PostmarkException $pe ) {
-			error_log( $pe->httpStatusCode );
-			error_log( $pe->message );
-			error_log( $pe->postmarkApiErrorCode );
+			error_log( (string)$pe->httpStatusCode );
+			error_log( (string)$pe->message );
+			error_log( (string)$pe->postmarkApiErrorCode );
 		}
 		catch ( \Exception $e ) {
 			error_log( $e->getMessage() );
