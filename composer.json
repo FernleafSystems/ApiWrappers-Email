@@ -10,8 +10,10 @@
   "repositories": [
   ],
   "require":      {
+    "php":                              ">=7.4",
     "ext-json":                         "*",
-    "fernleafsystems/apiwrappers-base": "^1.1.7"
+    "fernleafsystems/apiwrappers-base": "^1.1.7",
+    "wildbit/postmark-php":             "^4.0"
   },
   "require-dev":  {
   },
