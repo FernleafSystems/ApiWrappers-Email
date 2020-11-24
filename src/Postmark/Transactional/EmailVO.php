@@ -15,17 +15,23 @@ class EmailVO extends \FernleafSystems\ApiWrappers\Email\Common\Transactional\Em
 	public const TRACK_LINKS_TEXT = 'TextOnly';
 
 	public function getTrackLinks() :string {
-		if ( isset( $this->track_links ) && $this->track_links !== false ) {
-			if ( $this->track_links === true ) {
-				$trk = self::TRACK_LINKS_BOTH;
-			}
-			else {
-				$trk = $this->track_links;
-			}
-		}
-		else {
+		$trk = null;
+
+		if ( $this->track_links === false ) {
 			$trk = self::TRACK_LINKS_NONE;
 		}
-		return $trk;
+		elseif ( !isset( $this->track_links ) || $this->track_links === true ) {
+			$trk = self::TRACK_LINKS_BOTH;
+		}
+		else {
+			try {
+				if ( in_array( $this->track_links, ( new \ReflectionClass( $this ) )->getConstants() ) ) {
+					$trk = $this->track_links;
+				}
+			}
+			catch ( \ReflectionException $e ) {
+			}
+		}
+		return empty( $trk ) ? self::TRACK_LINKS_BOTH : $trk;
 	}
 }
