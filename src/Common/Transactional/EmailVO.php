@@ -17,7 +17,7 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  * @property string       $text
  * @property array|string $tags
  * @property bool         $track_opens
- * @property bool         $track_links
+ * @property bool|string  $track_links
  */
 class EmailVO {
 

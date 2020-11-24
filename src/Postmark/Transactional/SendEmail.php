@@ -3,6 +3,7 @@
 namespace FernleafSystems\ApiWrappers\Email\Postmark\Transactional;
 
 use FernleafSystems\ApiWrappers\Base\ConnectionConsumer;
+use FernleafSystems\ApiWrappers\Email\Common\Transactional\EmailSender;
 use FernleafSystems\ApiWrappers\Email\Postmark\Connection;
 use Postmark\Models\PostmarkException;
 use Postmark\PostmarkClient;
@@ -10,13 +11,16 @@ use Postmark\PostmarkClient;
 class SendEmail {
 
 	use ConnectionConsumer;
+	use EmailSender;
 
-	public function send( EmailVO $email ) :?string {
+	public function send() :?string {
 		/** @var Connection $conn */
 		$conn = $this->getConnection();
 
 		$msgID = null;
 
+		/** @var EmailVO $email */
+		$email = $this->getEmailVO();
 		try {
 			$res = ( new PostmarkClient( $conn->api_key ) )->sendEmail(
 				$email->from,
@@ -31,7 +35,7 @@ class SendEmail {
 				$email->bcc, // BCC
 				null, // Header array
 				null, // Attachment array
-				$email->track_links ?? true,
+				$email->getTrackLinks(),
 				null, // Metadata array
 				$email->stream ?? 'outbound'
 			);
@@ -45,6 +49,7 @@ class SendEmail {
 		catch ( \Exception $e ) {
 			error_log( $e->getMessage() );
 		}
+
 		return $msgID;
 	}
 }
