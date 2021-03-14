@@ -10,7 +10,7 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	/**
 	 * @return string
 	 */
-	public function getBaseUrl() {
+	public function getBaseUrl():string{
 		return sprintf( static::API_URL, explode( '-', $this->api_key )[ 1 ], static::API_VERSION );
 	}
 }

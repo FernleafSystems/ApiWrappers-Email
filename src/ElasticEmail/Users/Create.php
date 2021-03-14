@@ -52,7 +52,7 @@ class Create extends Api {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'contact/quickadd';
 	}
 }

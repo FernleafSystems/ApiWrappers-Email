@@ -40,13 +40,13 @@ class ContactsIterator extends \FernleafSystems\ApiWrappers\Email\Common\CommonI
 	}
 
 	/**
-	 * @param int $nPage
+	 * @param int $pageNumber
 	 * @return array|MemberVO[]
 	 */
-	public function getPage( $nPage ) {
+	public function getPage( $pageNumber ) {
 		return ( new RetrievePage() )
 			->setConnection( $this->getConnection() )
-			->retrieve( $nPage*$this->getPageSize(), $this->getPageSize(), $this->getListId() );
+			->retrieve( $pageNumber*$this->getPageSize(), $this->getPageSize(), $this->getListId() );
 	}
 
 	/**

@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Common\Webhooks;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\Utilities\Data\Adapter\DynProperties;
 
 /**
  * Class WebhookVO
@@ -10,12 +10,9 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  */
 class WebhookVO {
 
-	use StdClassAdapter;
+	use DynProperties;
 
-	/**
-	 * @return bool
-	 */
-	public function isValid() {
+	public function isValid() :bool {
 		return false;
 	}
 }

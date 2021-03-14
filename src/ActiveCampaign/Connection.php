@@ -17,7 +17,7 @@ class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 	/**
 	 * @return string
 	 */
-	public function getBaseUrl() {
+	public function getBaseUrl() :string{
 		return sprintf( self::API_URL, $this->account_id, self::API_VERSION );
 	}
 

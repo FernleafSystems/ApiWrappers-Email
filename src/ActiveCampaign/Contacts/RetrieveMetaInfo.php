@@ -15,7 +15,8 @@ class RetrieveMetaInfo extends Base {
 	 * @return $this
 	 */
 	public function setContact( $oContact ) {
-		return $this->setParam( 'id', $oContact->id );
+		$this->id = $oContact->id;
+		return $this;
 	}
 
 	/**
@@ -52,17 +53,14 @@ class RetrieveMetaInfo extends Base {
 	 */
 	public function retrieveMeta( $sKey ) {
 		$aInfo = null;
-		$this->setParam( 'meta', $sKey )->req();
-		if ( $this->isLastRequestSuccess() ) {
+		$this->meta = $sKey;
+		if ( $this->req()->isLastRequestSuccess() ) {
 			$aInfo = $this->getDecodedResponseBody()[ $sKey ];
 		}
 		return $aInfo;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s/%s', parent::getUrlEndpoint(), $this->getParam( 'id' ), $this->getParam( 'meta' ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( '%s/%s/%s', parent::getUrlEndpoint(), $this->id, $this->meta );
 	}
 }

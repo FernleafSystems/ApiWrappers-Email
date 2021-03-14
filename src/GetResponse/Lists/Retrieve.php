@@ -5,6 +5,7 @@ namespace FernleafSystems\ApiWrappers\Email\GetResponse\Lists;
 /**
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\GetResponse\Lists
+ * @property string $id
  */
 class Retrieve extends Base {
 
@@ -35,32 +36,23 @@ class Retrieve extends Base {
 	 */
 	public function byId( $sId ) {
 		$oVo = null;
-		$this->setParam( 'id', $sId )->req();
+		$this->id = $sId;
+		$this->req();
 		if ( $this->isLastRequestSuccess() ) {
 			$oVo = $this->getVO()->applyFromArray( $this->getDecodedResponseBody() );
 		}
 		return $oVo;
 	}
 
-	/**
-	 * @return ListVO|null
-	 */
-	public function asVo() {
-		return parent::asVo();
-	}
-
-	/**
-	 * @return ListVO
-	 */
-	protected function getVO() {
+	protected function getVO() :ListVO {
 		return new ListVO();
 	}
 
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
-		$sId = $this->getParam( 'id' );
+	protected function getUrlEndpoint() :string {
+		$sId = $this->id;
 		$sEndPoint = parent::getUrlEndpoint();
 		return empty( $sId ) ? $sEndPoint : $sEndPoint.'/'.$sId;
 	}

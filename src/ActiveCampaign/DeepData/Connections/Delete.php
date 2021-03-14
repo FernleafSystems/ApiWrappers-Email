@@ -15,15 +15,12 @@ class Delete extends Base {
 	 * @return bool
 	 */
 	public function byId( $sId ) {
-		return $this->setParam( 'id', $sId )
-					->req()
+		$this->id = $sId;
+		return $this->req()
 					->isLastRequestSuccess();
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getParam( 'id' ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->id );
 	}
 }

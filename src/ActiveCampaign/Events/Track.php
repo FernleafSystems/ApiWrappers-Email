@@ -4,14 +4,20 @@ namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\Events;
 
 use FernleafSystems\ApiWrappers\Email\ActiveCampaign;
 
+/**
+ * Class Track
+ * @package FernleafSystems\ApiWrappers\Email\ActiveCampaign\Events
+ * @property string $contact_email
+ */
 class Track extends ActiveCampaign\Api {
 
 	/**
-	 * @param string $sEmail
+	 * @param string $email
 	 * @return $this
 	 */
-	public function setContactEmail( $sEmail ) {
-		return $this->setParam( 'contact_email', $sEmail );
+	public function setContactEmail( $email ) {
+		$this->contact_email = $email;
+		return $this;
 	}
 
 	/**
@@ -33,7 +39,7 @@ class Track extends ActiveCampaign\Api {
 	/**
 	 * @return string
 	 */
-	protected function getBaseUrl() {
+	protected function getBaseUrl() :string {
 		/** @var ActiveCampaign\Connection $oCon */
 		$oCon = $this->getConnection();
 		return rtrim( $oCon->getEventsTrackingUrl(), '/' );
@@ -42,33 +48,24 @@ class Track extends ActiveCampaign\Api {
 	/**
 	 * @return string
 	 */
-	public function getDataChannel() {
+	public function getDataChannel() :string {
 		return 'form_params';
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function getRequestContentType() {
-		return $this->getStringParam( 'request_content_type', 'application/x-www-form-urlencoded' );
+	public function getRequestContentType() :string {
+		return 'application/x-www-form-urlencoded';
 	}
 
-	/**
-	 * @return array
-	 */
-	public function getRequestData() {
+	public function getRequestData() :array {
 		/** @var ActiveCampaign\Connection $oCon */
 		$oCon = $this->getConnection();
-
-		$aExtraData = [
-			'actid' => $oCon->events_account_id,
-			'key'   => $oCon->events_tracking_key,
-			'visit' => json_encode( [ 'email' => $this->getStringParam( 'contact_email' ) ] )
-		];
-
 		return array_merge(
 			parent::getRequestData(),
-			$aExtraData
+			[
+				'actid' => $oCon->events_account_id,
+				'key'   => $oCon->events_tracking_key,
+				'visit' => json_encode( [ 'email' => $this->contact_email ] )
+			]
 		);
 	}
 
@@ -86,23 +83,17 @@ class Track extends ActiveCampaign\Api {
 		if ( empty( $oCon->events_tracking_key ) ) {
 			throw new \Exception( 'Attempting to make Tracking request without Events Key' );
 		}
-		$sEmail = $this->getStringParam( 'contact_email' );
+		$sEmail = $this->contact_email;
 		if ( empty( $sEmail ) ) {
 			throw new \Exception( 'Attempting to make Tracking request without a contact Email' );
 		}
 	}
 
-	/**
-	 * @return string[]
-	 */
-	protected function getCriticalRequestItems() {
+	protected function getCriticalRequestItems() :array {
 		return [ 'event', 'eventdata' ];
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return '';
 	}
 }

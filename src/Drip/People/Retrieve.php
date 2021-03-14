@@ -9,21 +9,18 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 class Retrieve extends Base {
 
 	use SubscriberAction;
+
 	const REQUEST_METHOD = 'get';
 
 	/**
-	 * @param string $sEmail
+	 * @param string $email
 	 * @return PeopleVO|null
 	 */
-	public function byEmail( $sEmail ) {
-		return $this->setEmail( $sEmail )
-					->asVo();
+	public function byEmail( $email ) {
+		return $this->setEmail( $email )->asVo();
 	}
 
-	/**
-	 * @return PeopleVO|null
-	 */
-	public function asVo() {
+	public function asVo() :?PeopleVO {
 		$oMember = null;
 		if ( $this->req()->isLastRequestSuccess() ) {
 			$aRes = $this->getDecodedResponseBody();
@@ -34,10 +31,7 @@ class Retrieve extends Base {
 		return $oMember;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getSubId() );
 	}
 }

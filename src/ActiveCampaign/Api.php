@@ -12,22 +12,14 @@ class Api extends \FernleafSystems\ApiWrappers\Base\BaseApi {
 
 	const ENDPOINT_KEY = '';
 
-	/**
-	 * @return BaseVO|mixed
-	 */
-	protected function getVO() {
+	protected function getVO() :BaseVO {
 		return new BaseVO();
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return static::ENDPOINT_KEY.'s';
 	}
 
-	/**
-	 */
 	protected function preFlight() {
 		$this->setRequestHeader( 'Api-Token', $this->getConnection()->api_key );
 	}

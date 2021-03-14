@@ -10,10 +10,7 @@ class Pause extends Base {
 
 	use CampaignAction;
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s/pause', parent::getUrlEndpoint(), $this->getCampaignId() );
 	}
 }

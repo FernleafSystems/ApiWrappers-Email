@@ -11,11 +11,11 @@ use FernleafSystems\ApiWrappers\Email\Drip;
 class Orders_Record extends Base {
 
 	/**
-	 * @param Drip\ShopperActivity\Order\OrderVO $oOrder
+	 * @param Drip\ShopperActivity\Order\OrderVO $order
 	 * @return $this
 	 */
-	public function addOrder( Drip\ShopperActivity\Order\OrderVO $oOrder ) {
-		return $this->addOrderData( $oOrder->getRawDataAsArray() );
+	public function addOrder( Drip\ShopperActivity\Order\OrderVO $order ) {
+		return $this->addOrderData( $order->getRawData() );
 	}
 
 	/**
@@ -31,10 +31,7 @@ class Orders_Record extends Base {
 		return $this->setRequestDataItem( 'orders', $aSubs );
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', 'order', parent::getUrlEndpoint() );
 	}
 }

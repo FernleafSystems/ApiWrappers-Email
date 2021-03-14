@@ -7,6 +7,8 @@ use FernleafSystems\ApiWrappers\Email\Drip\People\PeopleVO;
 /**
  * Class WebhookVO
  * @package FernleafSystems\ApiWrappers\Email\Drip\Webhooks
+ * @property string $event
+ * @property array  $data
  */
 class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\WebhookVO {
 
@@ -21,7 +23,7 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 * @return string
 	 */
 	public function getEvent() {
-		return $this->getStringParam( 'event' );
+		return $this->event;
 	}
 
 	/**
@@ -42,16 +44,15 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 * @return array
 	 */
 	public function getWebhookData() {
-		return $this->getArrayParam( 'data' );
+		return $this->data;
 	}
 
 	/**
-	 * @param string $sKey
+	 * @param string $key
 	 * @return mixed|null
 	 */
-	public function getWebhookDataItem( $sKey ) {
-		$aD = $this->getArrayParam( 'data' );
-		return isset( $aD[ $sKey ] ) ? $aD[ $sKey ] : null;
+	public function getWebhookDataItem( $key ) {
+		return $this->data[ $key ] ?? null;
 	}
 
 	/**
@@ -115,7 +116,7 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	/**
 	 * @return bool
 	 */
-	public function isValid() {
+	public function isValid() :bool {
 		return !empty( $this->getAccountId() );
 	}
 

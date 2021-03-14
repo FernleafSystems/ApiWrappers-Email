@@ -65,7 +65,7 @@ class Create extends Base {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( 'lists/%s/members', $this->getListId() );
 	}
 }

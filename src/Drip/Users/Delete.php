@@ -14,7 +14,7 @@ class Delete extends Base {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getSubId() );
 	}
 }

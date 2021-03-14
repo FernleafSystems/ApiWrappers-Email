@@ -12,10 +12,7 @@ class Base extends ActiveCampaign\Api {
 
 	const ENDPOINT_KEY = 'tag';
 
-	/**
-	 * @return TagVO
-	 */
-	protected function getVO() {
+	protected function getVO() :TagVO{
 		return new TagVO();
 	}
 }

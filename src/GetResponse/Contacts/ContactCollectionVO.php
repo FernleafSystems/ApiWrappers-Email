@@ -69,10 +69,7 @@ class ContactCollectionVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
 		return in_array( $sIdOrName, $this->getListNames() ) || in_array( $sIdOrName, $this->getListIds() );
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isValid() {
+	public function isValid() :bool {
 		return parent::isValid() && !empty( $this->getListContacts() );
 	}
 }

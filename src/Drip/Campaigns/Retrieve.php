@@ -9,6 +9,7 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\Campaigns;
 class Retrieve extends Base {
 
 	use CampaignAction;
+
 	const REQUEST_METHOD = 'get';
 
 	/**
@@ -20,10 +21,7 @@ class Retrieve extends Base {
 					->asVo();
 	}
 
-	/**
-	 * @return CampaignVO|null
-	 */
-	public function asVo() {
+	public function asVo() :?CampaignVO {
 		$oMember = null;
 		if ( $this->req()->isLastRequestSuccess() ) {
 			$aRes = $this->getDecodedResponseBody();
@@ -34,10 +32,7 @@ class Retrieve extends Base {
 		return $oMember;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getCampaignId() );
 	}
 }

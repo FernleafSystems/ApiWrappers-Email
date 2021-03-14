@@ -13,7 +13,8 @@ trait SubscriberAction {
 	 * @return $this
 	 */
 	public function setEmail( $sVal ) {
-		return $this->setParam( 'sub_identifier', $sVal );
+		$this->sub_identifier = $sVal;
+		return $this;
 	}
 
 	/**
@@ -21,13 +22,14 @@ trait SubscriberAction {
 	 * @return $this
 	 */
 	public function setId( $sVal ) {
-		return $this->setParam( 'sub_identifier', $sVal );
+		$this->sub_identifier = $sVal;
+		return $this;
 	}
 
 	/**
 	 * @return string - url-encoded
 	 */
 	private function getSubId() {
-		return rawurlencode( $this->getStringParam( 'sub_identifier' ) );
+		return rawurlencode( $this->sub_identifier );
 	}
 }

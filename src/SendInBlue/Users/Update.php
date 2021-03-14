@@ -11,13 +11,11 @@ class Update extends Create {
 	 * @return $this
 	 */
 	public function setEmail( $sEmail ) {
-		return $this->setParam( 'email', $sEmail );
+		$this->email = $sEmail;
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( 'contacts/%s', rawurlencode( $this->getStringParam( 'email' ) ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( 'contacts/%s', rawurlencode( $this->email ) );
 	}
 }

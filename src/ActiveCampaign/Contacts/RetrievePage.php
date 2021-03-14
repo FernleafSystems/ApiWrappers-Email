@@ -40,11 +40,8 @@ class RetrievePage extends Base {
 		return $aMembers;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		$nListId = $this->getParam( 'list_id' );
+	protected function getUrlEndpoint() :string {
+		$nListId = $this->list_id;
 		return is_numeric( $nListId ) ? sprintf( 'contacts/lists/%s/contacts', $nListId ) : 'contacts';
 	}
 }

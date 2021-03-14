@@ -13,10 +13,7 @@ namespace FernleafSystems\ApiWrappers\Email\GetResponse\Lists;
  */
 class ListVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
 
-	/**
-	 * @return bool
-	 */
-	public function isValid() {
+	public function isValid() :bool {
 		return parent::isValid() && !empty( $this->campaignId );
 	}
 }

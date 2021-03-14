@@ -15,7 +15,7 @@ class Api extends BaseApi {
 	/**
 	 * @return array
 	 */
-	public function getRequestDataFinal() {
+	public function getRequestDataFinal() :array{
 		$aData = parent::getRequestDataFinal();
 		$aData[ 'apikey' ] = $this->getConnection()->api_key;
 		return $aData;

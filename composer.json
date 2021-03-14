@@ -11,9 +11,9 @@
   ],
   "require":      {
     "php":                              ">=7.4",
-    "ext-json":                         "*",
-    "fernleafsystems/apiwrappers-base": "^1.1.7",
-    "wildbit/postmark-php":             "^4.0"
+    "fernleafsystems/apiwrappers-base": "^2.0",
+    "wildbit/postmark-php":             "^4.0",
+    "ext-json":                         "*"
   },
   "require-dev":  {
   },

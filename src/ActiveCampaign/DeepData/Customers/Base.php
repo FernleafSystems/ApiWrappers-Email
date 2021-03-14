@@ -12,10 +12,7 @@ class Base extends ActiveCampaign\DeepData\Base\DeepDataBase {
 
 	const ENDPOINT_KEY = 'ecomCustomer';
 
-	/**
-	 * @return CustomerVO
-	 */
-	protected function getVO() {
+	protected function getVO() :CustomerVO{
 		return new CustomerVO();
 	}
 }

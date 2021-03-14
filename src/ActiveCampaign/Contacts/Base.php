@@ -12,10 +12,7 @@ class Base extends ActiveCampaign\Api {
 
 	const ENDPOINT_KEY = 'contact';
 
-	/**
-	 * @return ContactVO
-	 */
-	protected function getVO() {
+	protected function getVO():ContactVO {
 		return new ContactVO();
 	}
 }

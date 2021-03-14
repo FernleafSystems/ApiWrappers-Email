@@ -32,14 +32,12 @@ class Count extends SendInBlue\Api {
 	 * @return $this
 	 */
 	protected function setListId( $nListId ) {
-		return $this->setParam( 'list_id', $nListId );
+		$this->list_id = $nListId;
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		$nListId = $this->getParam( 'list_id' );
+	protected function getUrlEndpoint() :string {
+		$nListId = $this->list_id;
 		return is_numeric( $nListId ) ? sprintf( 'contacts/lists/%s/contacts', $nListId ) : 'contacts';
 	}
 }

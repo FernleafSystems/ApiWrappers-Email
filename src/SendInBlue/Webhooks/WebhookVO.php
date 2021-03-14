@@ -12,44 +12,44 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 * @return int
 	 */
 	public function getWebhookId() {
-		return $this->getParam( 'id' );
+		return $this->id;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getSubscriberEmail() {
-		return $this->getStringParam( 'email' );
+		return $this->email;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getEvent() {
-		return $this->getParam( 'event' );
+		return $this->event;
 	}
 
 	/**
 	 * @return int
 	 */
 	public function getEventTimestamp() {
-		return $this->getParam( 'ts_event' );
+		return $this->ts_event;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getEventReason() {
-		return $this->getStringParam( 'reason' );
+		return $this->reason;
 	}
 
 	/**
 	 * @return int
 	 */
 	public function getFiredAt() {
-		$nTs = $this->getParam( 'ts_sent' );
+		$nTs = $this->ts_sent;
 		if ( empty( $nTs ) ) {
-			$nTs = strtotime( $this->getStringParam( 'date' ) );
+			$nTs = strtotime( $this->date );
 		}
 		return $nTs;
 	}
@@ -58,14 +58,14 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 * @return string
 	 */
 	public function getKey() {
-		return $this->getStringParam( 'key' );
+		return $this->key;
 	}
 
 	/**
 	 * @return int[]
 	 */
 	public function getListIds() {
-		return $this->getArrayParam( 'list_id' );
+		return $this->list_id;
 	}
 
 	/**
@@ -93,7 +93,7 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	/**
 	 * @return bool
 	 */
-	public function isValid() {
+	public function isValid() :bool {
 		return !empty( $this->getWebhookId() );
 	}
 }

@@ -26,7 +26,7 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 * @return string
 	 */
 	public function getEvent() {
-		return $this->getStringParam( 'type' );
+		return $this->type;
 	}
 
 	/**
@@ -34,7 +34,7 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 * @return int|string
 	 */
 	public function getFiredAt( $bAsTimestamp = true ) {
-		$sTimestamp = $this->getStringParam( 'fired_at' );
+		$sTimestamp = $this->fired_at;
 		return $bAsTimestamp ? strtotime( $sTimestamp ) : $sTimestamp;
 	}
 
@@ -122,7 +122,7 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 	 * @return array
 	 */
 	public function getWebhookData() {
-		return $this->getArrayParam( 'data' );
+		return $this->data;
 	}
 
 	/**
@@ -175,10 +175,7 @@ class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\Webho
 		return $this->isEvent_Subscribe();
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isValid() {
+	public function isValid() :bool {
 		return !empty( $this->getEvent() );
 	}
 

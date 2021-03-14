@@ -12,17 +12,14 @@ class Base extends Drip\Api {
 
 	const ENDPOINT_KEY = 'campaigns';
 
-	/**
-	 * @return CampaignVO
-	 */
-	protected function getVO() {
+	protected function getVO() :CampaignVO {
 		return new CampaignVO();
 	}
 
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return static::ENDPOINT_KEY;
 	}
 }

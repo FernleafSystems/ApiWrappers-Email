@@ -19,10 +19,7 @@ namespace FernleafSystems\ApiWrappers\Email\GetResponse\Webhooks;
  */
 class WebhookVO extends \FernleafSystems\ApiWrappers\Email\Common\Webhooks\WebhookVO {
 
-	/**
-	 * @return bool
-	 */
-	public function isValid() {
-		return !empty( $this->getRawDataAsArray() );
+	public function isValid() :bool {
+		return !empty( $this->getRawData() );
 	}
 }

@@ -10,17 +10,11 @@ class Retrieve extends \FernleafSystems\ApiWrappers\Email\GetResponse\Api {
 
 	const REQUEST_METHOD = 'get';
 
-	/**
-	 * @return AccountVO|mixed
-	 */
-	protected function getVO() {
+	protected function getVO() :AccountVO {
 		return new AccountVO();
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'accounts';
 	}
 }

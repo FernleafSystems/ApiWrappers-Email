@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\SendInBlue\Attributes;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\Utilities\Data\Adapter\DynProperties;
 
 /**
  * Class AttributeVO
@@ -14,7 +14,7 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  */
 class AttributeVO {
 
-	use StdClassAdapter;
+	use DynProperties;
 
 	/**
 	 * @return bool

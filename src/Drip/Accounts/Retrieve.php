@@ -7,6 +7,7 @@ use FernleafSystems\ApiWrappers\Email\Drip;
 /**
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\Drip\Accounts
+ * @property string $id
  */
 class Retrieve extends RetrieveAll {
 
@@ -20,18 +21,14 @@ class Retrieve extends RetrieveAll {
 	}
 
 	/**
-	 * @param string $sId
+	 * @param string $id
 	 * @return AccountVO|null
 	 */
-	public function byId( $sId ) {
-		return $this->setId( $sId )
-					->asVO();
+	public function byId( $id ) {
+		return $this->setId( $id )->asVO();
 	}
 
-	/**
-	 * @return AccountVO|null
-	 */
-	public function asVO() {
+	public function asVO() :?AccountVO {
 		$aAcs = parent::asVOs();
 		return array_pop( $aAcs );
 	}
@@ -41,13 +38,11 @@ class Retrieve extends RetrieveAll {
 	 * @return $this
 	 */
 	public function setId( $sId ) {
-		return $this->setParam( 'id', $sId );
+		$this->id = $sId;
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return static::ENDPOINT_KEY.'/'.rawurlencode( $this->getParam( 'id' ) );
+	protected function getUrlEndpoint() :string {
+		return static::ENDPOINT_KEY.'/'.rawurlencode( $this->id );
 	}
 }

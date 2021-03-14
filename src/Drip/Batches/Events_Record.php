@@ -26,7 +26,7 @@ class Events_Record extends Base {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', 'events', parent::getUrlEndpoint() );
 	}
 }

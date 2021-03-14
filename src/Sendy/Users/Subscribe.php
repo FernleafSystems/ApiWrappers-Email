@@ -40,7 +40,7 @@ class Subscribe extends Unsubscribe {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'subscribe';
 	}
 }

@@ -14,28 +14,28 @@ class AccountVO extends BaseVO {
 	 * @return array
 	 */
 	public function getAddress() {
-		return $this->getArrayParam( 'address' );
+		return $this->address;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getEmail() {
-		return $this->getStringParam( 'email' );
+		return $this->email;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getFirstName() {
-		return $this->getStringParam( 'firstName' );
+		return $this->firstName;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getLastName() {
-		return $this->getStringParam( 'lastName' );
+		return $this->lastName;
 	}
 
 	/**
@@ -49,7 +49,7 @@ class AccountVO extends BaseVO {
 	 * @return string
 	 */
 	public function getCompanyName() {
-		return $this->getStringParam( 'companyName' );
+		return $this->companyName;
 	}
 
 	/**

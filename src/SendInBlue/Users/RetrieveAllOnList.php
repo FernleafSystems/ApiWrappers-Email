@@ -51,13 +51,14 @@ class RetrieveAllOnList extends SendInBlue\Api {
 	 * @return $this
 	 */
 	public function setListId( $nListId ) {
-		return $this->setParam( 'list_id', $nListId );
+		$this->list_id = $nListId;
+		return $this;
 	}
 
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
-		return sprintf( 'contacts/lists/%s/contacts', $this->getParam( 'list_id' ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( 'contacts/lists/%s/contacts', $this->list_id );
 	}
 }

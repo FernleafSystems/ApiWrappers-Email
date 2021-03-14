@@ -17,13 +17,11 @@ class Remove extends ActiveCampaign\Api {
 	 * @return $this
 	 */
 	public function run( $sContactTagId ) {
-		return $this->setParam( 'contactTagId', $sContactTagId );
+		$this->contactTagId = $sContactTagId;
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getParam( 'contactTagId' ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->contactTagId );
 	}
 }

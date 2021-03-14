@@ -51,7 +51,7 @@ class RetrieveAll extends Api {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'contacts/attributes';
 	}
 }

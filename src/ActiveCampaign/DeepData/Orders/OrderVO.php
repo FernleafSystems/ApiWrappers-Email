@@ -48,6 +48,7 @@ class OrderVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
 		if ( is_int( $nTimestamp ) ) {
 			$nTimestamp = date( 'c', $nTimestamp );
 		}
-		return $this->orderDate = $nTimestamp;
+		$this->orderDate = $nTimestamp;
+		return $this;
 	}
 }

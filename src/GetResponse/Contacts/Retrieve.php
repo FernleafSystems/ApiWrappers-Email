@@ -5,6 +5,7 @@ namespace FernleafSystems\ApiWrappers\Email\GetResponse\Contacts;
 /**
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\GetResponse\Contacts
+ * @property string $id
  */
 class Retrieve extends Base {
 
@@ -73,38 +74,24 @@ class Retrieve extends Base {
 	/**
 	 * Each email on a list is considered a separate contact and has a separate ID.  So this requests returns that
 	 * contact for that particular list.
-	 * @param string $sId
+	 * @param string $id
 	 * @return ContactOnListVO
 	 */
-	public function byId( $sId ) {
+	public function byId( $id ) {
 		$oVo = null;
-		$this->setParam( 'id', $sId )->req();
+		$this->id = $id;
+		$this->req();
 		if ( $this->isLastRequestSuccess() ) {
 			$oVo = ( new ContactOnListVO() )->applyFromArray( $this->getDecodedResponseBody() );
 		}
 		return $oVo;
 	}
 
-	/**
-	 * @return ContactCollectionVO|null
-	 */
-	public function asVo() {
-		return parent::asVo();
-	}
-
-	/**
-	 * @return ContactOnListVO
-	 */
-	protected function getVO() {
+	protected function getVO() :ContactOnListVO {
 		return new ContactOnListVO();
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		$sId = $this->getParam( 'id' );
-		$sEndPoint = parent::getUrlEndpoint();
-		return empty( $sId ) ? $sEndPoint : $sEndPoint.'/'.$sId;
+	protected function getUrlEndpoint() :string {
+		return empty( $this->id ) ? parent::getUrlEndpoint() : parent::getUrlEndpoint().'/'.$this->id;
 	}
 }

@@ -13,7 +13,7 @@ class Count extends Api {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'api/subscribers/active-subscriber-count.php';
 	}
 }

@@ -78,10 +78,7 @@ class Create extends Base {
 		return $this->setRequestDataItem( 'name', $sFirst.' '.$sLast );
 	}
 
-	/**
-	 * @return array
-	 */
-	protected function getCriticalRequestItems() {
+	protected function getCriticalRequestItems():array {
 		return [ 'email', 'campaign', 'name' ];
 	}
 }

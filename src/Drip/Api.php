@@ -14,17 +14,14 @@ class Api extends BaseApi {
 	const IS_ACCOUNT_REQUEST = true;
 
 	/**
-	 * @param int $nTimestamp
+	 * @param int $timestamp
 	 * @return string
 	 */
-	static public function convertToStdDateFormat( $nTimestamp ) {
-		return date( 'c', $nTimestamp );
+	public static function convertToStdDateFormat( $timestamp ) {
+		return date( 'c', $timestamp );
 	}
 
-	/**
-	 * @return array
-	 */
-	protected function prepFinalRequestData() {
+	protected function prepFinalRequestData() :array {
 		$aFinal = parent::prepFinalRequestData();
 		$aFinal[ 'auth' ] = [ $this->getConnection()->api_key, '' ];
 		return $aFinal;
@@ -33,7 +30,7 @@ class Api extends BaseApi {
 	/**
 	 * @return string
 	 */
-	protected function getBaseUrl() {
+	protected function getBaseUrl() :string {
 		/** @var Connection $oCon */
 		$oCon = $this->getConnection();
 		$sUrl = static::IS_ACCOUNT_REQUEST ? $oCon->getBaseUrlWithAccountId() : $oCon->getBaseUrl();
@@ -45,7 +42,7 @@ class Api extends BaseApi {
 	 * the new subscriber needs to be wrapped up in an array.
 	 * @return array
 	 */
-	public function getRequestDataFinal() {
+	public function getRequestDataFinal() :array {
 		$aPayload = $this->getRequestData();
 		$sPayloadKey = $this->getRequestPayloadDataKey();
 		if ( !empty( $sPayloadKey ) ) {

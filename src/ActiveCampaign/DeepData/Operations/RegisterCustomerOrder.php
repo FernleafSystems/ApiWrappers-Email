@@ -5,7 +5,7 @@ namespace FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData\Operations;
 use FernleafSystems\ApiWrappers\Base\ConnectionConsumer;
 use FernleafSystems\ApiWrappers\Email\ActiveCampaign\Connection;
 use FernleafSystems\ApiWrappers\Email\ActiveCampaign\DeepData;
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\Utilities\Data\Adapter\DynProperties;
 
 /**
  * Class RegisterCustomerOrder
@@ -18,8 +18,8 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  */
 class RegisterCustomerOrder {
 
-	use ConnectionConsumer,
-		StdClassAdapter;
+	use ConnectionConsumer;
+	use DynProperties;
 
 	/**
 	 * @throws \Exception

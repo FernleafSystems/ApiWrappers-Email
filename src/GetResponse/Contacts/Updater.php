@@ -22,7 +22,7 @@ trait Updater {
 		if ( $this->isLastRequestSuccess() ) {
 			$oVo = ( new Retrieve() )
 				->setConnection( $this->getConnection() )
-				->byId( $this->getParam( 'id' ) );
+				->byId( $this->id );
 		}
 		return $oVo;
 	}
@@ -32,7 +32,8 @@ trait Updater {
 	 * @return $this
 	 */
 	public function setContactId( $sId ) {
-		return $this->setParam( 'id', $sId );
+		$this->id = $sId;
+		return $this;
 	}
 
 	/**
@@ -49,7 +50,7 @@ trait Updater {
 	 */
 	protected function preSendVerification() {
 		parent::preSendVerification();
-		if ( empty( $this->getParam( 'id' ) ) ) {
+		if ( empty( $this->id ) ) {
 			throw new \Exception( 'Contact ID must be specified' );
 		}
 	}
@@ -60,12 +61,12 @@ trait Updater {
 	 */
 	protected function getCurrentContact() {
 		if ( empty( $this->oCurrentContact ) ) {
-			if ( empty( $this->getParam( 'id' ) ) ) {
+			if ( empty( $this->id ) ) {
 				throw new \Exception( "Can't access existing contact without ID" );
 			}
 			$this->oCurrentContact = ( new Retrieve() )
 				->setConnection( $this->getConnection() )
-				->byId( $this->getParam( 'id' ) );
+				->byId( $this->id );
 		}
 		return $this->oCurrentContact;
 	}
@@ -73,7 +74,7 @@ trait Updater {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
-		return 'contacts/'.$this->getParam( 'id' );
+	protected function getUrlEndpoint() :string {
+		return 'contacts/'.$this->id;
 	}
 }

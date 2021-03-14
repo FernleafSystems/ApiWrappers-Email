@@ -10,10 +10,7 @@ class Activate extends Base {
 
 	use CampaignAction;
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s/activate', parent::getUrlEndpoint(), $this->getCampaignId() );
 	}
 }

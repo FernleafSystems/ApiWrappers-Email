@@ -44,7 +44,8 @@ class Retrieve extends Base {
 	 */
 	public function byId( $sId ) {
 		$oVo = null;
-		$this->setParam( 'id', $sId )->req();
+		$this->id = $sId;
+		$this->req();
 		if ( $this->isLastRequestSuccess() ) {
 			$oVo = $this->getVO()
 						->applyFromArray( $this->getDecodedResponseBody()[ static::ENDPOINT_KEY ] );
@@ -52,10 +53,7 @@ class Retrieve extends Base {
 		return $oVo;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->getParam( 'id' ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( '%s/%s', parent::getUrlEndpoint(), $this->id );
 	}
 }

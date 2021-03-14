@@ -34,12 +34,12 @@ class PeopleIterator extends \FernleafSystems\ApiWrappers\Email\Drip\Common\Comm
 	}
 
 	/**
-	 * @param int $nPage
+	 * @param int $pageNumber
 	 * @return PeopleVO[]
 	 */
-	public function getPage( $nPage ) {
+	public function getPage( $pageNumber ) {
 		return ( clone $this->getPageRetriever() )
 			->setConnection( $this->getConnection() )
-			->retrieve( $nPage + 1, $this->getPageSize() );
+			->retrieve( $pageNumber + 1, $this->getPageSize() );
 	}
 }

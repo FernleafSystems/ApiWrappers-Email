@@ -28,14 +28,14 @@ class MemberVO extends BaseVO {
 	 * @return array
 	 */
 	public function getAttributes() {
-		return $this->getArrayParam( 'attributes' );
+		return $this->attributes;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getEmail() {
-		return $this->getStringParam( 'email' );
+		return $this->email;
 	}
 
 	/**
@@ -43,7 +43,7 @@ class MemberVO extends BaseVO {
 	 * @deprecated is this valid/used?
 	 */
 	public function getId() {
-		return $this->getNumericParam( 'id' );
+		return $this->id;
 	}
 
 	/**
@@ -58,14 +58,14 @@ class MemberVO extends BaseVO {
 	 * @return array
 	 */
 	public function getListIds() {
-		return $this->getArrayParam( 'listIds' );
+		return $this->listIds;
 	}
 
 	/**
 	 * @return array
 	 */
 	public function getUnsubscribedListIds() {
-		return $this->getArrayParam( 'list_unsubscribed' );
+		return $this->list_unsubscribed;
 	}
 
 	/**
@@ -76,11 +76,8 @@ class MemberVO extends BaseVO {
 		return $this->isGloballyBlacklisted();
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isGloballyBlacklisted() {
-		return (bool)$this->getParam( 'emailBlacklisted', false );
+	public function isGloballyBlacklisted() :bool {
+		return (bool)( $this->emailBlacklisted ?? false );
 	}
 
 	/**

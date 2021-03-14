@@ -22,7 +22,7 @@ class RetrievePage extends SendInBlue\Api {
 		$aMembers = [];
 
 		if ( is_numeric( $nListId ) ) {
-			$this->setParam( 'list_id', $nListId );
+			$this->list_id = $nListId;
 		}
 
 		try {
@@ -49,8 +49,8 @@ class RetrievePage extends SendInBlue\Api {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
-		$nListId = $this->getParam( 'list_id' );
+	protected function getUrlEndpoint() :string {
+		$nListId = $this->list_id;
 		return is_numeric( $nListId ) ? sprintf( 'contacts/lists/%s/contacts', $nListId ) : 'contacts';
 	}
 }

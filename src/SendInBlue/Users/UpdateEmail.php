@@ -44,14 +44,14 @@ class UpdateEmail extends SendInBlue\Api {
 	 * @return string
 	 */
 	public function getOriginalEmail() {
-		return $this->getParam( 'original_email' );
+		return $this->original_email;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getNewEmail() {
-		return $this->getParam( 'new_email' );
+		return $this->new_email;
 	}
 
 	/**
@@ -59,7 +59,8 @@ class UpdateEmail extends SendInBlue\Api {
 	 * @return $this
 	 */
 	public function setOriginalEmail( $sEmail ) {
-		return $this->setParam( 'original_email', $sEmail );
+		$this->original_email = $sEmail;
+		return $this;
 	}
 
 	/**
@@ -67,6 +68,7 @@ class UpdateEmail extends SendInBlue\Api {
 	 * @return $this
 	 */
 	public function setNewEmail( $sEmail ) {
-		return $this->setParam( 'new_email', $sEmail );
+		$this->new_email = $sEmail;
+		return $this;
 	}
 }

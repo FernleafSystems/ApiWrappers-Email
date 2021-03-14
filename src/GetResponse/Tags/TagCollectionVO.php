@@ -36,14 +36,11 @@ class TagCollectionVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
 	 * @param array[]
 	 */
 	public function setFromRawTags( $aRawTagsData ) {
-		$this->setParam(
-			'tags',
-			array_map(
-				function ( $aTag ) {
-					return ( new TagVO() )->applyFromArray( $aTag );
-				},
-				$aRawTagsData
-			)
+		$this->tags = array_map(
+			function ( $aTag ) {
+				return ( new TagVO() )->applyFromArray( $aTag );
+			},
+			$aRawTagsData
 		);
 	}
 }

@@ -15,7 +15,8 @@ class RemoveFromSubscriber extends Base {
 	 * @return $this
 	 */
 	public function setEmail( $sEmail ) {
-		return $this->setParam( 'email', $sEmail );
+		$this->email = $sEmail;
+		return $this;
 	}
 
 	/**
@@ -23,16 +24,17 @@ class RemoveFromSubscriber extends Base {
 	 * @return $this
 	 */
 	public function setTag( $sTag ) {
-		return $this->setParam( 'tag', $sTag );
+		$this->tag = $sTag;
+		return $this;
 	}
 
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( 'subscribers/%s/tags/%s',
-			rawurlencode( $this->getParam( 'email' ) ),
-			rawurlencode( $this->getParam( 'tag' ) )
+			rawurlencode( $this->email ),
+			rawurlencode( $this->tag )
 		);
 	}
 }

@@ -9,10 +9,7 @@ namespace FernleafSystems\ApiWrappers\Email\Sendy;
  */
 class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 
-	/**
-	 * @return string
-	 */
-	public function getBaseUrl() {
+	public function getBaseUrl() :string {
 		return $this->installation_url;
 	}
 

@@ -29,7 +29,7 @@ class RetrieveSubscriberCampaigns extends Base {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s/campaign_subscriptions', parent::getUrlEndpoint(), $this->getSubId() );
 	}
 }

@@ -30,12 +30,12 @@ class ContactsIterator extends CommonIterator {
 	}
 
 	/**
-	 * @param int $nPage
+	 * @param int $pageNumber
 	 * @return ContactVO[]
 	 */
-	public function getPage( $nPage ) {
+	public function getPage( $pageNumber ) {
 		return ( new RetrievePage() )
 			->setConnection( $this->getConnection() )
-			->retrieve( $nPage*$this->getPageSize(), $this->getPageSize() );
+			->retrieve( $pageNumber*$this->getPageSize(), $this->getPageSize() );
 	}
 }

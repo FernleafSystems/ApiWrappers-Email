@@ -2,6 +2,9 @@
 
 namespace FernleafSystems\ApiWrappers\Email\GetResponse\Accounts;
 
+use FernleafSystems\ApiWrappers\Base\BaseVO;
+use FernleafSystems\Utilities\Data\Adapter\DynProperties;
+
 /**
  * Class AccountVO
  * @package FernleafSystems\ApiWrappers\Email\GetResponse\Accounts
@@ -18,7 +21,7 @@ namespace FernleafSystems\ApiWrappers\Email\GetResponse\Accounts;
  * @property array  countryCode
  * @property string timeFormat
  */
-class AccountVO {
+class AccountVO extends BaseVO {
 
-	use \FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+	use DynProperties;
 }

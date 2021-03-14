@@ -34,7 +34,7 @@ class People_Unsubscribe extends Base {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', 'unsubscribes', parent::getUrlEndpoint() );
 	}
 }

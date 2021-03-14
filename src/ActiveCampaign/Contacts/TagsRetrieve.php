@@ -18,17 +18,14 @@ class TagsRetrieve extends ActiveCampaign\Api {
 	 */
 	public function run( $oContact ) {
 		$aTags = [];
-		$this->setParam( 'id', $oContact->id )->req();
-		if ( $this->isLastRequestSuccess() ) {
+		$this->id = $oContact->id;
+		if ( $this->req()->isLastRequestSuccess() ) {
 			$aTags = $this->getDecodedResponseBody();
 		}
 		return $aTags;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( 'contacts/%s/contactTags', $this->getParam( 'id' ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( 'contacts/%s/contactTags', $this->id );
 	}
 }

@@ -10,10 +10,7 @@ use FernleafSystems\ApiWrappers\Email\GetResponse;
  */
 class Base extends GetResponse\Api {
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'tags';
 	}
 }

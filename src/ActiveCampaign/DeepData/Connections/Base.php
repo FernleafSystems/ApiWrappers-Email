@@ -12,10 +12,7 @@ class Base extends ActiveCampaign\DeepData\Base\DeepDataBase {
 
 	const ENDPOINT_KEY = 'connection';
 
-	/**
-	 * @return ConnectionVO
-	 */
-	protected function getVO() {
+	protected function getVO():ConnectionVO {
 		return new ConnectionVO();
 	}
 }

@@ -17,13 +17,11 @@ class Base extends Drip\Api {
 	 * @return $this
 	 */
 	public function setSubscriberEmail( $sEmail ) {
-		return $this->setParam( 'subscriber_email', $sEmail );
+		$this->subscriber_email = $sEmail;
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( 'subscribers/%s/purchases', urlencode( $this->getParam( 'subscriber_email' ) ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( 'subscribers/%s/purchases', urlencode( $this->subscriber_email ) );
 	}
 }

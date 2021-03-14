@@ -14,28 +14,28 @@ class MemberVO extends BaseVO {
 	 * @return string
 	 */
 	public function getEmail() {
-		return $this->getStringParam( 'email_address' );
+		return $this->email_address;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getId() {
-		return $this->getStringParam( 'id' );
+		return $this->id;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getListId() {
-		return $this->getStringParam( 'list_id' );
+		return $this->list_id;
 	}
 
 	/**
 	 * @return array
 	 */
 	public function getMergeFields() {
-		return $this->getArrayParam( 'merge_fields' );
+		return $this->merge_fields;
 	}
 
 	/**
@@ -50,6 +50,6 @@ class MemberVO extends BaseVO {
 	 * @return string
 	 */
 	public function getStatus() {
-		return $this->getStringParam( 'status' );
+		return $this->status;
 	}
 }

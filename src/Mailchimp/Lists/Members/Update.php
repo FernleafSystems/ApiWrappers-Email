@@ -30,13 +30,11 @@ class Update extends Create {
 	 * @return $this
 	 */
 	public function setMemberId( $sId ) {
-		return $this->setParam( 'member_id', $sId );
+		$this->member_id = $sId;
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( 'lists/%s/members/%s', $this->getListId(), $this->getParam( 'member_id' ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( 'lists/%s/members/%s', $this->getListId(), $this->member_id );
 	}
 }

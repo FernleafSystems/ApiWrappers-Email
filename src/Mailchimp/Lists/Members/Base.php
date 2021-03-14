@@ -14,7 +14,7 @@ class Base extends Mailchimp\Api {
 	 * @return string
 	 */
 	public function getListId() {
-		return $this->getStringParam( 'list_id' );
+		return $this->list_id;
 	}
 
 	/**
@@ -22,7 +22,8 @@ class Base extends Mailchimp\Api {
 	 * @return $this
 	 */
 	public function setListId( $sId ) {
-		return $this->setParam( 'list_id', $sId );
+		$this->list_id = $sId;
+		return $this;
 	}
 
 	/**
@@ -39,7 +40,7 @@ class Base extends Mailchimp\Api {
 	protected function preSendVerification() {
 		parent::preSendVerification();
 
-		if ( is_null( $this->getParam( 'list_id' ) ) ) {
+		if ( is_null( $this->list_id ) ) {
 			throw new \Exception( 'List ID is not specified.' );
 		}
 	}

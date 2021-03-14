@@ -10,8 +10,6 @@ use FernleafSystems\ApiWrappers\Base\BaseApi;
  */
 class Api extends BaseApi {
 
-	/**
-	 */
 	protected function preFlight() {
 		$this->setRequestHeader( 'Accept', $this->getRequestContentType() )
 			 ->setRequestHeader( 'Content-Type', $this->getRequestContentType() )

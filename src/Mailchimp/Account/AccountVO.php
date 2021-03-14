@@ -7,6 +7,16 @@ use FernleafSystems\ApiWrappers\Base\BaseVO;
 /**
  * Class AccountVO
  * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Account
+ * @property $member_since
+ * @property $account_id
+ * @property $account_name
+ * @property $login_id
+ * @property $email
+ * @property $first_name
+ * @property $last_name
+ * @property $total_subscribers
+ * @property $username
+ * @property $pro_enabled
  */
 class AccountVO extends BaseVO {
 
@@ -14,69 +24,66 @@ class AccountVO extends BaseVO {
 	 * @return string
 	 */
 	public function getAccountCreationDate() {
-		return $this->getStringParam( 'member_since' );
+		return $this->member_since;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getAccountId() {
-		return $this->getStringParam( 'account_id' );
+		return $this->account_id;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getAccountName() {
-		return $this->getStringParam( 'account_name' );
+		return $this->account_name;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getLoginId() {
-		return $this->getParam( 'login_id' );
+		return $this->login_id;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getEmail() {
-		return $this->getStringParam( 'email' );
+		return $this->email;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getFirstName() {
-		return $this->getStringParam( 'first_name' );
+		return $this->first_name;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getLastName() {
-		return $this->getStringParam( 'last_name' );
+		return $this->last_name;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getTotalSubscribers() {
-		return $this->getStringParam( 'total_subscribers' );
+		return $this->total_subscribers;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getUsername() {
-		return $this->getStringParam( 'username' );
+		return $this->username;
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isPro() {
-		return (bool)$this->getParam( 'pro_enabled' );
+	public function isPro() :bool {
+		return (bool)$this->pro_enabled;
 	}
 }

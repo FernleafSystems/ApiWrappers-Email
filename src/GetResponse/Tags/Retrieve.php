@@ -5,6 +5,7 @@ namespace FernleafSystems\ApiWrappers\Email\GetResponse\Tags;
 /**
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\Email\GetResponse\Tags
+ * @property string $id
  */
 class Retrieve extends Base {
 
@@ -47,34 +48,20 @@ class Retrieve extends Base {
 	 * @return TagVO|null
 	 */
 	public function byId( $sId ) {
-		$oVo = null;
-		$this->setParam( 'id', $sId )->req();
+		$VO = null;
+		$this->id = $sId;
+		$this->req();
 		if ( $this->isLastRequestSuccess() ) {
-			$oVo = $this->getVO()->applyFromArray( $this->getDecodedResponseBody() );
+			$VO = $this->getVO()->applyFromArray( $this->getDecodedResponseBody() );
 		}
-		return $oVo;
+		return $VO;
 	}
 
-	/**
-	 * @return TagVO|null
-	 */
-	public function asVo() {
-		return parent::asVo();
-	}
-
-	/**
-	 * @return TagVO
-	 */
-	protected function getVO() {
+	protected function getVO() :TagVO {
 		return new TagVO();
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		$sId = $this->getParam( 'id' );
-		$sEndPoint = parent::getUrlEndpoint();
-		return empty( $sId ) ? $sEndPoint : $sEndPoint.'/'.$sId;
+	protected function getUrlEndpoint() :string {
+		return empty( $this->id ) ? parent::getUrlEndpoint() : parent::getUrlEndpoint().'/'.$this->id;
 	}
 }

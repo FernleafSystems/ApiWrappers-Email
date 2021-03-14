@@ -37,15 +37,13 @@ class Delete extends Api {
 	 * @return $this
 	 */
 	protected function setAttr( $oAttr ) {
-		return $this->setParam( 'attribute', $oAttr );
+		$this->attribute = $oAttr;
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		/** @var AttributeVO $oAttr */
-		$oAttr = $this->getParam( 'attribute' );
+		$oAttr = $this->attribute;
 		return sprintf( 'contacts/attributes/%s/%s',
 			rawurlencode( $oAttr->category ),
 			rawurlencode( $oAttr->name )

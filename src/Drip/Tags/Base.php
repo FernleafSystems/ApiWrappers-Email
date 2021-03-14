@@ -15,7 +15,7 @@ class Base extends Drip\Api {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return static::ENDPOINT_KEY;
 	}
 }

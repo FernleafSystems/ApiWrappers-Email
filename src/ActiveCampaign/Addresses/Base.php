@@ -12,17 +12,11 @@ class Base extends ActiveCampaign\Api {
 
 	const ENDPOINT_KEY = 'address';
 
-	/**
-	 * @return AddressVO
-	 */
-	protected function getVO() {
+	protected function getVO():AddressVO {
 		return new AddressVO();
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return static::ENDPOINT_KEY.'es';
 	}
 }

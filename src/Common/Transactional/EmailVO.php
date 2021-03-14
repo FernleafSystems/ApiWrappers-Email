@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Common\Transactional;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\Utilities\Data\Adapter\DynProperties;
 
 /**
  * Class EmailVO
@@ -21,5 +21,5 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  */
 class EmailVO {
 
-	use StdClassAdapter;
+	use DynProperties;
 }

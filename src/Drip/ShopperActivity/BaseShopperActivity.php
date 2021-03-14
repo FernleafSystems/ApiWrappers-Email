@@ -11,10 +11,7 @@ use FernleafSystems\ApiWrappers\Email\Drip;
  */
 class BaseShopperActivity extends Drip\Api {
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'shopper_activity';
 	}
 }
