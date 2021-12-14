@@ -2,21 +2,17 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
-/**
- * Class Retrieve
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
- */
 class Retrieve extends Base {
 
 	use SubscriberAction;
 	const REQUEST_METHOD = 'get';
 
 	/**
-	 * @param string $sEmail
+	 * @param string $email
 	 * @return PeopleVO|null
 	 */
-	public function byEmail( $sEmail ) {
-		return $this->setEmail( $sEmail )
+	public function byEmail( $email ) {
+		return $this->setEmail( $email )
 					->asVo();
 	}
 

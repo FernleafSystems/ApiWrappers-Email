@@ -4,10 +4,6 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
 use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
 
-/**
- * Class Create
- * @package FernleafSystems\ApiWrappers\Email\Drip\Users
- */
 class Create extends Base {
 
 	const REQUEST_METHOD = 'post';
@@ -16,22 +12,21 @@ class Create extends Base {
 	 * @return PeopleVO|null
 	 */
 	public function create() {
-		$oMemberVO = null;
+		$vo = null;
 		if ( $this->req()->isLastRequestSuccess() ) {
 			$aResp = $this->getDecodedResponseBody();
 			if ( !empty( $aResp[ static::ENDPOINT_KEY ] ) ) {
-				$oMemberVO = $this->getVO()->applyFromArray( array_shift( $aResp[ static::ENDPOINT_KEY ] ) );
+				$vo = $this->getVO()->applyFromArray( array_shift( $aResp[ static::ENDPOINT_KEY ] ) );
 			}
 		}
-		return $oMemberVO;
+		return $vo;
 	}
 
 	/**
-	 * @param string $sTag
 	 * @return $this
 	 */
-	public function addTag( $sTag ) {
-		return $this->addTags( [ $sTag ] );
+	public function addTag( string $tag ) {
+		return $this->addTags( [ $tag ] );
 	}
 
 	/**
@@ -50,15 +45,15 @@ class Create extends Base {
 	}
 
 	/**
-	 * @param string $sTag
+	 * @param string $tag
 	 * @return $this
 	 */
-	public function removeTag( $sTag ) {
+	public function removeTag( $tag ) {
 		$aTags = $this->getRequestDataItem( 'remove_tags' );
 		if ( !is_array( $aTags ) ) {
 			$aTags = [];
 		}
-		$aTags[] = $sTag;
+		$aTags[] = $tag;
 		return $this->setRequestDataItem( 'remove_tags', array_unique( $aTags ) );
 	}
 
@@ -85,35 +80,33 @@ class Create extends Base {
 	}
 
 	/**
-	 * @param string $sEmail
 	 * @return $this
 	 */
-	public function setEmail( $sEmail ) {
-		return $this->setRequestDataItem( 'email', strtolower( $sEmail ) );
+	public function setEmail( string $email ) {
+		return $this->setRequestDataItem( 'email', strtolower( $email ) );
 	}
 
 	/**
-	 * @param string $sName
+	 * @param string $name
 	 * @return $this
 	 */
-	public function setFirstName( $sName ) {
-		return $this->setCustomField( 'first_name', $sName );
+	public function setFirstName( string $name ) {
+		return $this->setCustomField( 'first_name', $name );
 	}
 
 	/**
-	 * @param string $sName
 	 * @return $this
 	 */
-	public function setLastName( $sName ) {
-		return $this->setCustomField( 'last_name', $sName );
+	public function setLastName( string $name ) {
+		return $this->setCustomField( 'last_name', $name );
 	}
 
 	/**
-	 * @param string $sName
+	 * @param string $name
 	 * @return $this
 	 */
-	public function setName( $sName ) {
-		list( $sFirst, $sLast ) = ( new CleanNames() )->name( $sName );
+	public function setName( string $name ) {
+		[ $sFirst, $sLast ] = ( new CleanNames() )->name( $name );
 		return $this->setFirstName( $sFirst )
 					->setLastName( $sLast );
 	}

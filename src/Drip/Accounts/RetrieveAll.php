@@ -2,10 +2,6 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Accounts;
 
-/**
- * Class RetrieveAll
- * @package FernleafSystems\ApiWrappers\Email\Drip\Accounts
- */
 class RetrieveAll extends Base {
 
 	const REQUEST_METHOD = 'get';

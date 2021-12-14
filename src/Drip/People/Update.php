@@ -1,14 +1,13 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 class Update extends Create {
 
 	/**
-	 * @param string $sEmail
 	 * @return $this
 	 */
-	public function setNewEmail( $sEmail ) {
-		return $this->setRequestDataItem( 'new_email', $sEmail );
+	public function setNewEmail( string $email ) {
+		return $this->setRequestDataItem( 'new_email', $email );
 	}
 }

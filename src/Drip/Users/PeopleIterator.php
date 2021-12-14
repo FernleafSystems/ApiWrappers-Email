@@ -5,13 +5,12 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 use FernleafSystems\ApiWrappers\Base\ConnectionConsumer;
 
 /**
- * Class PeopleIterator
- * @package FernleafSystems\ApiWrappers\Email\Drip\Users
+ * @deprecated
  */
 class PeopleIterator extends \FernleafSystems\ApiWrappers\Email\Drip\Common\CommonIterator {
 
-	use ConnectionConsumer,
-		RetrievePageConsumer;
+	use ConnectionConsumer;
+	use RetrievePageConsumer;
 
 	/**
 	 * @return PeopleVO|mixed

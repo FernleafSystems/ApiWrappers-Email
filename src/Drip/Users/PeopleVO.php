@@ -1,12 +1,10 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
-use FernleafSystems\ApiWrappers\Base\BaseVO;
+use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
- * Class SubscriberVO
- * @package FernleafSystems\ApiWrappers\Email\Drip\Users
  * @property string   $id
  * @property string   $email
  * @property string   $href
@@ -28,13 +26,18 @@ use FernleafSystems\ApiWrappers\Base\BaseVO;
  * @property string   $lead_score
  * @property string   $user_id
  * @property array    $links
+ *
+ * *** Custom Fields ***
+ * @property string   $first_name
+ * @property string   $last_name
  */
-class PeopleVO extends BaseVO {
+class PeopleVO extends DynPropertiesClass {
 
-	/**
-	 * @return string
-	 */
-	public function getCreatedAtTs() {
+	public function __get( string $key ) {
+		return $this->{$key} ?? $this->getCustomField( $key );
+	}
+
+	public function getCreatedAtTs() :int {
 		return strtotime( $this->created_at );
 	}
 
@@ -43,7 +46,7 @@ class PeopleVO extends BaseVO {
 	 * @return string
 	 */
 	public function getFirstName() {
-		return $this->getCustomField( 'first_name' );
+		return $this->first_name;
 	}
 
 	/**
@@ -51,26 +54,17 @@ class PeopleVO extends BaseVO {
 	 * @return string
 	 */
 	public function getLastName() {
-		return $this->getCustomField( 'last_name' );
+		return $this->last_name;
 	}
 
-	/**
-	 * @param string $sTag
-	 * @param bool   $bCaseSensitive
-	 * @return bool
-	 */
-	public function hasTag( $sTag, $bCaseSensitive = true ) {
+	public function hasTag( string $tag, bool $caseSensitive = true ) :bool {
 		return in_array(
-			$bCaseSensitive ? $sTag : strtolower( $sTag ),
-			$bCaseSensitive ? $this->tags : array_map( 'strtolower', $this->tags )
+			$caseSensitive ? $tag : strtolower( $tag ),
+			$caseSensitive ? $this->tags : array_map( 'strtolower', $this->tags )
 		);
 	}
 
-	/**
-	 * @param string $sFieldId
-	 * @return mixed|null
-	 */
-	public function getCustomField( $sFieldId ) {
-		return isset( $this->custom_fields[ $sFieldId ] ) ? $this->custom_fields[ $sFieldId ] : null;
+	public function getCustomField( string $field ) :?string {
+		return $this->custom_fields[ $field ] ?? null;
 	}
 }

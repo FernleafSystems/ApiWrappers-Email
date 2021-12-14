@@ -1,13 +1,9 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Accounts;
 
 use FernleafSystems\ApiWrappers\Email\Drip;
 
-/**
- * Class Retrieve
- * @package FernleafSystems\ApiWrappers\Email\Drip\Accounts
- */
 class Retrieve extends RetrieveAll {
 
 	/**
