@@ -2,52 +2,48 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Common\Data;
 
-/**
- * Class CleanNames
- * @package FernleafSystems\ApiWrappers\Email\Common\Data
- */
 class CleanNames {
 
 	/**
-	 * @param string $sName
+	 * @param string $name
 	 * @return string[]
 	 */
-	public function name( $sName ) {
-		list( $sFirstName, $sLastName ) = array_filter( explode( ' ', trim( $sName ), 2 ) );
-		return $this->names( $sFirstName, $sLastName );
+	public function name( $name ) {
+		[ $first, $last ] = array_filter( explode( ' ', trim( $name ), 2 ) );
+		return $this->names( (string)$first, (string)$last );
 	}
 
 	/**
-	 * @param string $sFirstName
-	 * @param string $sLastName
+	 * @param string $first
+	 * @param string $last
 	 * @return string[] - size 2, 1st item is Firstname, 2nd item is surname
 	 */
-	public function names( $sFirstName, $sLastName ) {
-		$sFirstName = trim( (string)$sFirstName );
-		$sLastName = trim( (string)$sLastName );
+	public function names( $first, $last ) {
+		$first = trim( (string)$first );
+		$last = trim( (string)$last );
 
 		// If last name is empty, and there's a space in the first name, split it
-		if ( empty( $sLastName ) && strpos( $sFirstName, ' ' ) ) {
+		if ( empty( $last ) && strpos( $first, ' ' ) ) {
 
 			// we don't break up names with
 			$aSpecialCases = [ 'de', 'van' ];
 			$bIsSpecialCase = false;
 			foreach ( $aSpecialCases as $sCase ) {
-				if ( stripos( $sFirstName, " $sCase " ) ) {
+				if ( stripos( $first, " $sCase " ) ) {
 					$bIsSpecialCase = true;
 					break;
 				}
 			}
 
 			if ( !$bIsSpecialCase ) {
-				list( $sFirstName, $sLastName ) = explode( ' ', $sFirstName, 2 );
+				[ $first, $last ] = explode( ' ', $first, 2 );
 			}
 		}
 
 		// Uppercase all words
 		$sPregPattern = '/\@|[0-9]+/';
-		$sFirstName = preg_replace( $sPregPattern, '', ucwords( strtolower( $sFirstName ) ) );
-		$sLastName = preg_replace( $sPregPattern, '', ucwords( $sLastName ) );
+		$first = preg_replace( $sPregPattern, '', ucwords( strtolower( $first ) ) );
+		$last = preg_replace( $sPregPattern, '', ucwords( $last ) );
 
 		// Then if there's "van" or "de" ensure they are lower-cased
 		$aSpecialConversions = [
@@ -55,10 +51,10 @@ class CleanNames {
 			'De'  => 'de'
 		];
 		foreach ( $aSpecialConversions as $sFrom => $sTo ) {
-			$sFirstName = str_replace( " $sFrom ", " $sTo ", $sFirstName );
-			$sLastName = str_replace( " $sFrom ", " $sTo ", $sLastName );
+			$first = str_replace( " $sFrom ", " $sTo ", $first );
+			$last = str_replace( " $sFrom ", " $sTo ", $last );
 		}
 
-		return [ $sFirstName, $sLastName ];
+		return [ $first, $last ];
 	}
 }

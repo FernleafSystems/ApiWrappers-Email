@@ -2,10 +2,6 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
-/**
- * Class UnsubscribeAll
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
- */
 class UnsubscribeAll extends Base {
 
 	use SubscriberAction;

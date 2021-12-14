@@ -4,10 +4,6 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 use FernleafSystems\ApiWrappers\Email\Drip;
 
-/**
- * Class Base
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
- */
 class Base extends Drip\Api {
 
 	const ENDPOINT_KEY = 'subscribers';

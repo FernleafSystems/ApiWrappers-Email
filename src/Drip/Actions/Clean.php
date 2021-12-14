@@ -5,10 +5,6 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\Actions;
 use FernleafSystems\ApiWrappers\Email\Common;
 use FernleafSystems\ApiWrappers\Email\Drip\People;
 
-/**
- * Class CleanNames
- * @package FernleafSystems\ApiWrappers\Email\Mailchimp\Actions
- */
 class Clean extends Common\Actions\Clean {
 
 	const DEFAULT_FIRST_NAME_KEY = 'first_name';

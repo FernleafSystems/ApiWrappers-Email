@@ -1,11 +1,7 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
-/**
- * Class Delete
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
- */
 class Delete extends Base {
 
 	use SubscriberAction;

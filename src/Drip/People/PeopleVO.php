@@ -1,13 +1,12 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 use FernleafSystems\ApiWrappers\Base\BaseVO;
 use FernleafSystems\ApiWrappers\Email;
+use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
- * Class PeopleVO
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
  * @property string   $id
  * @property string   $email
  * @property string   $href
@@ -29,13 +28,18 @@ use FernleafSystems\ApiWrappers\Email;
  * @property string   $lead_score
  * @property string   $user_id
  * @property array    $links
+ *
+ * *** Custom Fields ***
+ * @property string   $first_name
+ * @property string   $last_name
  */
 class PeopleVO extends BaseVO {
 
-	/**
-	 * @return string
-	 */
-	public function getCreatedAtTs() {
+	public function __get( $key ) {
+		return $this->{$key} ?? $this->getCustomField( $key );
+	}
+
+	public function getCreatedAtTs() :int {
 		return strtotime( $this->created_at );
 	}
 
@@ -43,76 +47,64 @@ class PeopleVO extends BaseVO {
 	 * This uses the default custom file key: first_name
 	 * @return string
 	 */
-	public function getFirstName() {
-		return $this->getCustomField( 'first_name' );
+	public function getFirstName() :string {
+		return (string)$this->first_name;
 	}
 
 	/**
 	 * This uses the default custom file key: last_name
 	 * @return string
 	 */
-	public function getLastName() {
-		return $this->getCustomField( 'last_name' );
+	public function getLastName() :string {
+		return (string)$this->last_name;
 	}
 
-	/**
-	 * @param string $sTag
-	 * @param bool   $bCaseSensitive
-	 * @return bool
-	 */
-	public function hasTag( $sTag, $bCaseSensitive = true ) {
+	public function hasTag( string $tag, bool $caseSensitive = true ) :bool {
 		return in_array(
-			$bCaseSensitive ? $sTag : strtolower( $sTag ),
-			$bCaseSensitive ? $this->tags : array_map( 'strtolower', $this->tags )
+			$caseSensitive ? $tag : strtolower( $tag ),
+			$caseSensitive ? $this->tags : array_map( 'strtolower', $this->tags )
 		);
 	}
 
-	/**
-	 * @param string $sFieldId
-	 * @return mixed|null
-	 */
-	public function getCustomField( $sFieldId ) {
-		return isset( $this->custom_fields[ $sFieldId ] ) ? $this->custom_fields[ $sFieldId ] : null;
+	public function getCustomField( string $field ) :?string {
+		return $this->custom_fields[ $field ] ?? null;
 	}
 
 	/**
-	 * @param string $sField
-	 * @param mixed  $mValue
+	 * @param string $field
+	 * @param mixed  $value
 	 * @return $this
 	 */
-	public function setCustomField( $sField, $mValue ) {
-		$aCFs = $this->custom_fields;
-		if ( !is_array( $aCFs ) ) {
-			$aCFs = [];
-		}
-		$aCFs[ $sField ] = $mValue;
-		$this->custom_fields = $aCFs;
+	public function setCustomField( $field, $value ) {
+		$cf = is_array( $this->custom_fields ) ? $this->custom_fields : [];
+		$cf[ $field ] = $value;
+		$this->custom_fields = $cf;
 		return $this;
 	}
 
 	/**
-	 * @param string $sName
+	 * @param string $name
 	 * @return $this
 	 */
-	public function setFirstName( $sName ) {
-		return $this->setCustomField( 'first_name', $sName );
+	public function setFirstName( $name ) {
+		return $this->setCustomField( 'first_name', $name );
 	}
 
 	/**
-	 * @param string $sName
+	 * @param string $name
 	 * @return $this
 	 */
-	public function setLastName( $sName ) {
-		return $this->setCustomField( 'last_name', $sName );
+	public function setLastName( $name ) {
+		return $this->setCustomField( 'last_name', $name );
 	}
 
 	/**
-	 * @param string $sName
+	 * @param string $name
 	 * @return $this
 	 */
-	public function setName( $sName ) {
-		list( $sFirst, $sLast ) = ( new Email\Common\Data\CleanNames() )->name( $sName );
-		return $this->setFirstName( $sFirst )
-					->setLastName( $sLast );
+	public function setName( $name ) {
+		[ $first, $last ] = ( new Email\Common\Data\CleanNames() )->name( $name );
+		return $this->setFirstName( $first )
+					->setLastName( $last );
 	}
 }

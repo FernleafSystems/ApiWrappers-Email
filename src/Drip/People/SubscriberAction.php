@@ -2,10 +2,6 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
-/**
- * Trait SubscriberAction
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
- */
 trait SubscriberAction {
 
 	/**

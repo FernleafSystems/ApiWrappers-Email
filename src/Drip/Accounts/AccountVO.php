@@ -5,8 +5,6 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\Accounts;
 use FernleafSystems\ApiWrappers\Base\BaseVO;
 
 /**
- * Class AccountVO
- * @package FernleafSystems\ApiWrappers\Email\Drip\Accounts
  * @property string $id
  * @property string $name
  * @property string $default_from_name

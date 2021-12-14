@@ -1,20 +1,16 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 use FernleafSystems\ApiWrappers\Base\ConnectionConsumer;
 
-/**
- * Class PeopleIterator
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
- */
 class PeopleIterator extends \FernleafSystems\ApiWrappers\Email\Drip\Common\CommonIterator {
 
-	use ConnectionConsumer,
-		RetrievePageConsumer;
+	use ConnectionConsumer;
+	use RetrievePageConsumer;
 
 	/**
-	 * @return PeopleVO|mixed
+	 * @return PeopleVO
 	 */
 	public function current() {
 		return parent::current();
@@ -34,12 +30,12 @@ class PeopleIterator extends \FernleafSystems\ApiWrappers\Email\Drip\Common\Comm
 	}
 
 	/**
-	 * @param int $nPage
+	 * @param int $page
 	 * @return PeopleVO[]
 	 */
-	public function getPage( $nPage ) {
+	public function getPage( $page ) {
 		return ( clone $this->getPageRetriever() )
 			->setConnection( $this->getConnection() )
-			->retrieve( $nPage + 1, $this->getPageSize() );
+			->retrieve( $page + 1, $this->getPageSize() );
 	}
 }
