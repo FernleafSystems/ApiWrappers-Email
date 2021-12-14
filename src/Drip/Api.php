@@ -4,10 +4,6 @@ namespace FernleafSystems\ApiWrappers\Email\Drip;
 
 use FernleafSystems\ApiWrappers\Base\BaseApi;
 
-/**
- * Class Api
- * @package FernleafSystems\ApiWrappers\Email\Drip
- */
 class Api extends BaseApi {
 
 	const ENDPOINT_KEY = '';
@@ -17,7 +13,7 @@ class Api extends BaseApi {
 	 * @param int $nTimestamp
 	 * @return string
 	 */
-	static public function convertToStdDateFormat( $nTimestamp ) {
+	public static function convertToStdDateFormat( $nTimestamp ) {
 		return date( 'c', $nTimestamp );
 	}
 
@@ -25,19 +21,19 @@ class Api extends BaseApi {
 	 * @return array
 	 */
 	protected function prepFinalRequestData() {
-		$aFinal = parent::prepFinalRequestData();
-		$aFinal[ 'auth' ] = [ $this->getConnection()->api_key, '' ];
-		return $aFinal;
+		$data = parent::prepFinalRequestData();
+		$data[ 'auth' ] = [ $this->getConnection()->api_key, '' ];
+		return $data;
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getBaseUrl() {
-		/** @var Connection $oCon */
-		$oCon = $this->getConnection();
-		$sUrl = static::IS_ACCOUNT_REQUEST ? $oCon->getBaseUrlWithAccountId() : $oCon->getBaseUrl();
-		return rtrim( $sUrl, '/' ).'/';
+		/** @var Connection $conn */
+		$conn = $this->getConnection();
+		$url = static::IS_ACCOUNT_REQUEST ? $conn->getBaseUrlWithAccountId() : $conn->getBaseUrl();
+		return rtrim( $url, '/' ).'/';
 	}
 
 	/**

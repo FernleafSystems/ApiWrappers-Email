@@ -4,29 +4,25 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\Events;
 
 use FernleafSystems\ApiWrappers\Email\Drip;
 
-/**
- * Class Record
- * @package FernleafSystems\ApiWrappers\Email\Drip\Events
- */
 class Record extends Drip\Api {
 
 	const ENDPOINT_KEY = 'events';
 	const REQUEST_METHOD = 'post';
 
 	/**
-	 * @param string $sAction
+	 * @param string $action
 	 * @return $this
 	 */
-	public function setAction( $sAction ) {
-		return $this->setRequestDataItem( 'action', $sAction );
+	public function setAction( $action ) {
+		return $this->setRequestDataItem( 'action', $action );
 	}
 
 	/**
-	 * @param string $sEmail
+	 * @param string $email
 	 * @return $this
 	 */
-	public function setEmail( $sEmail ) {
-		return $this->setRequestDataItem( 'email', $sEmail );
+	public function setEmail( $email ) {
+		return $this->setRequestDataItem( 'email', $email );
 	}
 
 	/**

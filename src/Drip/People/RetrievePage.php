@@ -2,24 +2,20 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
-/**
- * Class RetrieveAll
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
- */
 class RetrievePage extends Base {
 
 	const REQUEST_METHOD = 'get';
 
 	/**
-	 * @param int $nPage
-	 * @param int $nPerPage
+	 * @param int $page
+	 * @param int $perPage
 	 * @return PeopleVO[]
 	 */
-	public function retrieve( $nPage, $nPerPage ) {
+	public function retrieve( $page, $perPage ) {
 		$aMembers = [];
 
-		$aResp = $this->setRequestDataItem( 'page', $nPage )
-					  ->setRequestDataItem( 'per_page', $nPerPage )
+		$aResp = $this->setRequestDataItem( 'page', $page )
+					  ->setRequestDataItem( 'per_page', $perPage )
 					  ->req()
 					  ->getDecodedResponseBody();
 

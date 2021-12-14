@@ -4,10 +4,6 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
 
-/**
- * Class Create
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
- */
 class Create extends Base {
 
 	const REQUEST_METHOD = 'post';

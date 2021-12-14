@@ -1,18 +1,20 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace FernleafSystems\ApiWrappers\Email\Common;
 
 use Elliotchance\Iterator\AbstractPagedIterator;
 use FernleafSystems\ApiWrappers\Base\ConnectionConsumer;
+use FernleafSystems\Utilities\Data\Adapter\DynProperties;
 
 /**
- * Class CommonIterator
- * @package FernleafSystems\ApiWrappers\Email\Common
+ * @property int $page_size
  */
 abstract class CommonIterator extends AbstractPagedIterator {
 
 	use ConnectionConsumer;
-	const PAGE_LIMIT = 50;
+	use DynProperties;
+
+	public const PAGE_LIMIT = 50;
 
 	/**
 	 * @var int
@@ -20,10 +22,10 @@ abstract class CommonIterator extends AbstractPagedIterator {
 	protected $nTotalSize;
 
 	/**
-	 * @return int
+	 * @inheritDoc
 	 */
 	public function getPageSize() {
-		return static::PAGE_LIMIT;
+		return empty( $this->page_size ) ? static::PAGE_LIMIT : $this->page_size;
 	}
 
 	public function rewind() {

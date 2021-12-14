@@ -2,10 +2,6 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
-/**
- * Trait RetrievePageConsumer
- * @package FernleafSystems\ApiWrappers\Email\Drip\People
- */
 trait RetrievePageConsumer {
 
 	/**
