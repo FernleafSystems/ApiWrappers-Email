@@ -36,7 +36,7 @@ class Create extends Base {
 		$aNewItems = array_map(
 			function ( $oItem ) {
 				/** @var ItemVO $oItem */
-				return $oItem->getRawDataAsArray();
+				return $oItem->getRawData();
 			},
 			$aNewItems
 		);

@@ -2,22 +2,17 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Purchases;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
-/**
- * Class ItemVO
- * @package FernleafSystems\ApiWrappers\Email\Drip\Purchases
- */
-class ItemVO {
-
-	use StdClassAdapter;
+class ItemVO extends DynPropertiesClass {
 
 	/**
 	 * @param string $sValue
 	 * @return $this
 	 */
 	public function setName( $sValue ) {
-		return $this->setParam( 'name', $sValue );
+		$this->name = $sValue;
+		return $this;
 	}
 
 	/**
@@ -25,7 +20,8 @@ class ItemVO {
 	 * @return $this
 	 */
 	public function setAmount( $nAmount ) {
-		return $this->setParam( 'amount', (int)round( $nAmount ) );
+		$this->amount = (int)round( $nAmount );
+		return $this;
 	}
 
 	/**
@@ -33,7 +29,8 @@ class ItemVO {
 	 * @return $this
 	 */
 	public function setProductId( $sId ) {
-		return $this->setParam( 'product_id', $sId );
+		$this->product_id = $sId;
+		return $this;
 	}
 
 	/**
@@ -41,7 +38,8 @@ class ItemVO {
 	 * @return $this
 	 */
 	public function setProperties( $aProps ) {
-		return $this->setParam( 'properties', $aProps );
+		$this->properties = $aProps;
+		return $this;
 	}
 
 	/**
@@ -49,7 +47,8 @@ class ItemVO {
 	 * @return $this
 	 */
 	public function setQuantity( $nQuantity ) {
-		return $this->setParam( 'quantity', (int)$nQuantity );
+		$this->quantity = (int)$nQuantity;
+		return $this;
 	}
 
 	/**
@@ -57,6 +56,7 @@ class ItemVO {
 	 * @return $this
 	 */
 	public function setSku( $sSku ) {
-		return $this->setParam( 'sku', $sSku );
+		$this->sku = $sSku;
+		return $this;
 	}
 }

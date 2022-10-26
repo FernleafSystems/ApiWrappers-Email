@@ -36,7 +36,7 @@ class OrderVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
 			$this->items = [];
 		}
 		$aItems = $this->items;
-		$aItems[] = $oItem->getRawDataAsArray();
+		$aItems[] = $oItem->getRawData();
 		$this->items = $aItems;
 		return $this;
 	}

@@ -8,10 +8,7 @@ class Base extends Drip\Api {
 
 	const ENDPOINT_KEY = 'accounts';
 
-	/**
-	 * @return AccountVO
-	 */
-	protected function getVO() {
+	protected function getVO() :AccountVO {
 		return new AccountVO();
 	}
 }

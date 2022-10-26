@@ -2,15 +2,9 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Common\Webhooks;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
-/**
- * Class WebhookVO
- * @package FernleafSystems\ApiWrappers\Email\Common\Webhooks
- */
-class WebhookVO {
-
-	use StdClassAdapter;
+class WebhookVO extends DynPropertiesClass {
 
 	/**
 	 * @return bool

@@ -2,11 +2,9 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Common\Transactional;
 
-use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
+use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
- * Class EmailVO
- * @package FernleafSystems\ApiWrappers\Email\Common\Transactional
  * @property string       $to
  * @property string       $reply_to
  * @property string       $cc
@@ -19,7 +17,6 @@ use FernleafSystems\Utilities\Data\Adapter\StdClassAdapter;
  * @property bool         $track_opens
  * @property bool|string  $track_links
  */
-class EmailVO {
+class EmailVO extends DynPropertiesClass {
 
-	use StdClassAdapter;
 }

@@ -8,17 +8,11 @@ class Base extends Drip\Api {
 
 	const ENDPOINT_KEY = 'subscribers';
 
-	/**
-	 * @return PeopleVO
-	 */
-	protected function getVO() {
+	protected function getVO() :PeopleVO {
 		return new PeopleVO();
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return static::ENDPOINT_KEY;
 	}
 }

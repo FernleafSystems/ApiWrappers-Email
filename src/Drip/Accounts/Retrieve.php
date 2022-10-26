@@ -24,10 +24,7 @@ class Retrieve extends RetrieveAll {
 					->asVO();
 	}
 
-	/**
-	 * @return AccountVO|null
-	 */
-	public function asVO() {
+	public function asVO() :?AccountVO {
 		$aAcs = parent::asVOs();
 		return array_pop( $aAcs );
 	}
@@ -37,13 +34,11 @@ class Retrieve extends RetrieveAll {
 	 * @return $this
 	 */
 	public function setId( $sId ) {
-		return $this->setParam( 'id', $sId );
+		$this->id = $sId;
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return static::ENDPOINT_KEY.'/'.rawurlencode( $this->getParam( 'id' ) );
+	protected function getUrlEndpoint() :string {
+		return static::ENDPOINT_KEY.'/'.rawurlencode( $this->id );
 	}
 }

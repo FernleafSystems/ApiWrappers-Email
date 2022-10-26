@@ -23,10 +23,7 @@ class Events_Record extends Base {
 		return $this->setRequestDataItem( 'events', $aEvents );
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', 'events', parent::getUrlEndpoint() );
 	}
 }

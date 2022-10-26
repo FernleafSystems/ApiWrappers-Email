@@ -4,8 +4,6 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
 /**
  * @deprecated not required; use PeopleIterator instead
- * Class RetrieveAll
- * @package    FernleafSystems\ApiWrappers\Email\Drip\Users
  */
 class RetrieveAll extends Base {
 
