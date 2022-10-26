@@ -34,17 +34,14 @@ class SubscribePersonTo extends Base {
 		return $this->setRequestDataItem( 'starting_email_index', $nIndex );
 	}
 
-	/**
-	 * @return string[]
-	 */
-	protected function getCriticalRequestItems() {
+	protected function getCriticalRequestItems() :array {
 		return [ 'email' ];
 	}
 
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s/subscribers', parent::getUrlEndpoint(), $this->getCampaignId() );
 	}
 

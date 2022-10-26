@@ -15,7 +15,7 @@ class People_CreateUpdate extends Base {
 	 * @return $this
 	 */
 	public function addPerson( Drip\People\PeopleVO $oPerson ) {
-		return $this->addPersonData( $oPerson->getRawDataAsArray() );
+		return $this->addPersonData( $oPerson->getRawData() );
 	}
 
 	/**
@@ -31,10 +31,7 @@ class People_CreateUpdate extends Base {
 		return $this->setRequestDataItem( 'subscribers', $aSubs );
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', 'subscribers', parent::getUrlEndpoint() );
 	}
 }

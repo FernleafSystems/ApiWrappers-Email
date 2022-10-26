@@ -70,10 +70,7 @@ class Record extends Drip\Api {
 		return static::ENDPOINT_KEY;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return static::ENDPOINT_KEY;
 	}
 }

@@ -15,7 +15,7 @@ class Orders_Record extends Base {
 	 * @return $this
 	 */
 	public function addOrder( Drip\ShopperActivity\Order\OrderVO $oOrder ) {
-		return $this->addOrderData( $oOrder->getRawDataAsArray() );
+		return $this->addOrderData( $oOrder->getRawData() );
 	}
 
 	/**
@@ -31,10 +31,7 @@ class Orders_Record extends Base {
 		return $this->setRequestDataItem( 'orders', $aSubs );
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', 'order', parent::getUrlEndpoint() );
 	}
 }

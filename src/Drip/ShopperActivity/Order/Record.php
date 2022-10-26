@@ -19,7 +19,7 @@ class Record extends Drip\ShopperActivity\BaseShopperActivity {
 		if ( !is_array( $aItems ) ) {
 			$aItems = [];
 		}
-		$aItems[] = $oItem->getRawDataAsArray();
+		$aItems[] = $oItem->getRawData();
 		return $this->setRequestDataItem( 'items', $aItems );
 	}
 
@@ -29,7 +29,7 @@ class Record extends Drip\ShopperActivity\BaseShopperActivity {
 	 * @return $this
 	 */
 	public function setOrder( OrderVO $oOrder ) {
-		return $this->setRequestData( $oOrder->getRawDataAsArray() );
+		return $this->setRequestData( $oOrder->getRawData() );
 	}
 
 	/**
@@ -96,14 +96,14 @@ class Record extends Drip\ShopperActivity\BaseShopperActivity {
 	/**
 	 * @return string[]
 	 */
-	protected function getCriticalRequestItems() {
+	protected function getCriticalRequestItems() :array {
 		return [ 'provider', 'email', 'action' ];
 	}
 
 	/**
 	 * @throws \InvalidArgumentException
 	 */
-	private function isActionValid() {
+	private function isActionValid() :bool {
 		$aPossibleActions = [
 			'placed',
 			'updated',
@@ -119,10 +119,7 @@ class Record extends Drip\ShopperActivity\BaseShopperActivity {
 		return true;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return parent::getUrlEndpoint().'/order';
 	}
 }

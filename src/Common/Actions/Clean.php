@@ -7,15 +7,12 @@ use FernleafSystems\ApiWrappers\Email\Drip;
 use FernleafSystems\ApiWrappers\Email\Mailchimp\Lists\Members;
 use FernleafSystems\ApiWrappers\Email\SendInBlue;
 
-/**
- * Class Clean
- * @package FernleafSystems\ApiWrappers\Email\Common\Data
- */
 abstract class Clean {
+
+	use ConnectionConsumer;
 
 	const DEFAULT_FIRST_NAME_KEY = '';
 	const DEFAULT_LAST_NAME_KEY = '';
-	use ConnectionConsumer;
 
 	/**
 	 * @var mixed

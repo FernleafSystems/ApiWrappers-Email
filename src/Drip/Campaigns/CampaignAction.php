@@ -13,13 +13,14 @@ trait CampaignAction {
 	 * @return $this
 	 */
 	public function setCampaignId( $sId ) {
-		return $this->setParam( 'campaign_id', $sId );
+		$this->campaign_id = $sId;
+		return $this;
 	}
 
 	/**
 	 * @return string - url-encoded
 	 */
 	private function getCampaignId() {
-		return rawurlencode( $this->getStringParam( 'campaign_id' ) );
+		return rawurlencode( $this->campaign_id );
 	}
 }

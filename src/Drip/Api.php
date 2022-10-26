@@ -17,19 +17,13 @@ class Api extends BaseApi {
 		return date( 'c', $nTimestamp );
 	}
 
-	/**
-	 * @return array
-	 */
-	protected function prepFinalRequestData() {
+	protected function prepFinalRequestData() :array {
 		$data = parent::prepFinalRequestData();
 		$data[ 'auth' ] = [ $this->getConnection()->api_key, '' ];
 		return $data;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getBaseUrl() {
+	protected function getBaseUrl() :string {
 		/** @var Connection $conn */
 		$conn = $this->getConnection();
 		$url = static::IS_ACCOUNT_REQUEST ? $conn->getBaseUrlWithAccountId() : $conn->getBaseUrl();
@@ -39,9 +33,8 @@ class Api extends BaseApi {
 	/**
 	 * It's rare to override this Final data request, but when creating subscribers, for example, the data for
 	 * the new subscriber needs to be wrapped up in an array.
-	 * @return array
 	 */
-	public function getRequestDataFinal() {
+	public function getRequestDataFinal() :array {
 		$aPayload = $this->getRequestData();
 		$sPayloadKey = $this->getRequestPayloadDataKey();
 		if ( !empty( $sPayloadKey ) ) {

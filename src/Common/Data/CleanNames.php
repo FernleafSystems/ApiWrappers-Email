@@ -41,7 +41,7 @@ class CleanNames {
 		}
 
 		// Uppercase all words
-		$sPregPattern = '/\@|[0-9]+/';
+		$sPregPattern = '/@|[0-9]+/';
 		$first = preg_replace( $sPregPattern, '', ucwords( strtolower( $first ) ) );
 		$last = preg_replace( $sPregPattern, '', ucwords( $last ) );
 
