@@ -4,10 +4,6 @@ namespace FernleafSystems\ApiWrappers\Email\Sendy\Users;
 
 use FernleafSystems\ApiWrappers\Email\Common\Data\CleanNames;
 
-/**
- * Class Subscribe
- * @package FernleafSystems\ApiWrappers\Email\Sendy\Users
- */
 class Subscribe extends Unsubscribe {
 
 	/**
@@ -37,10 +33,7 @@ class Subscribe extends Unsubscribe {
 					->setLastName( $aParts[ 1 ] );
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return 'subscribe';
 	}
 }
