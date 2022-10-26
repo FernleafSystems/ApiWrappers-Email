@@ -2,7 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Drip\Users;
 
-use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
+use FernleafSystems\ApiWrappers\Base\BaseVO;
 
 /**
  * @property string   $id
@@ -31,7 +31,7 @@ use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
  * @property string   $first_name
  * @property string   $last_name
  */
-class PeopleVO extends DynPropertiesClass {
+class PeopleVO extends BaseVO {
 
 	public function __get( string $key ) {
 		return $this->{$key} ?? $this->getCustomField( $key );

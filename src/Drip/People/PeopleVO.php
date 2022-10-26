@@ -4,7 +4,6 @@ namespace FernleafSystems\ApiWrappers\Email\Drip\People;
 
 use FernleafSystems\ApiWrappers\Base\BaseVO;
 use FernleafSystems\ApiWrappers\Email;
-use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
  * @property string   $id
@@ -36,7 +35,7 @@ use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 class PeopleVO extends BaseVO {
 
 	public function __get( $key ) {
-		return $this->{$key} ?? $this->getCustomField( $key );
+		return isset( $this->{$key} ) ? parent::__get( $key ) : $this->getCustomField( $key );
 	}
 
 	public function getCreatedAtTs() :int {

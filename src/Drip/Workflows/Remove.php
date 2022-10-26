@@ -17,7 +17,8 @@ class Remove extends Drip\Api {
 	 * @return $this
 	 */
 	public function setSubscriber( $sEmail ) {
-		return $this->setParam( 'sub_email', $sEmail );
+		$this->sub_email = $sEmail;
+		return $this;
 	}
 
 	/**
@@ -25,13 +26,11 @@ class Remove extends Drip\Api {
 	 * @return $this
 	 */
 	public function setWorkflowId( $sId ) {
-		return $this->setParam( 'workflow_id', $sId );
+		$this->workflow_id = $sId;
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( 'workflows/%s/subscribers/%s', $this->getParam( 'workflow_id' ), $this->getParam( 'sub_email' ) );
+	protected function getUrlEndpoint() :string {
+		return sprintf( 'workflows/%s/subscribers/%s', $this->workflow_id, $this->sub_email );
 	}
 }

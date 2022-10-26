@@ -2,22 +2,18 @@
 
 namespace FernleafSystems\ApiWrappers\Email\Common\Webhooks;
 
-/**
- * Class Capture
- * @package FernleafSystems\ApiWrappers\Email\Common\Webhooks
- */
 class Capture {
 
 	/**
-	 * @param array $aData
+	 * @param array $data
 	 * @return WebhookVO
 	 */
-	public function fromArray( $aData ) {
-		$oWebhook = new WebhookVO();
-		if ( !empty( $aData ) && is_array( $aData ) ) {
-			$oWebhook->applyFromArray( $aData );
+	public function fromArray( $data ) {
+		$webhook = new WebhookVO();
+		if ( !empty( $data ) && is_array( $data ) ) {
+			$webhook->applyFromArray( $data );
 		}
-		return $oWebhook;
+		return $webhook;
 	}
 
 	/**
@@ -29,20 +25,20 @@ class Capture {
 	}
 
 	/**
-	 * @param string $sJson
+	 * @param string $json
 	 * @return WebhookVO
 	 */
-	public function fromJson( $sJson ) {
-		$aDecoded = [];
+	public function fromJson( $json ) {
+		$decoded = [];
 
-		if ( !empty( $sJson ) && is_string( $sJson ) ) {
-			$aDecoded = json_decode( $sJson, true );
-			if ( !is_array( $aDecoded ) ) {
-				$aDecoded = [];
+		if ( !empty( $json ) && is_string( $json ) ) {
+			$decoded = json_decode( $json, true );
+			if ( !is_array( $decoded ) ) {
+				$decoded = [];
 			}
 		}
 
-		return $this->fromArray( $aDecoded );
+		return $this->fromArray( $decoded );
 	}
 
 	/**
